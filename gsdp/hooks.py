@@ -256,5 +256,12 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+website_route_rules = [
+	{'from_route': '/gsdp-ui/<path:app_path>', 'to_route': 'gsdp-ui'},
+]
 
-website_route_rules = [{'from_route': '/gsdp-ui/<path:app_path>', 'to_route': 'gsdp-ui'},]
+website_redirects = [
+	{"source": "/login", "target": "/gsdp-ui/login"}
+]
+
+home_page = "gsdp-ui"

@@ -3,10 +3,10 @@ import { createApp, reactive } from "vue";
 import App from "./App.vue";
 
 import router from './router';
-import resourceManager from "../../../doppio/libs/resourceManager";
-import call from "../../../doppio/libs/controllers/call";
-import socket from "../../../doppio/libs/controllers/socket";
-import Auth from "../../../doppio/libs/controllers/auth";
+import resourceManager from "./doppio_libs/resourceManager";
+import call from "./doppio_libs/controllers/call";
+import socket from "./doppio_libs/controllers/socket";
+import Auth from "./doppio_libs/controllers/auth";
 
 const app = createApp(App);
 const auth = reactive(new Auth());
@@ -24,7 +24,10 @@ app.provide("$socket", socket);
 
 // Configure route gaurds
 router.beforeEach(async (to, from, next) => {
-	if (to.matched.some((record) => !record.meta.isLoginPage)) {
+	if (to.matched.some((record) => record.meta.isPublic)) {
+		// It's a public page, let anyone in
+		next();
+	} else if (to.matched.some((record) => !record.meta.isLoginPage)) {
 		// this route requires auth, check if logged in
 		// if not, redirect to login page.
 		if (!auth.isLoggedIn) {
@@ -33,8 +36,9 @@ router.beforeEach(async (to, from, next) => {
 			next();
 		}
 	} else {
+		// It's a login page
 		if (auth.isLoggedIn) {
-			next({ name: 'Home' });
+			window.location.href = "/app"; // Already logged in, go to desk
 		} else {
 			next();
 		}
