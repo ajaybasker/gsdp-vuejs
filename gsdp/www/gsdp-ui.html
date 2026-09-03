@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/gsdp/gsdp-ui/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gsdp-ui</title>
+    <script type="module" crossorigin src="/assets/gsdp/gsdp-ui/assets/index-i_EvBnMq.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/gsdp/gsdp-ui/assets/index-CqCMSzX8.css">
+  </head>
+  <body>
+    <div id="app"></div>
+		<script>
+			window.csrf_token = '{{ frappe.session.csrf_token }}';
+			window.boot = {{ boot | json }};
+		</script>
+  </body>
+</html>
