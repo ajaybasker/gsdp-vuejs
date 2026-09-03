@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-09-03 18:28:26.127089",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "repository_resource",
+  "file_name",
+  "file",
+  "media_type",
+  "file_size",
+  "mime_type",
+  "checksum",
+  "version",
+  "is_primary"
+ ],
+ "fields": [
+  {
+   "description": "Parent resource",
+   "fieldname": "repository_resource",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Repository Resource",
+   "options": "Repository Resource",
+   "reqd": 1
+  },
+  {
+   "description": "Name of uploaded file",
+   "fieldname": "file_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "File Name",
+   "reqd": 1
+  },
+  {
+   "description": "Actual uploaded file",
+   "fieldname": "file",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "File",
+   "reqd": 1
+  },
+  {
+   "description": "File format/type",
+   "fieldname": "media_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Media Type",
+   "options": "PDF\nDOCX\nJPG\nPNG\nMP4\nMP3\nOther",
+   "reqd": 1
+  },
+  {
+   "description": "Size of the file",
+   "fieldname": "file_size",
+   "fieldtype": "Data",
+   "label": "File Size",
+   "read_only": 1
+  },
+  {
+   "description": "Technical MIME type",
+   "fieldname": "mime_type",
+   "fieldtype": "Data",
+   "label": "MIME Type",
+   "read_only": 1
+  },
+  {
+   "description": "Used to identify duplicate files",
+   "fieldname": "checksum",
+   "fieldtype": "Data",
+   "label": "File Checksum",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "description": "File version",
+   "fieldname": "version",
+   "fieldtype": "Data",
+   "label": "Version",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "description": "Identifies the main file",
+   "fieldname": "is_primary",
+   "fieldtype": "Check",
+   "label": "Is Primary File",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:26.127089",
+ "modified_by": "Administrator",
+ "module": "Digital Repository",
+ "name": "Resource File",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "file_name",
+ "track_changes": 1
+}

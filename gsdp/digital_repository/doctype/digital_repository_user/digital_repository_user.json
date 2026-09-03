@@ -1,0 +1,116 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:email",
+ "creation": "2026-09-03 18:28:25.866277",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "email",
+  "full_name",
+  "role",
+  "community",
+  "province",
+  "country",
+  "user_status",
+  "access_level"
+ ],
+ "fields": [
+  {
+   "description": "Frappe User's unique login identifier",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "User's full name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "description": "Determines repository permissions",
+   "fieldname": "role",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "User Access Role",
+   "options": "Role",
+   "reqd": 1
+  },
+  {
+   "description": "User's assigned Salesian community",
+   "fieldname": "community",
+   "fieldtype": "Link",
+   "label": "Community",
+   "options": "Community"
+  },
+  {
+   "description": "Province associated with the user",
+   "fieldname": "province",
+   "fieldtype": "Link",
+   "label": "Province",
+   "options": "Province"
+  },
+  {
+   "description": "Country of the organizational unit",
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "GSDP Country"
+  },
+  {
+   "default": "Active",
+   "description": "Repository participation status",
+   "fieldname": "user_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "User Status",
+   "options": "Active\nInactive\nSuspended",
+   "reqd": 1
+  },
+  {
+   "default": "Community",
+   "description": "Defines organizational access scope",
+   "fieldname": "access_level",
+   "fieldtype": "Select",
+   "label": "Access Level",
+   "options": "Community\nProvincial\nGeneralate",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:25.866277",
+ "modified_by": "Administrator",
+ "module": "Digital Repository",
+ "name": "Digital Repository User",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name",
+ "track_changes": 1
+}

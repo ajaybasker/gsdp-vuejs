@@ -1,0 +1,427 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-09-03 18:28:24.779565",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "canonical_name",
+  "community_type",
+  "established_on",
+  "generalate",
+  "region",
+  "province",
+  "address",
+  "country",
+  "state",
+  "district",
+  "city",
+  "postal_code",
+  "diocese",
+  "latitude",
+  "longitude",
+  "official_email",
+  "telephone",
+  "website",
+  "mission_statement",
+  "apostolic_focus",
+  "status",
+  "parish",
+  "geolocation",
+  "alternate_email",
+  "emergency_contact",
+  "public_portal_url",
+  "community_history",
+  "patron_saint",
+  "feast_day",
+  "total_members",
+  "priests",
+  "brothers",
+  "clerics",
+  "novices",
+  "aspirants",
+  "lay_staff",
+  "volunteers",
+  "total_activities",
+  "schools",
+  "colleges",
+  "parishes",
+  "youth_centres",
+  "social_centres",
+  "formation_houses",
+  "technical_centres",
+  "boarding_houses",
+  "rector"
+ ],
+ "fields": [
+  {
+   "description": "Standardized official name",
+   "fieldname": "canonical_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Canonical Name",
+   "reqd": 1
+  },
+  {
+   "description": "Classification of the Community",
+   "fieldname": "community_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Community Type",
+   "options": "Community Type",
+   "reqd": 1
+  },
+  {
+   "description": "Date the Community was established",
+   "fieldname": "established_on",
+   "fieldtype": "Date",
+   "label": "Established On"
+  },
+  {
+   "description": "Generalate associated with the Community",
+   "fieldname": "generalate",
+   "fieldtype": "Link",
+   "label": "Generalate",
+   "options": "Generalate",
+   "read_only": 1
+  },
+  {
+   "description": "Region associated with the Community",
+   "fieldname": "region",
+   "fieldtype": "Link",
+   "label": "Region",
+   "options": "Region",
+   "read_only": 1
+  },
+  {
+   "description": "Governing Province",
+   "fieldname": "province",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Province",
+   "options": "Province",
+   "reqd": 1
+  },
+  {
+   "description": "Primary Community address",
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Address",
+   "options": "Address",
+   "reqd": 1
+  },
+  {
+   "description": "Country where the Community is located",
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "GSDP Country",
+   "reqd": 1
+  },
+  {
+   "description": "State or province",
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State / Province"
+  },
+  {
+   "description": "Administrative district",
+   "fieldname": "district",
+   "fieldtype": "Data",
+   "label": "District"
+  },
+  {
+   "description": "City or locality",
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "description": "Postal or ZIP code",
+   "fieldname": "postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code"
+  },
+  {
+   "description": "Diocese associated with the Community",
+   "fieldname": "diocese",
+   "fieldtype": "Data",
+   "label": "Diocese"
+  },
+  {
+   "description": "Geographic latitude",
+   "fieldname": "latitude",
+   "fieldtype": "Float",
+   "label": "Latitude"
+  },
+  {
+   "description": "Geographic longitude",
+   "fieldname": "longitude",
+   "fieldtype": "Float",
+   "label": "Longitude"
+  },
+  {
+   "description": "Official Community email",
+   "fieldname": "official_email",
+   "fieldtype": "Data",
+   "label": "Official Email"
+  },
+  {
+   "description": "Official telephone number",
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "Telephone"
+  },
+  {
+   "description": "Official Community website",
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "description": "Brief statement of the Community's mission",
+   "fieldname": "mission_statement",
+   "fieldtype": "Text Editor",
+   "label": "Mission Statement"
+  },
+  {
+   "description": "Primary apostolic focus",
+   "fieldname": "apostolic_focus",
+   "fieldtype": "Small Text",
+   "label": "Apostolic Focus"
+  },
+  {
+   "default": "Active",
+   "description": "Current Community status",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nInactive\nArchived",
+   "reqd": 1
+  },
+  {
+   "description": "Associated Parish",
+   "fieldname": "parish",
+   "fieldtype": "Data",
+   "label": "Parish"
+  },
+  {
+   "description": "Map/geospatial representation",
+   "fieldname": "geolocation",
+   "fieldtype": "Geolocation",
+   "label": "Geolocation"
+  },
+  {
+   "description": "Secondary email",
+   "fieldname": "alternate_email",
+   "fieldtype": "Data",
+   "label": "Alternate Email"
+  },
+  {
+   "description": "Emergency contact number/details",
+   "fieldname": "emergency_contact",
+   "fieldtype": "Data",
+   "label": "Emergency Contact"
+  },
+  {
+   "description": "Public GSDP portal profile URL",
+   "fieldname": "public_portal_url",
+   "fieldtype": "Data",
+   "label": "Public Portal URL"
+  },
+  {
+   "description": "Community history",
+   "fieldname": "community_history",
+   "fieldtype": "Long Text",
+   "label": "Community History"
+  },
+  {
+   "description": "Patron saint",
+   "fieldname": "patron_saint",
+   "fieldtype": "Data",
+   "label": "Patron Saint"
+  },
+  {
+   "description": "Feast day associated with patron",
+   "fieldname": "feast_day",
+   "fieldtype": "Date",
+   "label": "Feast Day"
+  },
+  {
+   "default": "0",
+   "description": "Total Community members",
+   "fieldname": "total_members",
+   "fieldtype": "Int",
+   "label": "Total Members",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of priests",
+   "fieldname": "priests",
+   "fieldtype": "Int",
+   "label": "Priests",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of brothers",
+   "fieldname": "brothers",
+   "fieldtype": "Int",
+   "label": "Brothers",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of clerics",
+   "fieldname": "clerics",
+   "fieldtype": "Int",
+   "label": "Clerics",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of novices",
+   "fieldname": "novices",
+   "fieldtype": "Int",
+   "label": "Novices",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of aspirants",
+   "fieldname": "aspirants",
+   "fieldtype": "Int",
+   "label": "Aspirants",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of lay staff",
+   "fieldname": "lay_staff",
+   "fieldtype": "Int",
+   "label": "Lay Staff",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of volunteers",
+   "fieldname": "volunteers",
+   "fieldtype": "Int",
+   "label": "Volunteers",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Total linked institutions",
+   "fieldname": "total_activities",
+   "fieldtype": "Int",
+   "label": "Total Activities",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of schools",
+   "fieldname": "schools",
+   "fieldtype": "Int",
+   "label": "Schools",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of colleges",
+   "fieldname": "colleges",
+   "fieldtype": "Int",
+   "label": "Colleges",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of parishes",
+   "fieldname": "parishes",
+   "fieldtype": "Int",
+   "label": "Parishes",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of youth centres",
+   "fieldname": "youth_centres",
+   "fieldtype": "Int",
+   "label": "Youth Centres",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of social centres",
+   "fieldname": "social_centres",
+   "fieldtype": "Int",
+   "label": "Social Centres",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of formation houses",
+   "fieldname": "formation_houses",
+   "fieldtype": "Int",
+   "label": "Formation Houses",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of technical centres",
+   "fieldname": "technical_centres",
+   "fieldtype": "Int",
+   "label": "Technical Centres",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of boarding houses",
+   "fieldname": "boarding_houses",
+   "fieldtype": "Int",
+   "label": "Boarding Houses",
+   "read_only": 1
+  },
+  {
+   "description": "Current Community Rector",
+   "fieldname": "rector",
+   "fieldtype": "Link",
+   "label": "Rector",
+   "options": "Leadership Assignment",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:26.419430",
+ "modified_by": "Administrator",
+ "module": "Institutional Registry",
+ "name": "Community",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "canonical_name",
+ "track_changes": 1
+}

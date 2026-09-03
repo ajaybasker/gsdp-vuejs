@@ -1,0 +1,149 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:province_code",
+ "creation": "2026-09-03 18:28:24.236640",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "province_code",
+  "canonical_name",
+  "anniversary_date",
+  "historical_notes",
+  "region",
+  "generalate",
+  "province_coordinator_name",
+  "address_line_1",
+  "address_line_2",
+  "city",
+  "postal_code",
+  "country",
+  "total_community"
+ ],
+ "fields": [
+  {
+   "description": "Unique code identifying the Province",
+   "fieldname": "province_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Province Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Canonical name used for standardized identification",
+   "fieldname": "canonical_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Canonical Name",
+   "reqd": 1
+  },
+  {
+   "description": "Province anniversary",
+   "fieldname": "anniversary_date",
+   "fieldtype": "Date",
+   "label": "Anniversary Date"
+  },
+  {
+   "description": "Historical information about the Province",
+   "fieldname": "historical_notes",
+   "fieldtype": "Text Editor",
+   "label": "Historical Notes"
+  },
+  {
+   "description": "Parent Region of the Province",
+   "fieldname": "region",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Region",
+   "options": "Region",
+   "reqd": 1
+  },
+  {
+   "description": "Generalate relationship",
+   "fieldname": "generalate",
+   "fieldtype": "Link",
+   "label": "Generalate",
+   "options": "Generalate"
+  },
+  {
+   "description": "Name of the person responsible for coordinating Province-level registry activities",
+   "fieldname": "province_coordinator_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Province Coordinator Name",
+   "reqd": 1
+  },
+  {
+   "description": "Primary postal address line",
+   "fieldname": "address_line_1",
+   "fieldtype": "Data",
+   "label": "Address Line 1",
+   "reqd": 1
+  },
+  {
+   "description": "Additional postal address details",
+   "fieldname": "address_line_2",
+   "fieldtype": "Data",
+   "label": "Address Line 2"
+  },
+  {
+   "description": "Locality/city component of the address",
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "description": "Postal/ZIP code",
+   "fieldname": "postal_code",
+   "fieldtype": "Data",
+   "label": "Postal Code"
+  },
+  {
+   "description": "Country associated with the postal address",
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "GSDP Country",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "Total number of active Communities belonging to the Province; calculated from Community records",
+   "fieldname": "total_community",
+   "fieldtype": "Int",
+   "label": "Total Community",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:24.236640",
+ "modified_by": "Administrator",
+ "module": "Institutional Registry",
+ "name": "Province",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "canonical_name",
+ "track_changes": 1
+}

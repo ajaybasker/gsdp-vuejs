@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:resource_code",
+ "creation": "2026-09-03 18:28:25.711100",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "resource_title",
+  "resource_code",
+  "resource_type",
+  "category",
+  "collection",
+  "description",
+  "publication_date",
+  "language",
+  "status",
+  "author"
+ ],
+ "fields": [
+  {
+   "description": "Title of the resource",
+   "fieldname": "resource_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resource Title",
+   "reqd": 1
+  },
+  {
+   "description": "Internal identifier",
+   "fieldname": "resource_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resource Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Type of resource",
+   "fieldname": "resource_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Resource Type",
+   "options": "Resource Type",
+   "reqd": 1
+  },
+  {
+   "description": "Main category",
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Repository Category",
+   "reqd": 1
+  },
+  {
+   "description": "Collection containing the resource",
+   "fieldname": "collection",
+   "fieldtype": "Link",
+   "label": "Collection",
+   "options": "Repository Collection"
+  },
+  {
+   "description": "Description/summary",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "description": "Publication or creation date",
+   "fieldname": "publication_date",
+   "fieldtype": "Date",
+   "label": "Publication Date"
+  },
+  {
+   "description": "Main language",
+   "fieldname": "language",
+   "fieldtype": "Data",
+   "label": "Language"
+  },
+  {
+   "default": "Draft",
+   "description": "Repository workflow status",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nSubmitted\nUnder Review\nValidated\nPublished",
+   "reqd": 1
+  },
+  {
+   "description": "Primary author/creator of the resource",
+   "fieldname": "author",
+   "fieldtype": "Link",
+   "label": "Author",
+   "options": "Authorship",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:25.711100",
+ "modified_by": "Administrator",
+ "module": "Digital Repository",
+ "name": "Repository Resource",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resource_title",
+ "track_changes": 1
+}

@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-09-03 18:28:24.987471",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "person",
+  "activity",
+  "role",
+  "community",
+  "start_date",
+  "end_date",
+  "status"
+ ],
+ "fields": [
+  {
+   "description": "Person assigned to the leadership role",
+   "fieldname": "person",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Person",
+   "options": "Leadership Profile",
+   "reqd": 1
+  },
+  {
+   "description": "Activity or institutional context where the leadership assignment applies",
+   "fieldname": "activity",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Activity",
+   "options": "Activity",
+   "reqd": 1
+  },
+  {
+   "description": "Leadership role assigned to the person",
+   "fieldname": "role",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Role",
+   "options": "Leadership Role",
+   "reqd": 1
+  },
+  {
+   "description": "Community where the leadership assignment applies",
+   "fieldname": "community",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Community",
+   "options": "Community",
+   "reqd": 1
+  },
+  {
+   "description": "Effective start date of the leadership assignment",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "description": "End date of the assignment; left blank for an ongoing assignment",
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "default": "Active",
+   "description": "Current status of the leadership assignment",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nCompleted\nSuspended\nCancelled",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:24.987471",
+ "modified_by": "Administrator",
+ "module": "Institutional Registry",
+ "name": "Leadership Assignment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

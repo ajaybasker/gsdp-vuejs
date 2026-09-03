@@ -1,0 +1,135 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-09-03 18:28:24.459001",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "person_name",
+  "leadership_role",
+  "from_date",
+  "address",
+  "email",
+  "phone",
+  "nationality",
+  "role_description",
+  "succession_notes",
+  "official_biography",
+  "profile_photo",
+  "notes"
+ ],
+ "fields": [
+  {
+   "description": "Primary name of the person/leadership profile",
+   "fieldname": "person_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Person Name",
+   "reqd": 1
+  },
+  {
+   "description": "Defines the leadership role held by the person",
+   "fieldname": "leadership_role",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Leadership Role",
+   "options": "Leadership Role",
+   "reqd": 1
+  },
+  {
+   "description": "Date on which the leadership assignment becomes effective",
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "From Date",
+   "reqd": 1
+  },
+  {
+   "description": "Official or correspondence address of the leader",
+   "fieldname": "address",
+   "fieldtype": "Link",
+   "label": "Address",
+   "options": "Address"
+  },
+  {
+   "description": "Official email address of the leader",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "description": "Primary telephone/mobile number",
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone"
+  },
+  {
+   "description": "Nationality of the person",
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "label": "Nationality",
+   "options": "GSDP Country"
+  },
+  {
+   "description": "Brief description of leadership responsibilities",
+   "fieldname": "role_description",
+   "fieldtype": "Small Text",
+   "label": "Role Description"
+  },
+  {
+   "description": "Notes regarding leadership succession or transition",
+   "fieldname": "succession_notes",
+   "fieldtype": "Small Text",
+   "label": "Succession Notes"
+  },
+  {
+   "description": "Official biography of the leader",
+   "fieldname": "official_biography",
+   "fieldtype": "Text Editor",
+   "label": "Official Biography"
+  },
+  {
+   "description": "Official photograph of the leader",
+   "fieldname": "profile_photo",
+   "fieldtype": "Attach Image",
+   "label": "Profile Photo"
+  },
+  {
+   "description": "Additional administrative or leadership notes",
+   "fieldname": "notes",
+   "fieldtype": "Text Editor",
+   "label": "Notes"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:24.459001",
+ "modified_by": "Administrator",
+ "module": "Institutional Registry",
+ "name": "Leadership Profile",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "person_name",
+ "track_changes": 1
+}

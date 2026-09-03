@@ -1,0 +1,121 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:asset",
+ "creation": "2026-09-03 18:28:26.315588",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "publication_id",
+  "asset",
+  "publication_decision",
+  "publisher",
+  "publication_status",
+  "publication_date",
+  "salesian_online_url",
+  "publication_notes",
+  "description"
+ ],
+ "fields": [
+  {
+   "description": "Unique publication record",
+   "fieldname": "publication_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Publication ID",
+   "read_only": 1,
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Asset to publish",
+   "fieldname": "asset",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Repository Asset",
+   "options": "Repository Resource",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Final decision",
+   "fieldname": "publication_decision",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Publication Decision",
+   "options": "Public\nPrivate-Internal\nRestricted",
+   "reqd": 1
+  },
+  {
+   "description": "Publication authority",
+   "fieldname": "publisher",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Publisher",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "default": "Pending",
+   "description": "Publication state",
+   "fieldname": "publication_status",
+   "fieldtype": "Select",
+   "label": "Publication Status",
+   "options": "Pending\nPublished\nRestricted\nFailed",
+   "reqd": 1
+  },
+  {
+   "description": "Publication date",
+   "fieldname": "publication_date",
+   "fieldtype": "Datetime",
+   "label": "Publication Date"
+  },
+  {
+   "description": "Public resource URL",
+   "fieldname": "salesian_online_url",
+   "fieldtype": "Data",
+   "label": "Salesian Online URL"
+  },
+  {
+   "description": "Publication notes",
+   "fieldname": "publication_notes",
+   "fieldtype": "Small Text",
+   "label": "Publication Notes"
+  },
+  {
+   "description": "General description",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:26.315588",
+ "modified_by": "Administrator",
+ "module": "Digital Repository",
+ "name": "Resource Publication",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

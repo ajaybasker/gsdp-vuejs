@@ -1,0 +1,81 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-09-03 18:28:25.632764",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "creator_author",
+  "contributors",
+  "originating_community",
+  "originating_province",
+  "originating_global_office"
+ ],
+ "fields": [
+  {
+   "description": "Person or organization that created the resource",
+   "fieldname": "creator_author",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Creator / Author",
+   "reqd": 1
+  },
+  {
+   "description": "People who contributed to the resource",
+   "fieldname": "contributors",
+   "fieldtype": "Data",
+   "label": "Contributors"
+  },
+  {
+   "description": "Community that provided the resource",
+   "fieldname": "originating_community",
+   "fieldtype": "Link",
+   "label": "Originating Community",
+   "options": "Community"
+  },
+  {
+   "description": "Province that provided the resource",
+   "fieldname": "originating_province",
+   "fieldtype": "Link",
+   "label": "Originating Province",
+   "options": "Province"
+  },
+  {
+   "description": "Global office that provided the resource",
+   "fieldname": "originating_global_office",
+   "fieldtype": "Data",
+   "label": "Originating Global Office"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:25.632764",
+ "modified_by": "Administrator",
+ "module": "Digital Repository",
+ "name": "Authorship",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "creator_author",
+ "track_changes": 1
+}

@@ -1,0 +1,217 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:event_code",
+ "creation": "2026-09-03 18:28:25.247268",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "event_code",
+  "event_name",
+  "event_type",
+  "event_date",
+  "start_time",
+  "end_time",
+  "venue",
+  "community",
+  "province",
+  "target_activity",
+  "description",
+  "number_of_participants",
+  "number_of_staff",
+  "number_of_volunteers",
+  "number_of_animators",
+  "event_report",
+  "media_attachment",
+  "press_release",
+  "press_release_attachment",
+  "published_by",
+  "published_on",
+  "notes"
+ ],
+ "fields": [
+  {
+   "description": "Unique identifier for the event",
+   "fieldname": "event_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Event Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Name of the event",
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Event Name",
+   "reqd": 1
+  },
+  {
+   "description": "Classification of the event",
+   "fieldname": "event_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Event Type",
+   "options": "Event Type",
+   "reqd": 1
+  },
+  {
+   "description": "Date on which the event was conducted",
+   "fieldname": "event_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Execution Date",
+   "reqd": 1
+  },
+  {
+   "description": "Event start time",
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Start Time"
+  },
+  {
+   "description": "Event end time",
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time"
+  },
+  {
+   "description": "Physical or designated venue of the event",
+   "fieldname": "venue",
+   "fieldtype": "Data",
+   "label": "Venue",
+   "reqd": 1
+  },
+  {
+   "description": "Community responsible for capturing the event",
+   "fieldname": "community",
+   "fieldtype": "Link",
+   "label": "Community",
+   "options": "Community",
+   "reqd": 1
+  },
+  {
+   "description": "Province responsible for the Community",
+   "fieldname": "province",
+   "fieldtype": "Link",
+   "label": "Province",
+   "options": "Province",
+   "reqd": 1
+  },
+  {
+   "description": "Target activity or program addressed by the event",
+   "fieldname": "target_activity",
+   "fieldtype": "Data",
+   "label": "Target Activity"
+  },
+  {
+   "description": "Brief description of the event",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Event Description"
+  },
+  {
+   "default": "0",
+   "description": "Aggregate number of participants",
+   "fieldname": "number_of_participants",
+   "fieldtype": "Int",
+   "label": "Number of Participants",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "Aggregate number of staff involved",
+   "fieldname": "number_of_staff",
+   "fieldtype": "Int",
+   "label": "Number of Staff"
+  },
+  {
+   "default": "0",
+   "description": "Aggregate number of volunteers",
+   "fieldname": "number_of_volunteers",
+   "fieldtype": "Int",
+   "label": "Number of Volunteers"
+  },
+  {
+   "default": "0",
+   "description": "Aggregate number of animators involved",
+   "fieldname": "number_of_animators",
+   "fieldtype": "Int",
+   "label": "Number of Animators"
+  },
+  {
+   "description": "Narrative report of the event",
+   "fieldname": "event_report",
+   "fieldtype": "Text Editor",
+   "label": "Event Report"
+  },
+  {
+   "description": "Photos, videos, or other event media",
+   "fieldname": "media_attachment",
+   "fieldtype": "Attach",
+   "label": "Media"
+  },
+  {
+   "description": "Press release or public communication content",
+   "fieldname": "press_release",
+   "fieldtype": "Text Editor",
+   "label": "Press Release"
+  },
+  {
+   "description": "Supporting press release document",
+   "fieldname": "press_release_attachment",
+   "fieldtype": "Attach",
+   "label": "Press Release Attachment"
+  },
+  {
+   "description": "User who published the event",
+   "fieldname": "published_by",
+   "fieldtype": "Link",
+   "label": "Published By",
+   "options": "User"
+  },
+  {
+   "description": "Publication timestamp",
+   "fieldname": "published_on",
+   "fieldtype": "Datetime",
+   "label": "Published On"
+  },
+  {
+   "description": "Additional event-related notes",
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:25.247268",
+ "modified_by": "Administrator",
+ "module": "Institutional Registry",
+ "name": "Events",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "event_name",
+ "track_changes": 1
+}

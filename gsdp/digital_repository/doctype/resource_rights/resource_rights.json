@@ -1,0 +1,112 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-09-03 18:28:26.231496",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "repository_resource",
+  "rights_status",
+  "copyright_holder",
+  "license_type",
+  "rights_description",
+  "clearance_status",
+  "clearance_date",
+  "access_restriction"
+ ],
+ "fields": [
+  {
+   "description": "Resource to which rights apply",
+   "fieldname": "repository_resource",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Repository Resource",
+   "options": "Repository Resource",
+   "reqd": 1
+  },
+  {
+   "description": "Current rights status",
+   "fieldname": "rights_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Rights Status",
+   "options": "Copyrighted\nPublic Domain\nLicensed\nUnknown",
+   "reqd": 1
+  },
+  {
+   "description": "Owner of copyright",
+   "fieldname": "copyright_holder",
+   "fieldtype": "Data",
+   "label": "Copyright Holder"
+  },
+  {
+   "description": "Licence governing use",
+   "fieldname": "license_type",
+   "fieldtype": "Select",
+   "label": "License Type",
+   "options": "All Rights Reserved\nCC BY\nCC BY-SA\nCC BY-NC\nOther"
+  },
+  {
+   "description": "Details of rights",
+   "fieldname": "rights_description",
+   "fieldtype": "Text Editor",
+   "label": "Rights Description"
+  },
+  {
+   "default": "Pending",
+   "description": "Permission/rights clearance status",
+   "fieldname": "clearance_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Clearance Status",
+   "options": "Pending\nCleared\nRejected",
+   "reqd": 1
+  },
+  {
+   "description": "Date clearance was obtained",
+   "fieldname": "clearance_date",
+   "fieldtype": "Date",
+   "label": "Clearance Date"
+  },
+  {
+   "default": "Public",
+   "description": "Controls who can access the resource",
+   "fieldname": "access_restriction",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Access Restriction",
+   "options": "Public\nRegistered Users\nRestricted",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:28:26.231496",
+ "modified_by": "Administrator",
+ "module": "Digital Repository",
+ "name": "Resource Rights",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

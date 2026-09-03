@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:generalate_name",
+ "creation": "2026-09-03 18:27:30.340990",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "generalate_name",
+  "description",
+  "established_date",
+  "generalate_head",
+  "headquarters",
+  "status",
+  "website",
+  "email"
+ ],
+ "fields": [
+  {
+   "description": "Official name of the Generalate",
+   "fieldname": "generalate_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "description": "Brief description",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "description": "Date of establishment",
+   "fieldname": "established_date",
+   "fieldtype": "Date",
+   "label": "Established Date"
+  },
+  {
+   "description": "Current Generalate leader",
+   "fieldname": "generalate_head",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Generalate Head",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "description": "Generalate headquarters",
+   "fieldname": "headquarters",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Headquarters",
+   "reqd": 1
+  },
+  {
+   "default": "Active",
+   "description": "Current status",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nInactive",
+   "reqd": 1
+  },
+  {
+   "description": "Official website",
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "description": "Official email",
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-03 18:27:30.340990",
+ "modified_by": "Administrator",
+ "module": "Institutional Registry",
+ "name": "Generalate",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "generalate_name",
+ "track_changes": 1
+}
