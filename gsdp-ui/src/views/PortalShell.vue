@@ -77,9 +77,8 @@ export default {
   },
   inject: ['$auth'],
   methods: {
-    logout() {
-      this.$auth.logout();
-      window.location.href = '/login';
+    async logout() {
+      await this.$auth.logout();
     }
   }
 }

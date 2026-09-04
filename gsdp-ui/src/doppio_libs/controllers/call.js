@@ -72,7 +72,8 @@ export default async function call(method, args) {
 
 		if (
 			[401, 403].includes(res.status) &&
-			router.currentRoute.name !== 'Login'
+			router.currentRoute.value?.name !== 'Login' &&
+			!router.currentRoute.value?.meta?.isPublic
 		) {
 			router.push('/login');
 		}

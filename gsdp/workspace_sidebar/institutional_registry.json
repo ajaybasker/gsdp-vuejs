@@ -3,6 +3,7 @@
  "creation": "2026-09-04 10:15:38.537750",
  "docstatus": 0,
  "doctype": "Workspace Sidebar",
+ "header_icon": "chromium",
  "idx": 0,
  "items": [
   {
@@ -162,8 +163,8 @@
    "type": "Link"
   }
  ],
- "modified": "2026-09-04 10:17:28.275072",
- "modified_by": "Administrator",
+ "modified": "2026-09-04 16:06:32.814294",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "Institutional Registry",
  "owner": "Administrator",

@@ -20,7 +20,8 @@
   "section_break_description",
   "description",
   "section_break_authorship",
-  "author"
+  "author",
+  "source"
  ],
  "fields": [
   {
@@ -119,12 +120,17 @@
    "label": "Author",
    "options": "Authorship",
    "reqd": 1
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Attach",
+   "label": "Source"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 21:17:00.291673",
+ "modified": "2026-09-04 12:36:56.339113",
  "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Digital Repository",
  "name": "Repository Resource",

@@ -1,4 +1,5 @@
 import call from './call';
+import router from '@/router';
 
 export default class Auth {
 	constructor() {
@@ -30,9 +31,9 @@ export default class Auth {
 	}
 
 	async logout() {
-		await call('logout');
 		this.isLoggedIn = false;
-		window.location.reload();
+		await router.push('/');
+		await call('logout');
 	}
 
 	async resetPassword(email) {

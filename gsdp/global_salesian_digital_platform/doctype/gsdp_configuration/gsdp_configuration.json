@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-09-04 14:33:21.318199",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_login_branding",
+  "login_page_logo",
+  "login_page_bg_image",
+  "column_break_login_branding",
+  "login_page_icon"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_login_branding",
+   "fieldtype": "Section Break",
+   "label": "Login Page Branding"
+  },
+  {
+   "description": "Primary logo shown on the left branding panel of the login page.",
+   "fieldname": "login_page_logo",
+   "fieldtype": "Attach Image",
+   "label": "Login Page Logo"
+  },
+  {
+   "fieldname": "column_break_login_branding",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Secondary icon/logo shown above the sign-in form on the login page.",
+   "fieldname": "login_page_icon",
+   "fieldtype": "Attach Image",
+   "label": "Login Page Icon"
+  },
+  {
+   "fieldname": "login_page_bg_image",
+   "fieldtype": "Attach Image",
+   "label": "Login Page BG Image"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-09-04 14:51:50.911991",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "module": "Global Salesian Digital Platform",
+ "name": "GSDP Configuration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -3,14 +3,17 @@
     <!-- Left Pane -->
     <div class="hidden lg:flex lg:w-1/2 bg-[#0f172a] text-white p-12 flex-col justify-between relative overflow-hidden">
       <!-- Background overlay image if needed -->
-      <div class="absolute inset-0 opacity-20 bg-cover bg-center" :style="{ backgroundImage: `url(${heroImg})` }"></div>
+      <div class="absolute inset-0 opacity-30 bg-cover bg-center" :style="{ backgroundImage: `url('${loginPageBgImage || heroImg}')` }"></div>
       
       <div class="relative z-10">
         <!-- Logo -->
-        <div class="flex items-center space-x-2 mb-16">
-          <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
-          <span class="text-2xl font-bold uppercase tracking-wider">Salesian<br/>Online</span>
-        </div>
+        <router-link to="/" class="flex items-center space-x-2 mb-16 cursor-pointer hover:opacity-90 transition-opacity inline-flex">
+          <img v-if="loginPageLogo" :src="loginPageLogo" alt="Logo" class="h-20 w-auto object-contain drop-shadow-lg" style="filter: brightness(0) invert(1);" />
+          <template v-else>
+            <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+            <span class="text-2xl font-bold uppercase tracking-wider">Salesian<br/>Online</span>
+          </template>
+        </router-link>
         
         <h1 class="text-5xl font-extrabold leading-tight mb-4">
           One digital home for<br/>the Salesian family,<br/>
@@ -44,15 +47,7 @@
           </div>
         </div>
 
-        <div class="flex items-start space-x-4">
-          <div class="w-12 h-12 rounded-full bg-gray-500 overflow-hidden flex-shrink-0">
-             <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Don_Bosco.jpg" alt="Don Bosco" class="w-full h-full object-cover">
-          </div>
-          <div>
-            <p class="italic text-gray-300 text-sm mb-1">"It is not enough to love the young; they must know that they are loved."</p>
-            <p class="text-yellow-500 text-sm font-semibold">— St. Don Bosco</p>
-          </div>
-        </div>
+
       </div>
       
       <div class="relative z-10 flex justify-between text-xs text-gray-500 border-t border-gray-700 pt-4 mt-8">
@@ -68,7 +63,10 @@
     <div class="w-full lg:w-1/2 bg-white flex flex-col items-center justify-center p-8 relative">
       <div class="w-full max-w-md">
         <div class="flex flex-col items-center mb-8">
-          <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 text-red-500">
+          <div v-if="loginPageIcon" class="mb-4 flex items-center justify-center h-20">
+             <img :src="loginPageIcon" alt="Logo" class="h-full w-auto object-contain drop-shadow-sm" />
+          </div>
+          <div v-else class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600 overflow-hidden">
              <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
           </div>
           <h2 class="text-3xl font-bold font-serif mb-2 text-gray-900">Welcome back</h2>
@@ -149,6 +147,7 @@
 
 <script>
 import heroImg from '../assets/hero.png';
+import { getLoginBranding } from '@/api/config.js';
 
 export default {
   data() {
@@ -157,7 +156,10 @@ export default {
       password: "",
       showPassword: false,
       heroImg,
-      errorMessage: ""
+      errorMessage: "",
+      loginPageLogo: "",
+      loginPageIcon: "",
+      loginPageBgImage: "",
     };
   },
   inject: ["$auth"],
@@ -165,6 +167,14 @@ export default {
     if (this.$route?.query?.route) {
       this.redirect_route = this.$route.query.route;
       this.$router.replace({ query: null });
+    }
+    try {
+      const branding = await getLoginBranding();
+      this.loginPageLogo = branding?.login_page_logo || "";
+      this.loginPageIcon = branding?.login_page_icon || "";
+      this.loginPageBgImage = branding?.login_page_bg_image || "";
+    } catch {
+      // keep default branding if the config can't be fetched
     }
   },
   methods: {
