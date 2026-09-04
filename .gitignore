@@ -53,3 +53,7 @@ jspm_packages/
 
 # Aider AI Chat
 .aider*
+
+gsdp/public/gsdp-ui/assets/
+gsdp/public/gsdp-ui/index.html
+gsdp/www/gsdp-ui.html
