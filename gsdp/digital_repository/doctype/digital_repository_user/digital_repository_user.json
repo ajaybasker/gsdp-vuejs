@@ -7,16 +7,25 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_user_details",
   "email",
   "full_name",
   "role",
+  "column_break_1_1",
   "community",
   "province",
   "country",
+  "section_break_access",
   "user_status",
+  "column_break_2_1",
   "access_level"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_user_details",
+   "fieldtype": "Section Break",
+   "label": "User Details"
+  },
   {
    "description": "Frappe User's unique login identifier",
    "fieldname": "email",
@@ -45,6 +54,10 @@
    "reqd": 1
   },
   {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "User's assigned Salesian community",
    "fieldname": "community",
    "fieldtype": "Link",
@@ -66,6 +79,11 @@
    "options": "GSDP Country"
   },
   {
+   "fieldname": "section_break_access",
+   "fieldtype": "Section Break",
+   "label": "Access"
+  },
+  {
    "default": "Active",
    "description": "Repository participation status",
    "fieldname": "user_status",
@@ -74,6 +92,10 @@
    "label": "User Status",
    "options": "Active\nInactive\nSuspended",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Community",

@@ -7,12 +7,17 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_community_details",
   "canonical_name",
   "community_type",
   "established_on",
+  "status",
+  "column_break_1_1",
   "generalate",
   "region",
   "province",
+  "community_coordinator",
+  "section_break_address_and_location",
   "address",
   "country",
   "state",
@@ -20,42 +25,55 @@
   "city",
   "postal_code",
   "diocese",
+  "parish",
+  "column_break_2_1",
   "latitude",
   "longitude",
-  "official_email",
-  "telephone",
-  "website",
-  "mission_statement",
-  "apostolic_focus",
-  "status",
-  "parish",
   "geolocation",
+  "section_break_contact_information",
+  "official_email",
   "alternate_email",
+  "telephone",
+  "column_break_3_1",
+  "website",
   "emergency_contact",
   "public_portal_url",
+  "section_break_mission_and_history",
+  "mission_statement",
+  "apostolic_focus",
   "community_history",
+  "section_break_patron_and_feast",
   "patron_saint",
+  "column_break_5_1",
   "feast_day",
+  "section_break_membership_statistics",
   "total_members",
   "priests",
   "brothers",
   "clerics",
   "novices",
+  "column_break_6_1",
   "aspirants",
   "lay_staff",
   "volunteers",
+  "section_break_activity_statistics",
   "total_activities",
   "schools",
   "colleges",
-  "parishes",
   "youth_centres",
-  "social_centres",
-  "formation_houses",
-  "technical_centres",
-  "boarding_houses",
+  "column_break_7_1",
+  "social_works",
+  "parishes",
+  "training_centre",
+  "section_break_leadership",
   "rector"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_community_details",
+   "fieldtype": "Section Break",
+   "label": "Community Details"
+  },
   {
    "description": "Standardized official name",
    "fieldname": "canonical_name",
@@ -79,6 +97,19 @@
    "fieldname": "established_on",
    "fieldtype": "Date",
    "label": "Established On"
+  },
+  {
+   "default": "Active",
+   "description": "Current Community status",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Active\nInactive\nArchived",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
   },
   {
    "description": "Generalate associated with the Community",
@@ -106,12 +137,16 @@
    "reqd": 1
   },
   {
+   "fieldname": "section_break_address_and_location",
+   "fieldtype": "Section Break",
+   "label": "Address & Location"
+  },
+  {
    "description": "Primary Community address",
    "fieldname": "address",
-   "fieldtype": "Link",
+   "fieldtype": "Text",
    "in_list_view": 1,
    "label": "Address",
-   "options": "Address",
    "reqd": 1
   },
   {
@@ -153,6 +188,16 @@
    "label": "Diocese"
   },
   {
+   "description": "Associated Parish",
+   "fieldname": "parish",
+   "fieldtype": "Data",
+   "label": "Parish"
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Geographic latitude",
    "fieldname": "latitude",
    "fieldtype": "Float",
@@ -165,10 +210,27 @@
    "label": "Longitude"
   },
   {
+   "description": "Map/geospatial representation",
+   "fieldname": "geolocation",
+   "fieldtype": "Geolocation",
+   "label": "Geolocation"
+  },
+  {
+   "fieldname": "section_break_contact_information",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
+  },
+  {
    "description": "Official Community email",
    "fieldname": "official_email",
    "fieldtype": "Data",
    "label": "Official Email"
+  },
+  {
+   "description": "Secondary email",
+   "fieldname": "alternate_email",
+   "fieldtype": "Data",
+   "label": "Alternate Email"
   },
   {
    "description": "Official telephone number",
@@ -177,49 +239,14 @@
    "label": "Telephone"
   },
   {
+   "fieldname": "column_break_3_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Official Community website",
    "fieldname": "website",
    "fieldtype": "Data",
    "label": "Website"
-  },
-  {
-   "description": "Brief statement of the Community's mission",
-   "fieldname": "mission_statement",
-   "fieldtype": "Text Editor",
-   "label": "Mission Statement"
-  },
-  {
-   "description": "Primary apostolic focus",
-   "fieldname": "apostolic_focus",
-   "fieldtype": "Small Text",
-   "label": "Apostolic Focus"
-  },
-  {
-   "default": "Active",
-   "description": "Current Community status",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Active\nInactive\nArchived",
-   "reqd": 1
-  },
-  {
-   "description": "Associated Parish",
-   "fieldname": "parish",
-   "fieldtype": "Data",
-   "label": "Parish"
-  },
-  {
-   "description": "Map/geospatial representation",
-   "fieldname": "geolocation",
-   "fieldtype": "Geolocation",
-   "label": "Geolocation"
-  },
-  {
-   "description": "Secondary email",
-   "fieldname": "alternate_email",
-   "fieldtype": "Data",
-   "label": "Alternate Email"
   },
   {
    "description": "Emergency contact number/details",
@@ -234,10 +261,32 @@
    "label": "Public Portal URL"
   },
   {
+   "fieldname": "section_break_mission_and_history",
+   "fieldtype": "Section Break",
+   "label": "Mission & History"
+  },
+  {
+   "description": "Brief statement of the Community's mission",
+   "fieldname": "mission_statement",
+   "fieldtype": "Text Editor",
+   "label": "Mission Statement"
+  },
+  {
+   "description": "Primary apostolic focus",
+   "fieldname": "apostolic_focus",
+   "fieldtype": "Small Text",
+   "label": "Apostolic Focus"
+  },
+  {
    "description": "Community history",
    "fieldname": "community_history",
    "fieldtype": "Long Text",
    "label": "Community History"
+  },
+  {
+   "fieldname": "section_break_patron_and_feast",
+   "fieldtype": "Section Break",
+   "label": "Patron & Feast"
   },
   {
    "description": "Patron saint",
@@ -246,10 +295,19 @@
    "label": "Patron Saint"
   },
   {
+   "fieldname": "column_break_5_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Feast day associated with patron",
    "fieldname": "feast_day",
    "fieldtype": "Date",
    "label": "Feast Day"
+  },
+  {
+   "fieldname": "section_break_membership_statistics",
+   "fieldtype": "Section Break",
+   "label": "Membership Statistics"
   },
   {
    "default": "0",
@@ -292,6 +350,10 @@
    "read_only": 1
   },
   {
+   "fieldname": "column_break_6_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "0",
    "description": "Number of aspirants",
    "fieldname": "aspirants",
@@ -314,6 +376,11 @@
    "fieldtype": "Int",
    "label": "Volunteers",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_activity_statistics",
+   "fieldtype": "Section Break",
+   "label": "Activity Statistics"
   },
   {
    "default": "0",
@@ -356,36 +423,13 @@
    "read_only": 1
   },
   {
-   "default": "0",
-   "description": "Number of social centres",
-   "fieldname": "social_centres",
-   "fieldtype": "Int",
-   "label": "Social Centres",
-   "read_only": 1
+   "fieldname": "column_break_7_1",
+   "fieldtype": "Column Break"
   },
   {
-   "default": "0",
-   "description": "Number of formation houses",
-   "fieldname": "formation_houses",
-   "fieldtype": "Int",
-   "label": "Formation Houses",
-   "read_only": 1
-  },
-  {
-   "default": "0",
-   "description": "Number of technical centres",
-   "fieldname": "technical_centres",
-   "fieldtype": "Int",
-   "label": "Technical Centres",
-   "read_only": 1
-  },
-  {
-   "default": "0",
-   "description": "Number of boarding houses",
-   "fieldname": "boarding_houses",
-   "fieldtype": "Int",
-   "label": "Boarding Houses",
-   "read_only": 1
+   "fieldname": "section_break_leadership",
+   "fieldtype": "Section Break",
+   "label": "Leadership"
   },
   {
    "description": "Current Community Rector",
@@ -394,12 +438,34 @@
    "label": "Rector",
    "options": "Leadership Assignment",
    "reqd": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of social centres",
+   "fieldname": "social_works",
+   "fieldtype": "Int",
+   "label": "Social Works",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Number of formation houses",
+   "fieldname": "training_centre",
+   "fieldtype": "Int",
+   "label": "Training Centres",
+   "read_only": 1
+  },
+  {
+   "fieldname": "community_coordinator",
+   "fieldtype": "Link",
+   "label": "Community Coordinator",
+   "options": "User"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 21:20:13.274821",
+ "modified": "2026-09-04 10:16:48.813473",
  "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "Community",

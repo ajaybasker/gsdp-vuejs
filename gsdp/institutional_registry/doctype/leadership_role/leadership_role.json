@@ -7,11 +7,18 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_role_details",
   "role_code",
   "role_name",
+  "column_break_1_1",
   "status"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_role_details",
+   "fieldtype": "Section Break",
+   "label": "Role Details"
+  },
   {
    "description": "Unique code identifying the Role/Office",
    "fieldname": "role_code",
@@ -29,6 +36,10 @@
    "label": "Role Name",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Active",

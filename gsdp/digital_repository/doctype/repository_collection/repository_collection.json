@@ -7,14 +7,22 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_collection_details",
   "collection_name",
   "collection_id",
-  "description",
+  "column_break_1_1",
   "start_date",
   "end_date",
-  "is_active"
+  "is_active",
+  "section_break_description",
+  "description"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_collection_details",
+   "fieldtype": "Section Break",
+   "label": "Collection Details"
+  },
   {
    "description": "Name of the collection",
    "fieldname": "collection_name",
@@ -34,10 +42,8 @@
    "unique": 1
   },
   {
-   "description": "Collection description",
-   "fieldname": "description",
-   "fieldtype": "Text Editor",
-   "label": "Description"
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
   },
   {
    "description": "Collection period start",
@@ -59,6 +65,17 @@
    "in_list_view": 1,
    "label": "Is Active",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_description",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "description": "Collection description",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
   }
  ],
  "grid_page_length": 50,

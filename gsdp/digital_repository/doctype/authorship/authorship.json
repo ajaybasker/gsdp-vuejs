@@ -7,13 +7,20 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_authorship_details",
   "creator_author",
   "contributors",
+  "column_break_1_1",
   "originating_community",
   "originating_province",
   "originating_global_office"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_authorship_details",
+   "fieldtype": "Section Break",
+   "label": "Authorship Details"
+  },
   {
    "description": "Person or organization that created the resource",
    "fieldname": "creator_author",
@@ -28,6 +35,10 @@
    "fieldname": "contributors",
    "fieldtype": "Data",
    "label": "Contributors"
+  },
+  {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
   },
   {
    "description": "Community that provided the resource",

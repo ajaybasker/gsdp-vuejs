@@ -7,16 +7,25 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_general_information",
   "generalate_name",
-  "description",
-  "established_date",
   "generalate_head",
-  "headquarters",
   "status",
+  "column_break_1_1",
+  "established_date",
+  "headquarters",
+  "section_break_contact_and_description",
   "website",
-  "email"
+  "email",
+  "column_break_2_1",
+  "description"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_general_information",
+   "fieldtype": "Section Break",
+   "label": "General Information"
+  },
   {
    "description": "Official name of the Generalate",
    "fieldname": "generalate_name",
@@ -27,32 +36,12 @@
    "unique": 1
   },
   {
-   "description": "Brief description",
-   "fieldname": "description",
-   "fieldtype": "Small Text",
-   "label": "Description"
-  },
-  {
-   "description": "Date of establishment",
-   "fieldname": "established_date",
-   "fieldtype": "Date",
-   "label": "Established Date"
-  },
-  {
    "description": "Current Generalate leader",
    "fieldname": "generalate_head",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Generalate Head",
    "options": "User",
-   "reqd": 1
-  },
-  {
-   "description": "Generalate headquarters",
-   "fieldname": "headquarters",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Headquarters",
    "reqd": 1
   },
   {
@@ -66,6 +55,29 @@
    "reqd": 1
   },
   {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Date of establishment",
+   "fieldname": "established_date",
+   "fieldtype": "Date",
+   "label": "Established Date"
+  },
+  {
+   "description": "Generalate headquarters",
+   "fieldname": "headquarters",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Headquarters",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_contact_and_description",
+   "fieldtype": "Section Break",
+   "label": "Contact & Description"
+  },
+  {
    "description": "Official website",
    "fieldname": "website",
    "fieldtype": "Data",
@@ -76,6 +88,16 @@
    "fieldname": "email",
    "fieldtype": "Data",
    "label": "Email"
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Brief description",
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
   }
  ],
  "grid_page_length": 50,

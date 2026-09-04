@@ -7,20 +7,31 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_personal_information",
   "person_name",
   "leadership_role",
   "from_date",
+  "nationality",
+  "column_break_1_1",
+  "profile_photo",
+  "section_break_contact_information",
   "address",
+  "column_break_2_1",
   "email",
   "phone",
-  "nationality",
+  "section_break_role_details",
   "role_description",
   "succession_notes",
+  "section_break_biography_and_notes",
   "official_biography",
-  "profile_photo",
   "notes"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_personal_information",
+   "fieldtype": "Section Break",
+   "label": "Personal Information"
+  },
   {
    "description": "Primary name of the person/leadership profile",
    "fieldname": "person_name",
@@ -48,11 +59,36 @@
    "reqd": 1
   },
   {
+   "description": "Nationality of the person",
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "label": "Nationality",
+   "options": "GSDP Country"
+  },
+  {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Official photograph of the leader",
+   "fieldname": "profile_photo",
+   "fieldtype": "Attach Image",
+   "label": "Profile Photo"
+  },
+  {
+   "fieldname": "section_break_contact_information",
+   "fieldtype": "Section Break",
+   "label": "Contact Information"
+  },
+  {
    "description": "Official or correspondence address of the leader",
    "fieldname": "address",
-   "fieldtype": "Link",
-   "label": "Address",
-   "options": "Address"
+   "fieldtype": "Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
   },
   {
    "description": "Official email address of the leader",
@@ -67,11 +103,9 @@
    "label": "Phone"
   },
   {
-   "description": "Nationality of the person",
-   "fieldname": "nationality",
-   "fieldtype": "Link",
-   "label": "Nationality",
-   "options": "GSDP Country"
+   "fieldname": "section_break_role_details",
+   "fieldtype": "Section Break",
+   "label": "Role Details"
   },
   {
    "description": "Brief description of leadership responsibilities",
@@ -86,16 +120,15 @@
    "label": "Succession Notes"
   },
   {
+   "fieldname": "section_break_biography_and_notes",
+   "fieldtype": "Section Break",
+   "label": "Biography & Notes"
+  },
+  {
    "description": "Official biography of the leader",
    "fieldname": "official_biography",
    "fieldtype": "Text Editor",
    "label": "Official Biography"
-  },
-  {
-   "description": "Official photograph of the leader",
-   "fieldname": "profile_photo",
-   "fieldtype": "Attach Image",
-   "label": "Profile Photo"
   },
   {
    "description": "Additional administrative or leadership notes",

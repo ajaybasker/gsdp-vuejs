@@ -7,16 +7,26 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_activity_details",
   "activity_code",
   "activity_name",
   "activity_category",
+  "column_break_1_1",
   "current_leader",
-  "diocese",
+  "community",
+  "province",
+  "section_break_location",
   "city",
-  "address",
-  "community"
+  "diocese",
+  "column_break_2_1",
+  "address"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_activity_details",
+   "fieldtype": "Section Break",
+   "label": "Activity Details"
+  },
   {
    "description": "Unique identifier for the Institution",
    "fieldname": "activity_code",
@@ -45,6 +55,10 @@
    "reqd": 1
   },
   {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Current director, principal, rector, or other responsible leader",
    "fieldname": "current_leader",
    "fieldtype": "Link",
@@ -52,10 +66,22 @@
    "options": "Leadership Profile"
   },
   {
-   "description": "Diocese associated with the Institution",
-   "fieldname": "diocese",
-   "fieldtype": "Data",
-   "label": "Diocese"
+   "description": "Community this Activity/Institution belongs to",
+   "fieldname": "community",
+   "fieldtype": "Link",
+   "label": "Community",
+   "options": "Community"
+  },
+  {
+   "fieldname": "province",
+   "fieldtype": "Link",
+   "label": "Province",
+   "options": "Province"
+  },
+  {
+   "fieldname": "section_break_location",
+   "fieldtype": "Section Break",
+   "label": "Location"
   },
   {
    "description": "City/locality of the Institution",
@@ -64,24 +90,26 @@
    "label": "City"
   },
   {
-   "description": "Official address of the Institution",
-   "fieldname": "address",
-   "fieldtype": "Link",
-   "label": "Address",
-   "options": "Address"
+   "description": "Diocese associated with the Institution",
+   "fieldname": "diocese",
+   "fieldtype": "Data",
+   "label": "Diocese"
   },
   {
-   "description": "Community this Activity/Institution belongs to",
-   "fieldname": "community",
-   "fieldtype": "Link",
-   "label": "Community",
-   "options": "Community"
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Official address of the Institution",
+   "fieldname": "address",
+   "fieldtype": "Text",
+   "label": "Address"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 21:20:27.129411",
+ "modified": "2026-09-04 09:53:42.237998",
  "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "Activity",

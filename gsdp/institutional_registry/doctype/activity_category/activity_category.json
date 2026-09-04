@@ -7,11 +7,18 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_category_details",
   "category_code",
   "category_name",
+  "column_break_1_1",
   "status"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_category_details",
+   "fieldtype": "Section Break",
+   "label": "Category Details"
+  },
   {
    "description": "Unique identifier for the Institution Type",
    "fieldname": "category_code",
@@ -29,6 +36,10 @@
    "label": "Category Name",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Active",

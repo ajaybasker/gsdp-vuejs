@@ -7,18 +7,27 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_resource_details",
   "resource_title",
   "resource_code",
   "resource_type",
   "category",
+  "column_break_1_1",
   "collection",
-  "description",
-  "publication_date",
   "language",
   "status",
+  "publication_date",
+  "section_break_description",
+  "description",
+  "section_break_authorship",
   "author"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_resource_details",
+   "fieldtype": "Section Break",
+   "label": "Resource Details"
+  },
   {
    "description": "Title of the resource",
    "fieldname": "resource_title",
@@ -56,23 +65,15 @@
    "reqd": 1
   },
   {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Collection containing the resource",
    "fieldname": "collection",
    "fieldtype": "Link",
    "label": "Collection",
    "options": "Repository Collection"
-  },
-  {
-   "description": "Description/summary",
-   "fieldname": "description",
-   "fieldtype": "Text Editor",
-   "label": "Description"
-  },
-  {
-   "description": "Publication or creation date",
-   "fieldname": "publication_date",
-   "fieldtype": "Date",
-   "label": "Publication Date"
   },
   {
    "description": "Main language",
@@ -88,6 +89,28 @@
    "label": "Status",
    "options": "Draft\nSubmitted\nUnder Review\nValidated\nPublished",
    "reqd": 1
+  },
+  {
+   "description": "Publication or creation date",
+   "fieldname": "publication_date",
+   "fieldtype": "Date",
+   "label": "Publication Date"
+  },
+  {
+   "fieldname": "section_break_description",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "description": "Description/summary",
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_break_authorship",
+   "fieldtype": "Section Break",
+   "label": "Authorship"
   },
   {
    "description": "Primary author/creator of the resource",

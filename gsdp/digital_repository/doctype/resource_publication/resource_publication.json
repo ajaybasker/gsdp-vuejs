@@ -7,17 +7,26 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_publication_details",
   "publication_id",
   "asset",
   "publication_decision",
+  "column_break_1_1",
   "publisher",
   "publication_status",
   "publication_date",
+  "section_break_additional_information",
   "salesian_online_url",
+  "column_break_2_1",
   "publication_notes",
   "description"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_publication_details",
+   "fieldtype": "Section Break",
+   "label": "Publication Details"
+  },
   {
    "description": "Unique publication record",
    "fieldname": "publication_id",
@@ -48,6 +57,10 @@
    "reqd": 1
   },
   {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Publication authority",
    "fieldname": "publisher",
    "fieldtype": "Link",
@@ -72,10 +85,19 @@
    "label": "Publication Date"
   },
   {
+   "fieldname": "section_break_additional_information",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
    "description": "Public resource URL",
    "fieldname": "salesian_online_url",
    "fieldtype": "Data",
    "label": "Salesian Online URL"
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
   },
   {
    "description": "Publication notes",

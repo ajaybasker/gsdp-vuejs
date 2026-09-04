@@ -7,12 +7,19 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_type_details",
   "resource_type_name",
   "resource_type_id",
+  "column_break_1_1",
   "description",
   "is_active"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_type_details",
+   "fieldtype": "Section Break",
+   "label": "Type Details"
+  },
   {
    "description": "Name such as Book, Article, Video",
    "fieldname": "resource_type_name",
@@ -30,6 +37,10 @@
    "label": "Resource Type ID",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
   },
   {
    "description": "Description of the resource type",

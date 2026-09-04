@@ -7,17 +7,26 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_file_details",
   "repository_resource",
   "file_name",
   "file",
+  "column_break_1_1",
   "media_type",
+  "version",
+  "is_primary",
+  "section_break_file_metadata",
   "file_size",
   "mime_type",
-  "checksum",
-  "version",
-  "is_primary"
+  "column_break_2_1",
+  "checksum"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_file_details",
+   "fieldtype": "Section Break",
+   "label": "File Details"
+  },
   {
    "description": "Parent resource",
    "fieldname": "repository_resource",
@@ -45,6 +54,10 @@
    "reqd": 1
   },
   {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "File format/type",
    "fieldname": "media_type",
    "fieldtype": "Select",
@@ -52,28 +65,6 @@
    "label": "Media Type",
    "options": "PDF\nDOCX\nJPG\nPNG\nMP4\nMP3\nOther",
    "reqd": 1
-  },
-  {
-   "description": "Size of the file",
-   "fieldname": "file_size",
-   "fieldtype": "Data",
-   "label": "File Size",
-   "read_only": 1
-  },
-  {
-   "description": "Technical MIME type",
-   "fieldname": "mime_type",
-   "fieldtype": "Data",
-   "label": "MIME Type",
-   "read_only": 1
-  },
-  {
-   "description": "Used to identify duplicate files",
-   "fieldname": "checksum",
-   "fieldtype": "Data",
-   "label": "File Checksum",
-   "read_only": 1,
-   "unique": 1
   },
   {
    "default": "1",
@@ -90,6 +81,37 @@
    "fieldtype": "Check",
    "label": "Is Primary File",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_file_metadata",
+   "fieldtype": "Section Break",
+   "label": "File Metadata"
+  },
+  {
+   "description": "Size of the file",
+   "fieldname": "file_size",
+   "fieldtype": "Data",
+   "label": "File Size",
+   "read_only": 1
+  },
+  {
+   "description": "Technical MIME type",
+   "fieldname": "mime_type",
+   "fieldtype": "Data",
+   "label": "MIME Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Used to identify duplicate files",
+   "fieldname": "checksum",
+   "fieldtype": "Data",
+   "label": "File Checksum",
+   "read_only": 1,
+   "unique": 1
   }
  ],
  "grid_page_length": 50,

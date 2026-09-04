@@ -7,14 +7,21 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_tag_details",
   "tag_id",
   "tag_name",
+  "tag_category",
+  "column_break_1_1",
   "description",
   "is_active",
-  "tag_category",
   "sort_order"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_tag_details",
+   "fieldtype": "Section Break",
+   "label": "Tag Details"
+  },
   {
    "description": "Unique tag",
    "fieldname": "tag_id",
@@ -34,6 +41,16 @@
    "unique": 1
   },
   {
+   "description": "Groups related tags",
+   "fieldname": "tag_category",
+   "fieldtype": "Data",
+   "label": "Tag Category"
+  },
+  {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Tag description",
    "fieldname": "description",
    "fieldtype": "Small Text",
@@ -47,12 +64,6 @@
    "in_list_view": 1,
    "label": "Is Active",
    "reqd": 1
-  },
-  {
-   "description": "Groups related tags",
-   "fieldname": "tag_category",
-   "fieldtype": "Data",
-   "label": "Tag Category"
   },
   {
    "default": "0",

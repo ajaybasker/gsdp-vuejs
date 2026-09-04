@@ -7,16 +7,24 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_rights_details",
   "repository_resource",
   "rights_status",
   "copyright_holder",
   "license_type",
-  "rights_description",
+  "column_break_1_1",
   "clearance_status",
   "clearance_date",
-  "access_restriction"
+  "access_restriction",
+  "section_break_description",
+  "rights_description"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_rights_details",
+   "fieldtype": "Section Break",
+   "label": "Rights Details"
+  },
   {
    "description": "Resource to which rights apply",
    "fieldname": "repository_resource",
@@ -50,10 +58,8 @@
    "options": "All Rights Reserved\nCC BY\nCC BY-SA\nCC BY-NC\nOther"
   },
   {
-   "description": "Details of rights",
-   "fieldname": "rights_description",
-   "fieldtype": "Text Editor",
-   "label": "Rights Description"
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Pending",
@@ -80,6 +86,17 @@
    "label": "Access Restriction",
    "options": "Public\nRegistered Users\nRestricted",
    "reqd": 1
+  },
+  {
+   "fieldname": "section_break_description",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "description": "Details of rights",
+   "fieldname": "rights_description",
+   "fieldtype": "Text Editor",
+   "label": "Rights Description"
   }
  ],
  "grid_page_length": 50,

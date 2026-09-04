@@ -7,21 +7,31 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_province_details",
   "province_code",
   "canonical_name",
   "anniversary_date",
-  "historical_notes",
+  "total_community",
+  "column_break_1_1",
   "region",
   "generalate",
   "province_coordinator_name",
+  "section_break_address",
   "address_line_1",
   "address_line_2",
   "city",
+  "column_break_2_1",
   "postal_code",
   "country",
-  "total_community"
+  "section_break_historical_notes",
+  "historical_notes"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_province_details",
+   "fieldtype": "Section Break",
+   "label": "Province Details"
+  },
   {
    "description": "Unique code identifying the Province",
    "fieldname": "province_code",
@@ -47,10 +57,16 @@
    "label": "Anniversary Date"
   },
   {
-   "description": "Historical information about the Province",
-   "fieldname": "historical_notes",
-   "fieldtype": "Text Editor",
-   "label": "Historical Notes"
+   "default": "0",
+   "description": "Total number of active Communities belonging to the Province; calculated from Community records",
+   "fieldname": "total_community",
+   "fieldtype": "Int",
+   "label": "Total Community",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
   },
   {
    "description": "Parent Region of the Province",
@@ -77,6 +93,11 @@
    "reqd": 1
   },
   {
+   "fieldname": "section_break_address",
+   "fieldtype": "Section Break",
+   "label": "Address"
+  },
+  {
    "description": "Primary postal address line",
    "fieldname": "address_line_1",
    "fieldtype": "Data",
@@ -96,6 +117,10 @@
    "label": "City"
   },
   {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Postal/ZIP code",
    "fieldname": "postal_code",
    "fieldtype": "Data",
@@ -110,12 +135,15 @@
    "reqd": 1
   },
   {
-   "default": "0",
-   "description": "Total number of active Communities belonging to the Province; calculated from Community records",
-   "fieldname": "total_community",
-   "fieldtype": "Int",
-   "label": "Total Community",
-   "read_only": 1
+   "fieldname": "section_break_historical_notes",
+   "fieldtype": "Section Break",
+   "label": "Historical Notes"
+  },
+  {
+   "description": "Historical information about the Province",
+   "fieldname": "historical_notes",
+   "fieldtype": "Text Editor",
+   "label": "Historical Notes"
   }
  ],
  "grid_page_length": 50,

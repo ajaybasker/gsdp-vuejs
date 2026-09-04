@@ -7,30 +7,46 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_event_details",
   "event_code",
   "event_name",
   "event_type",
   "event_date",
+  "column_break_1_1",
   "start_time",
   "end_time",
   "venue",
-  "community",
-  "province",
   "target_activity",
+  "section_break_location",
+  "community",
+  "column_break_2_1",
+  "province",
+  "section_break_description",
   "description",
+  "section_break_participation_statistics",
   "number_of_participants",
   "number_of_staff",
+  "column_break_4_1",
   "number_of_volunteers",
   "number_of_animators",
+  "section_break_report_and_media",
   "event_report",
   "media_attachment",
+  "section_break_press_and_publication",
   "press_release",
   "press_release_attachment",
+  "column_break_6_1",
   "published_by",
   "published_on",
+  "section_break_additional_notes",
   "notes"
  ],
  "fields": [
+  {
+   "fieldname": "section_break_event_details",
+   "fieldtype": "Section Break",
+   "label": "Event Details"
+  },
   {
    "description": "Unique identifier for the event",
    "fieldname": "event_code",
@@ -67,6 +83,10 @@
    "reqd": 1
   },
   {
+   "fieldname": "column_break_1_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "Event start time",
    "fieldname": "start_time",
    "fieldtype": "Time",
@@ -86,12 +106,27 @@
    "reqd": 1
   },
   {
+   "description": "Target activity or program addressed by the event",
+   "fieldname": "target_activity",
+   "fieldtype": "Data",
+   "label": "Target Activity"
+  },
+  {
+   "fieldname": "section_break_location",
+   "fieldtype": "Section Break",
+   "label": "Location"
+  },
+  {
    "description": "Community responsible for capturing the event",
    "fieldname": "community",
    "fieldtype": "Link",
    "label": "Community",
    "options": "Community",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
   },
   {
    "description": "Province responsible for the Community",
@@ -102,16 +137,20 @@
    "reqd": 1
   },
   {
-   "description": "Target activity or program addressed by the event",
-   "fieldname": "target_activity",
-   "fieldtype": "Data",
-   "label": "Target Activity"
+   "fieldname": "section_break_description",
+   "fieldtype": "Section Break",
+   "label": "Description"
   },
   {
    "description": "Brief description of the event",
    "fieldname": "description",
    "fieldtype": "Text Editor",
    "label": "Event Description"
+  },
+  {
+   "fieldname": "section_break_participation_statistics",
+   "fieldtype": "Section Break",
+   "label": "Participation Statistics"
   },
   {
    "default": "0",
@@ -129,6 +168,10 @@
    "label": "Number of Staff"
   },
   {
+   "fieldname": "column_break_4_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "default": "0",
    "description": "Aggregate number of volunteers",
    "fieldname": "number_of_volunteers",
@@ -143,6 +186,11 @@
    "label": "Number of Animators"
   },
   {
+   "fieldname": "section_break_report_and_media",
+   "fieldtype": "Section Break",
+   "label": "Report & Media"
+  },
+  {
    "description": "Narrative report of the event",
    "fieldname": "event_report",
    "fieldtype": "Text Editor",
@@ -153,6 +201,11 @@
    "fieldname": "media_attachment",
    "fieldtype": "Attach",
    "label": "Media"
+  },
+  {
+   "fieldname": "section_break_press_and_publication",
+   "fieldtype": "Section Break",
+   "label": "Press & Publication"
   },
   {
    "description": "Press release or public communication content",
@@ -167,6 +220,10 @@
    "label": "Press Release Attachment"
   },
   {
+   "fieldname": "column_break_6_1",
+   "fieldtype": "Column Break"
+  },
+  {
    "description": "User who published the event",
    "fieldname": "published_by",
    "fieldtype": "Link",
@@ -178,6 +235,11 @@
    "fieldname": "published_on",
    "fieldtype": "Datetime",
    "label": "Published On"
+  },
+  {
+   "fieldname": "section_break_additional_notes",
+   "fieldtype": "Section Break",
+   "label": "Additional Notes"
   },
   {
    "description": "Additional event-related notes",
