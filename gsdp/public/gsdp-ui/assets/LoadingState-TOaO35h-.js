@@ -1,0 +1,1 @@
+import{R as e,U as t,et as n}from"./index-e4yUjJyq.js";var r={class:`flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 py-16 text-sm text-slate-500`},i={__name:`LoadingState`,props:{label:{type:String,default:`Loading…`}},setup(i){return(a,o)=>(t(),e(`div`,r,n(i.label),1))}};export{i as t};

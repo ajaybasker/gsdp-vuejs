@@ -130,6 +130,14 @@ const resourceTypeLabel = computed(() => asset.value?.resource_type || '');
 const cover = computed(() => coverImageForAssetType(resourceTypeLabel.value));
 
 function stripHtml(html) {
-  return (html || '').replace(/<[^>]*>/g, '').trim();
+  if (!html) return '';
+  // 1. Decode HTML entities (e.g. &lt;div&gt; -> <div>)
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = html;
+  const decoded = textarea.value;
+  // 2. Strip HTML tags from the decoded string
+  const text = decoded.replace(/<[^>]*>/g, ' ');
+  // 3. Remove extra whitespace
+  return text.replace(/\s+/g, ' ').trim();
 }
 </script>

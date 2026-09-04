@@ -81,7 +81,7 @@
                 </div>
 
                 <p v-if="e.description" class="mt-auto bg-slate-50/80 rounded-xl p-4 text-[15px] font-medium leading-relaxed text-slate-700 border border-slate-100 line-clamp-3">
-                  {{ e.description }}
+                  {{ stripHtml(e.description) }}
                 </p>
               </div>
             </div>
@@ -112,6 +112,18 @@ function formatDate(dateStr) {
     return `${d}-${m}-${y.slice(-2)}`;
   }
   return dateStr;
+}
+
+function stripHtml(html) {
+  if (!html) return '';
+  // 1. Decode HTML entities (e.g. &lt;div&gt; -> <div>)
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = html;
+  const decoded = textarea.value;
+  // 2. Strip HTML tags from the decoded string
+  const text = decoded.replace(/<[^>]*>/g, ' ');
+  // 3. Remove extra whitespace
+  return text.replace(/\s+/g, ' ').trim();
 }
 
 function inferEventType(name) {
