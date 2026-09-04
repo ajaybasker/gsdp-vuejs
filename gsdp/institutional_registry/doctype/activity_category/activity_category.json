@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:category_code",
+ "autoname": "field:category_name",
  "creation": "2026-09-03 18:28:24.148990",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -44,10 +44,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 18:28:24.148990",
- "modified_by": "Administrator",
+ "modified": "2026-09-03 21:11:11.389905",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "Activity Category",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -45,10 +45,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 18:27:30.854446",
- "modified_by": "Administrator",
+ "modified": "2026-09-03 21:22:15.062946",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "Region",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

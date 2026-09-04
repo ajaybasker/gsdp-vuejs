@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:country_code",
+ "autoname": "field:country_name",
  "creation": "2026-09-03 18:28:23.618181",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -67,10 +67,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 18:28:23.618181",
- "modified_by": "Administrator",
+ "modified": "2026-09-03 21:22:01.789840",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "GSDP Country",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "field:repository_resource",
  "creation": "2026-09-03 18:28:26.231496",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -24,7 +24,8 @@
    "in_list_view": 1,
    "label": "Repository Resource",
    "options": "Repository Resource",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "description": "Current rights status",
@@ -84,10 +85,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 18:28:26.231496",
- "modified_by": "Administrator",
+ "modified": "2026-09-03 21:14:02.488092",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Digital Repository",
  "name": "Resource Rights",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:event_code",
+ "autoname": "field:event_name",
  "creation": "2026-09-03 18:28:25.247268",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -46,7 +46,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Event Name",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "description": "Classification of the event",
@@ -188,10 +189,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 18:28:25.247268",
- "modified_by": "Administrator",
+ "modified": "2026-09-03 21:18:51.354527",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "Events",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

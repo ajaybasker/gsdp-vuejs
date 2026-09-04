@@ -65,10 +65,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 18:28:26.040386",
- "modified_by": "Administrator",
+ "modified": "2026-09-03 21:14:39.087708",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Digital Repository",
  "name": "Repository Tag",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

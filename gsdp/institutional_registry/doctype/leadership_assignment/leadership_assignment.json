@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "field:person",
  "creation": "2026-09-03 18:28:24.987471",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -23,7 +23,8 @@
    "in_list_view": 1,
    "label": "Person",
    "options": "Leadership Profile",
-   "reqd": 1
+   "reqd": 1,
+   "unique": 1
   },
   {
    "description": "Activity or institutional context where the leadership assignment applies",
@@ -78,10 +79,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 18:28:24.987471",
- "modified_by": "Administrator",
+ "modified": "2026-09-03 21:19:32.259732",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "Leadership Assignment",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

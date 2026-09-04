@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:event_type_code",
+ "autoname": "field:event_type_name",
  "creation": "2026-09-03 18:28:25.132923",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -51,10 +51,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 18:28:25.132923",
- "modified_by": "Administrator",
+ "modified": "2026-09-03 21:19:05.664928",
+ "modified_by": "ajaybasker@dbcyelagiri.edu.in",
  "module": "Institutional Registry",
  "name": "Event Type",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
