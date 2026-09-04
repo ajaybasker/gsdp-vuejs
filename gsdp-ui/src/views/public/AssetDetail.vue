@@ -57,7 +57,6 @@
                 <div><dt class="text-xs text-slate-500">Resource type</dt><dd class="mt-0.5 text-slate-700">{{ resourceTypeLabel || '—' }}</dd></div>
                 <div><dt class="text-xs text-slate-500">Publication date</dt><dd class="mt-0.5 text-slate-700">{{ asset.publication_date || '—' }}</dd></div>
                 <div v-if="asset.rights?.license_type"><dt class="text-xs text-slate-500">License</dt><dd class="mt-0.5 text-slate-700">{{ asset.rights.license_type }}</dd></div>
-                <div v-if="asset.publication?.salesian_online_url"><dt class="text-xs text-slate-500">Online</dt><dd class="mt-0.5"><a :href="asset.publication.salesian_online_url" target="_blank" rel="noreferrer" class="text-brand-600 hover:text-brand-700">View source →</a></dd></div>
               </dl>
             </SectionCard>
 

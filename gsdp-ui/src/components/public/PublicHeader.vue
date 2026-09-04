@@ -208,8 +208,6 @@ const PASTORAL_LINKS = [
 const KNOWLEDGE_LINKS = [
   { href: '/repository-search', label: 'Resource Catalogue' },
   { href: '/news-events', label: 'Events' },
-  { href: '/spiritual-education', label: 'Spiritual' },
-  { href: '/education', label: 'Education' },
   { href: '/salesian-sources', label: 'Salesian Sources' },
   { href: '/official-documents', label: 'Official Documents' },
 ];

@@ -53,12 +53,6 @@ def get_asset(name):
 		limit_page_length=1, ignore_permissions=True,
 	)
 	resource_dict["rights"] = rights[0] if rights else None
-	publication = frappe.get_all(
-		"Resource Publication", filters={"asset": name},
-		fields=["publication_status", "publication_date", "salesian_online_url"],
-		limit_page_length=1, ignore_permissions=True,
-	)
-	resource_dict["publication"] = publication[0] if publication else None
 
 	related_filters = {"status": "Published", "category": resource.category, "name": ["!=", name]}
 	resource_dict["related"] = frappe.get_all(

@@ -245,7 +245,6 @@ const knowledgeResources = [
   { title: 'Document Collections', to: '/repository-search', img: 'https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=400&fit=crop', desc: 'Curated sets of institutional and historical documents.' },
   { title: 'Official Documents', to: '/official-documents', img: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=400&fit=crop', desc: 'Official releases, journals, and constitutions.' },
   { title: 'Salesian Sources', to: '/salesian-sources', img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=400&fit=crop', desc: 'Historical assets preserving the Salesian heritage.' },
-  { title: 'Education', to: '/education', img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=400&fit=crop', desc: 'Resources supporting schools and technical institutes.' },
   { title: 'News & Events', to: '/news-events', img: 'https://images.unsplash.com/photo-1516280440502-a279093b1695?w=400&h=400&fit=crop', desc: 'Photographs, events, and community life globally.' },
   { title: 'Global Statistics', to: '/global-statistics', img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=400&fit=crop', desc: 'Academic and pastoral analytics across the network.' },
 ];

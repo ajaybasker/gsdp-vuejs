@@ -14,8 +14,6 @@ export default [
 	{ path: '/collections/:id', name: 'PublicCollectionDetail', component: () => import('../views/public/CollectionDetail.vue'), ...publicMeta, props: true },
 	{ path: '/news-events', name: 'NewsAndEvents', component: () => import('../views/public/NewsAndEvents.vue'), ...publicMeta },
 	{ path: '/global-statistics', name: 'GlobalStatistics', component: () => import('../views/public/GlobalStatistics.vue'), ...publicMeta },
-	{ path: '/spiritual-education', name: 'SpiritualAndEducation', component: () => import('../views/public/SpiritualAndEducation.vue'), ...publicMeta },
-	{ path: '/education', name: 'Education', component: () => import('../views/public/Education.vue'), ...publicMeta },
 	{ path: '/salesian-sources', name: 'SalesianSources', component: () => import('../views/public/SalesianSources.vue'), ...publicMeta },
 	{ path: '/official-documents', name: 'OfficialDocuments', component: () => import('../views/public/OfficialDocuments.vue'), ...publicMeta },
 ];
