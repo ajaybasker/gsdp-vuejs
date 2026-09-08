@@ -42,7 +42,7 @@
             <div class="flex flex-col gap-4 lg:flex-row lg:items-center">
               <div class="relative w-full lg:flex-1">
                 <Icon name="Search" :size="16" class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
-                <input v-model="search" placeholder="Search published resources…" class="w-full rounded-xl border border-slate-200 bg-slate-50 py-3.5 pl-11 pr-4 text-[14px] transition-all focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/10" />
+                <input v-model="search" placeholder="Search by title, author, category, description…" class="w-full rounded-xl border border-slate-200 bg-slate-50 py-3.5 pl-11 pr-4 text-[14px] transition-all focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/10" />
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row lg:flex-wrap gap-3 w-full lg:w-auto min-w-0">
                 <select v-model="resourceTypeFilter" class="w-full min-w-0 rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-[13px] font-medium text-slate-600 focus:border-brand-500 focus:outline-none">
@@ -60,8 +60,19 @@
         </Reveal>
 
         <LoadingState v-if="loading" label="Searching the repository…" />
-        <EmptyState v-else-if="filteredAssets.length === 0" icon="Archive" title="No published resources found" message="Try a different search term, or clear a filter." />
+        <EmptyState
+          v-else-if="filteredAssets.length === 0"
+          icon="Archive"
+          title="No published resources found"
+          :message="search ? `No matches for “${search}”. Try a shorter or differently spelled term, or clear a filter.` : 'Try a different search term, or clear a filter.'"
+        />
         <template v-else>
+          <Reveal>
+            <div v-if="isFuzzy" class="mb-4 flex items-start gap-2.5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[13px] text-amber-800">
+              <Icon name="Search" :size="15" class="mt-0.5 shrink-0" />
+              <span>No exact match for “{{ search }}” — showing the closest related resources instead.</span>
+            </div>
+          </Reveal>
           <Reveal>
             <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <p class="text-[14px] font-bold text-slate-700">{{ filteredAssets.length }} published resource{{ filteredAssets.length === 1 ? '' : 's' }}</p>
@@ -111,6 +122,7 @@ import { listAssets, listCategories, listResourceTypes } from '@/api/repository.
 const route = useRoute();
 const loading = ref(true);
 const assets = ref([]);
+const isFuzzy = ref(false);
 const resourceTypes = ref([]);
 const categories = ref([]);
 const search = ref(route.query.q || route.query.search || '');
@@ -120,12 +132,15 @@ const categoryFilter = ref('');
 async function search_() {
   loading.value = true;
   try {
-    assets.value = await listAssets({
+    const res = await listAssets({
       search: search.value || undefined,
       resource_type: resourceTypeFilter.value || undefined,
       category: categoryFilter.value || undefined,
       limit: 60,
     });
+    // Backward compatible with a plain-array response in case of an older cached bundle.
+    assets.value = Array.isArray(res) ? res : res?.results || [];
+    isFuzzy.value = Array.isArray(res) ? false : Boolean(res?.fuzzy);
   } finally {
     loading.value = false;
   }

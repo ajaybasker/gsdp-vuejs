@@ -90,6 +90,9 @@
           <p class="mt-1 text-xs sm:text-sm text-slate-400 truncate">
             {{ author || 'Salesian Congregation' }}
           </p>
+          <p v-if="currentTrack?.description" class="mt-1.5 text-xs text-slate-300 line-clamp-2">
+            {{ currentTrack.description }}
+          </p>
         </div>
       </div>
 
@@ -156,7 +159,7 @@
         </div>
 
         <!-- Center Master Controls -->
-        <div class="flex items-center gap-3 sm:gap-4">
+        <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <!-- Previous Track / Skip 10s back -->
           <button
             @click="skip(-10)"
@@ -180,7 +183,7 @@
           <!-- Primary Play/Pause Button -->
           <button
             @click="togglePlay"
-            class="flex h-13 w-13 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/25 hover:brightness-110 active:scale-95 transition-all"
+            class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 shadow-lg shadow-amber-500/25 hover:brightness-110 active:scale-95 transition-all"
             :title="isPlaying ? 'Pause' : 'Play'"
           >
             <Icon v-if="isPlaying" name="Pause" :size="22" class="fill-current" />
@@ -267,7 +270,7 @@
                 </span>
               </div>
               <p class="text-xs text-slate-400 truncate">
-                {{ title }}
+                {{ track.description || title }}
               </p>
             </div>
           </div>

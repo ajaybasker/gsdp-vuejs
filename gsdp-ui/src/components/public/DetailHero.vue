@@ -16,7 +16,7 @@
         </div>
         <div>
           <div class="flex flex-wrap items-center gap-2.5">
-            <h1 class="text-[28px] font-bold tracking-tight text-white">{{ title }}</h1>
+            <h1 class="text-2xl sm:text-[28px] font-bold tracking-tight text-white break-words">{{ title }}</h1>
             <span v-if="tag" :class="`rounded-full bg-gradient-to-r ${gradient} px-2.5 py-1 text-xs font-semibold text-white shadow-sm`">{{ tag }}</span>
           </div>
           <div v-if="subtitle" class="mt-1 text-sm text-slate-300">{{ subtitle }}</div>

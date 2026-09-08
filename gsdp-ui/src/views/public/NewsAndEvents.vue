@@ -33,7 +33,7 @@
     <main class="w-full px-4 md:px-8 xl:px-12 py-12">
       <Reveal>
         <div class="mb-10 flex flex-wrap items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-          <div class="relative flex-1 min-w-[220px]">
+          <div class="relative w-full flex-1 sm:min-w-[220px] sm:w-auto">
             <Icon name="Search" :size="15" class="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
             <input v-model="search" placeholder="Search events or locations…"
               class="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-[14px] text-slate-800 transition-all focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-500/10" />
@@ -50,6 +50,12 @@
       <LoadingState v-if="loading" label="Loading events…" />
       <EmptyState v-else-if="hasFilter && filteredEvents.length === 0" icon="Calendar" title="No events match your filters" message="Try a different search term or clear the filters." />
       <template v-else-if="filteredEvents.length > 0">
+        <Reveal v-if="isFuzzy">
+          <div class="mb-4 flex items-start gap-2.5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[13px] text-amber-800">
+            <Icon name="Search" :size="15" class="mt-0.5 shrink-0" />
+            <span>No exact match for “{{ search }}” — showing the closest related events instead.</span>
+          </div>
+        </Reveal>
         <Reveal v-if="hasFilter">
           <div class="mb-5 flex items-center justify-between">
             <span class="text-[13px] font-bold text-slate-700">{{ filteredEvents.length }} match{{ filteredEvents.length === 1 ? '' : 'es' }}</span>
@@ -172,14 +178,78 @@ const reportingUnits = computed(() => new Set(events.value.map((e) => e.communit
 const totalParticipants = computed(() => events.value.reduce((sum, e) => sum + (Number(e.number_of_participants) || 0), 0));
 const eventTypes = computed(() => [...new Set(events.value.map((e) => e.event_type_label).filter(Boolean))].sort());
 
-const filteredEvents = computed(() =>
+function levenshtein(a, b) {
+  const m = a.length;
+  const n = b.length;
+  if (!m) return n;
+  if (!n) return m;
+  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i - 1] === b[j - 1]
+        ? dp[i - 1][j - 1]
+        : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+    }
+  }
+  return dp[m][n];
+}
+
+function similarity(a, b) {
+  if (!a || !b) return 0;
+  const maxLen = Math.max(a.length, b.length);
+  return maxLen ? 1 - levenshtein(a, b) / maxLen : 1;
+}
+
+function eventHaystack(e) {
+  return [e.event_name, e.community_name, e.province_name, e.venue, e.event_type_label]
+    .filter(Boolean).join(' ').toLowerCase();
+}
+
+const typeAndDateFiltered = computed(() =>
   events.value.filter((e) => {
-    if (search.value && !e.event_name?.toLowerCase().includes(search.value.toLowerCase()) && !(e.community_name || '').toLowerCase().includes(search.value.toLowerCase())) return false;
     if (typeFilter.value && e.event_type_label !== typeFilter.value) return false;
     if (dateFilter.value && e.event_date !== dateFilter.value) return false;
     return true;
   })
 );
+
+const isFuzzy = ref(false);
+
+const filteredEvents = computed(() => {
+  const query = search.value.trim().toLowerCase();
+  if (!query) {
+    isFuzzy.value = false;
+    return typeAndDateFiltered.value;
+  }
+
+  const direct = typeAndDateFiltered.value.filter((e) => eventHaystack(e).includes(query));
+  if (direct.length) {
+    isFuzzy.value = false;
+    return direct;
+  }
+
+  // No direct substring match — likely a typo. Rank by similarity instead of showing nothing.
+  const queryWords = query.split(/\s+/);
+  const scored = typeAndDateFiltered.value
+    .map((e) => {
+      const haystack = eventHaystack(e);
+      let score = similarity(query, haystack);
+      for (const w of queryWords) {
+        for (const hw of haystack.split(/\s+/)) {
+          score = Math.max(score, similarity(w, hw));
+        }
+      }
+      return { e, score };
+    })
+    .filter((row) => row.score >= 0.55)
+    .sort((a, b) => b.score - a.score)
+    .map((row) => row.e);
+
+  isFuzzy.value = scored.length > 0;
+  return scored;
+});
 
 const hasFilter = computed(() => Boolean(search.value || typeFilter.value || dateFilter.value));
 </script>

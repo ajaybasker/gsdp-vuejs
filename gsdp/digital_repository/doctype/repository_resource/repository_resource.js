@@ -23,6 +23,9 @@ function toggle_resource_tables(frm) {
 	});
 }
 
+// Note: cover_image's visibility/mandatory-ness for Video resources is handled declaratively
+// via depends_on / mandatory_depends_on on the field itself (repository_resource.json).
+
 frappe.ui.form.on("Repository Resource", {
 	refresh(frm) {
 		toggle_resource_tables(frm);

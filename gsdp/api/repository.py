@@ -1,11 +1,19 @@
 # Public, read-only Digital Repository endpoints for the gsdp-ui public site.
 # Only ever returns Repository Resources with status = "Published" — the public-visibility gate.
+import difflib
+
 import frappe
 
 ASSET_LIST_FIELDS = [
 	"name", "title", "resource_code", "resource_type", "category", "collection",
 	"language", "publication_date", "status", "author", "cover_image",
 ]
+
+# Fields searched for a direct (substring) match, and used as the fuzzy-match haystack
+# when no direct match is found (e.g. the user made a typo).
+SEARCHABLE_FIELDS = ["title", "author", "description", "category", "resource_type", "resource_code"]
+
+FUZZY_SCORE_THRESHOLD = 0.55
 
 
 @frappe.whitelist(allow_guest=True)
@@ -17,14 +25,55 @@ def list_assets(resource_type=None, category=None, collection=None, search=None,
 		filters["category"] = category
 	if collection:
 		filters["collection"] = collection
-	if search:
-		filters["title"] = ["like", f"%{search}%"]
+
+	limit = int(limit or 60)
+	search = (search or "").strip()
+
+	if not search:
+		rows = frappe.get_all(
+			"Repository Resource", filters=filters, fields=ASSET_LIST_FIELDS,
+			order_by="publication_date desc", limit_page_length=limit,
+			ignore_permissions=True,
+		)
+		return {"results": rows, "fuzzy": False, "query": ""}
+
+	term = f"%{search}%"
+	or_filters = [[field, "like", term] for field in SEARCHABLE_FIELDS]
 	rows = frappe.get_all(
-		"Repository Resource", filters=filters, fields=ASSET_LIST_FIELDS,
-		order_by="publication_date desc", limit_page_length=int(limit or 60),
+		"Repository Resource", filters=filters, or_filters=or_filters, fields=ASSET_LIST_FIELDS,
+		order_by="publication_date desc", limit_page_length=limit,
 		ignore_permissions=True,
 	)
-	return rows
+	if rows:
+		return {"results": rows, "fuzzy": False, "query": search}
+
+	# Nothing matched directly — likely a typo or unfamiliar wording. Fall back to a
+	# similarity-ranked search across all published resources so the user still sees
+	# relevant, "did you mean" style results instead of an empty page.
+	candidates = frappe.get_all(
+		"Repository Resource", filters=filters, fields=ASSET_LIST_FIELDS + ["description"],
+		ignore_permissions=True,
+	)
+	rows = _fuzzy_rank(search, candidates, limit)
+	for row in rows:
+		row.pop("description", None)
+	return {"results": rows, "fuzzy": True, "query": search}
+
+
+def _fuzzy_rank(search, candidates, limit):
+	query = search.lower()
+	query_words = query.split()
+	scored = []
+	for row in candidates:
+		haystack = " ".join(str(row.get(f) or "") for f in SEARCHABLE_FIELDS).lower()
+		score = difflib.SequenceMatcher(None, query, haystack).ratio()
+		for word in query_words:
+			for hay_word in haystack.split():
+				score = max(score, difflib.SequenceMatcher(None, word, hay_word).ratio())
+		if score >= FUZZY_SCORE_THRESHOLD:
+			scored.append((score, row))
+	scored.sort(key=lambda pair: pair[0], reverse=True)
+	return [row for _, row in scored[:limit]]
 
 
 @frappe.whitelist(allow_guest=True)

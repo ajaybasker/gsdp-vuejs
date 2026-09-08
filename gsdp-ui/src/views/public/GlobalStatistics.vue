@@ -83,7 +83,7 @@ onMounted(async () => {
     ]);
     counts.value = countRows;
     countryCount.value = new Set(communities.map((c) => c.country).filter(Boolean)).size;
-    assetCount.value = assets.length;
+    assetCount.value = (assets?.results || assets || []).length;
     categoryCount.value = categories.length;
     mapPoints.value = points;
     sectorChart.value = sectorCounts.map((s) => ({ name: s.category_label, value: s.count }));

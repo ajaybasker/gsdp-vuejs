@@ -80,9 +80,9 @@
             </nav>
 
             <!-- Permanent Handle / Code -->
-            <div class="flex items-center gap-2 font-mono text-[11px] text-slate-400 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-              <span>REF:</span>
-              <span class="text-slate-200">{{ asset.resource_code || asset.name }}</span>
+            <div class="flex items-center gap-2 font-mono text-[11px] text-slate-400 bg-white/5 px-3 py-1 rounded-full border border-white/10 max-w-full">
+              <span class="shrink-0">REF:</span>
+              <span class="max-w-[220px] truncate text-slate-200">{{ asset.resource_code || asset.name }}</span>
             </div>
           </div>
 
@@ -117,7 +117,7 @@
             </div>
 
             <!-- Imposing Archive Title -->
-            <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight font-serif sm:leading-tight">
+            <h1 class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight font-serif sm:leading-tight break-words">
               {{ asset.title }}
             </h1>
 
@@ -243,11 +243,15 @@
                   :key="'video-' + i"
                   class="overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-md"
                 >
-                  <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
                     <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-rose-700">
                       <Icon name="Video" :size="15" /> Video Archive {{ v.categories ? `• ${v.categories}` : '' }}
                     </span>
-                    <span v-if="v.reference_period" class="text-xs text-slate-400">Period: {{ v.reference_period }}</span>
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+                      <span v-if="v.date">{{ v.date }}</span>
+                      <span v-if="v.reference_period">Period: {{ v.reference_period }}</span>
+                      <span v-if="v.reference_institution">Origin: {{ v.reference_institution }}</span>
+                    </div>
                   </div>
 
                   <div class="mt-4 space-y-3">
@@ -338,6 +342,8 @@
                         <span v-if="img.year_of_creation">Year: {{ img.year_of_creation }}</span>
                         <span v-if="img.technique">Technique: {{ img.technique }}</span>
                         <span v-if="img.location">Location: {{ img.location }}</span>
+                        <span v-if="img.reference_period">Period: {{ img.reference_period }}</span>
+                        <span v-if="img.reference_institution">Origin: {{ img.reference_institution }}</span>
                       </div>
                     </figcaption>
                   </figure>
@@ -356,12 +362,17 @@
                   <div
                     v-for="(doc, idx) in asset.resources"
                     :key="'doc-' + idx"
-                    class="flex flex-wrap items-start justify-between gap-4 py-4 first:pt-0 last:pb-0"
+                    class="flex flex-wrap items-start gap-4 py-4 first:pt-0 last:pb-0"
                   >
+                    <div v-if="doc.cover_image" class="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+                      <img :src="doc.cover_image" :alt="doc.description || 'Cover image'" class="h-full w-full object-cover" loading="lazy" />
+                    </div>
+
                     <div class="min-w-0 flex-1">
-                      <div class="flex items-center gap-2">
-                        <span class="rounded-md bg-sky-100 px-2 py-0.5 text-[10px] font-bold text-sky-800 uppercase">Document</span>
-                        <h4 class="text-sm font-bold text-slate-900">{{ doc.description || doc.category || 'Archival File' }}</h4>
+                      <div class="flex flex-wrap items-center gap-2">
+                        <span v-if="doc.index" class="shrink-0 font-mono text-[10px] font-bold text-slate-400">No. {{ doc.index }}</span>
+                        <span class="shrink-0 rounded-md bg-sky-100 px-2 py-0.5 text-[10px] font-bold text-sky-800 uppercase">{{ doc.category || 'Document' }}</span>
+                        <h4 class="min-w-0 flex-1 truncate text-sm font-bold text-slate-900">{{ doc.description || doc.category || 'Archival File' }}</h4>
                       </div>
                       <p v-if="doc.bibliographic_reference" class="mt-1 text-xs text-slate-500 italic">
                         {{ doc.bibliographic_reference }}
@@ -371,6 +382,7 @@
                         <span v-if="doc.reference_institution">Origin: {{ doc.reference_institution }}</span>
                       </div>
                     </div>
+
                     <a
                       v-if="doc.file"
                       :href="doc.file"
@@ -470,37 +482,6 @@
               </dl>
             </div>
 
-            <!-- Card 2: Rights, Intellectual Property & Licensing -->
-            <div class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-md">
-              <div class="flex items-center justify-between border-b border-slate-100 pb-3.5">
-                <div class="flex items-center gap-2">
-                  <Icon name="Shield" :size="16" class="text-emerald-600" />
-                  <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900">Rights & Clearance</h3>
-                </div>
-                <span class="rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold text-emerald-700 border border-emerald-200">
-                  Track 2 Governed
-                </span>
-              </div>
-
-              <div class="mt-4 space-y-3 text-xs sm:text-sm text-slate-600">
-                <div class="flex items-start gap-2.5">
-                  <Icon name="CheckCircle" :size="16" class="text-emerald-600 mt-0.5 shrink-0" />
-                  <div>
-                    <p class="font-bold text-slate-900">
-                      {{ asset.rights?.rights_status || 'Open Access Digital Preservation' }}
-                    </p>
-                    <p class="text-xs text-slate-500 mt-0.5">
-                      {{ asset.rights?.license_type || 'Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)' }}
-                    </p>
-                  </div>
-                </div>
-
-                <p class="rounded-xl bg-slate-50 p-3 text-xs text-slate-500 leading-relaxed border border-slate-200/60">
-                  This resource is preserved for spiritual, historical, and educational mission works of the Salesian Congregation. Commercial re-use without explicit consent is restricted.
-                </p>
-              </div>
-            </div>
-
             <!-- Card 3: Download & Preservation Files Center -->
             <div class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-md">
               <div class="flex items-center justify-between border-b border-slate-100 pb-3.5">
@@ -575,7 +556,7 @@
               </div>
 
               <div class="mt-4">
-                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3.5 font-mono text-[11px] text-slate-700 leading-relaxed select-all">
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3.5 font-mono text-[11px] text-slate-700 leading-relaxed select-all break-all">
                   {{ citationText }}
                 </div>
                 <p class="mt-2 text-[11px] text-slate-400">
@@ -727,6 +708,8 @@ const hasVideo = computed(() => {
 const showCoverFigure = computed(() => {
   // If this is an audio record and we have the bespoke AudioPlayer, don't awkwardly repeat the photo
   if (hasAudio.value) return false;
+  // Video records already show their own video player/embed above — no need for a separate cover image.
+  if (hasVideo.value) return false;
   return true;
 });
 
