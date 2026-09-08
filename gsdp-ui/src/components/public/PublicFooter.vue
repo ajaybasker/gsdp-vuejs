@@ -43,7 +43,6 @@
           <ul class="space-y-2.5 text-sm">
             <li><router-link to="/repository-search" class="hover:text-white transition-colors">Salesian Documents</router-link></li>
             <li><router-link to="/news-events" class="hover:text-white transition-colors">News & Updates</router-link></li>
-            <li><router-link to="/salesian-sources" class="hover:text-white transition-colors">Salesian Sources</router-link></li>
             <li><router-link to="/about" class="hover:text-white transition-colors">General Council</router-link></li>
             <li><router-link to="/repository-search" class="hover:text-white transition-colors">Research & Knowledge</router-link></li>
           </ul>

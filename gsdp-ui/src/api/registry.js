@@ -10,3 +10,4 @@ export const getChildren = (doctype, name) => call('gsdp.api.registry.get_childr
 export const getSectorCounts = () => call('gsdp.api.registry.get_sector_counts');
 export const getCommunityCountsByProvince = () => call('gsdp.api.registry.get_community_counts_by_province');
 export const listEvents = (params) => call('gsdp.api.registry.list_events', params);
+export const getEvent = (name) => call('gsdp.api.registry.get_event', { name });

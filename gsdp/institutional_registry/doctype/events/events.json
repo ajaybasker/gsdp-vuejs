@@ -12,6 +12,7 @@
   "event_name",
   "event_type",
   "event_date",
+  "cover_image",
   "column_break_1_1",
   "start_time",
   "end_time",
@@ -246,13 +247,18 @@
    "fieldname": "notes",
    "fieldtype": "Small Text",
    "label": "Notes"
+  },
+  {
+   "fieldname": "cover_image",
+   "fieldtype": "Attach Image",
+   "label": "Cover Image"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 21:18:51.354527",
- "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "modified": "2026-09-08 10:49:07.214027",
+ "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Events",
  "naming_rule": "By fieldname",

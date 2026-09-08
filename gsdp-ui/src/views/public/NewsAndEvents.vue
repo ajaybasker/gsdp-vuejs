@@ -57,8 +57,14 @@
         </Reveal>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Reveal v-for="(e, idx) in filteredEvents" :key="e.name" :delay="idx * 40">
-            <div class="group flex flex-col h-full rounded-[20px] border border-slate-200 bg-white shadow-md shadow-brand-900/5 overflow-hidden hover:shadow-2xl hover:shadow-brand-500/10 hover:border-brand-300 hover:-translate-y-1.5 transition-all duration-500">
-              <div :class="`h-2 w-full bg-gradient-to-r ${accentFor(idx)}`" />
+            <router-link
+              :to="'/news-events/' + encodeURIComponent(e.name)"
+              class="group flex flex-col h-full rounded-[20px] border border-slate-200 bg-white shadow-md shadow-brand-900/5 overflow-hidden hover:shadow-2xl hover:shadow-brand-500/10 hover:border-brand-300 hover:-translate-y-1.5 transition-all duration-500 cursor-pointer text-left"
+            >
+              <div v-if="coverFor(e)" class="h-40 w-full overflow-hidden bg-slate-900">
+                <img :src="coverFor(e)" :alt="e.event_name" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" />
+              </div>
+              <div v-else :class="`h-2 w-full bg-gradient-to-r ${accentFor(idx)}`" />
               <div class="p-6 flex flex-col flex-1">
                 <div class="flex items-start justify-between gap-4 mb-4">
                   <div>
@@ -74,17 +80,27 @@
                   <Icon name="Building" :size="15" class="text-brand-500" /> {{ e.community_name || e.province_name }}
                 </div>
 
-                <div class="flex flex-wrap gap-2 text-[12px] font-bold text-slate-500 mb-5">
+                <div class="flex flex-wrap gap-2 text-[12px] font-bold text-slate-500 mb-4">
                   <span v-if="e.venue" class="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200/60 shadow-sm">
                     <Icon name="MapPin" :size="13" class="text-slate-400" /> {{ e.venue }}
                   </span>
                 </div>
 
-                <p v-if="e.description" class="mt-auto bg-slate-50/80 rounded-xl p-4 text-[15px] font-medium leading-relaxed text-slate-700 border border-slate-100 line-clamp-3">
+                <p v-if="e.description" class="mt-auto bg-slate-50/80 rounded-xl p-4 text-[14px] font-medium leading-relaxed text-slate-700 border border-slate-100 line-clamp-3">
                   {{ stripHtml(e.description) }}
                 </p>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-600 group-hover:text-brand-800 transition-colors">
+                  <span class="flex items-center gap-1.5 text-slate-500 font-medium">
+                    <Icon name="Users" :size="14" class="text-slate-400" />
+                    <span>{{ e.number_of_participants ? Number(e.number_of_participants).toLocaleString() + ' participants' : 'Salesian Event' }}</span>
+                  </span>
+                  <span class="inline-flex items-center gap-1">
+                    View Event Details <span class="transition-transform group-hover:translate-x-1">→</span>
+                  </span>
+                </div>
               </div>
-            </div>
+            </router-link>
           </Reveal>
         </div>
       </template>
@@ -126,19 +142,15 @@ function stripHtml(html) {
   return text.replace(/\s+/g, ' ').trim();
 }
 
-function inferEventType(name) {
-  const n = (name || '').toLowerCase();
-  if (n.includes('camp')) return 'Camp';
-  if (n.includes('congress')) return 'Congress';
-  if (n.includes('exhibition')) return 'Exhibition';
-  if (n.includes('fair')) return 'Fair';
-  if (n.includes('meet')) return 'Meet';
-  if (n.includes('retreat')) return 'Retreat';
-  if (n.includes('seminar') || n.includes('session')) return 'Seminar / Session';
-  if (n.includes('training')) return 'Training';
-  if (n.includes('celebration') || n.includes('feast')) return 'Celebration';
-  if (n.includes('outreach')) return 'Outreach';
-  return 'General Event';
+function isImageUrl(url) {
+  if (!url) return false;
+  return /\.(png|jpe?g|gif|webp|svg|avif)(\?.*)?$/i.test(url);
+}
+
+function coverFor(row) {
+  if (row?.cover_image) return row.cover_image;
+  if (row?.media_attachment && isImageUrl(row.media_attachment)) return row.media_attachment;
+  return null;
 }
 
 const loading = ref(true);
@@ -150,7 +162,7 @@ const dateFilter = ref('');
 onMounted(async () => {
   try {
     const rows = await listEvents({ limit: 100 });
-    events.value = rows.map((r) => ({ ...r, event_type_label: inferEventType(r.event_name) }));
+    events.value = rows.map((r) => ({ ...r, event_type_label: r.event_type || 'General Event' }));
   } finally {
     loading.value = false;
   }

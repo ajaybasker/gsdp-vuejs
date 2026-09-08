@@ -149,22 +149,10 @@
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
-  },
-  {
-   "child": 0,
-   "collapsible": 1,
-   "icon": "arrow-right-from-line",
-   "indent": 0,
-   "keep_closed": 0,
-   "label": "GSDP Country",
-   "link_to": "GSDP Country",
-   "link_type": "DocType",
-   "show_arrow": 0,
-   "type": "Link"
   }
  ],
- "modified": "2026-09-04 16:06:32.814294",
- "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "modified": "2026-09-08 12:37:32.166371",
+ "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Institutional Registry",
  "owner": "Administrator",

@@ -73,23 +73,6 @@
       </div>
     </section>
 
-    <!-- SALESIAN COLLECTIONS -->
-    <section id="collections" class="bg-slate-50 py-24 border-b border-slate-100 overflow-hidden">
-      <div class="w-full px-4 md:px-8 xl:px-12 mb-12">
-        <h2 class="text-sm font-bold tracking-widest text-brand-600 uppercase mb-3">Curated Knowledge</h2>
-        <h3 class="text-[28px] font-extrabold text-brand-950">Salesian Collections</h3>
-        <p class="mt-4 text-slate-600 text-lg max-w-2xl">
-          Explore curated hubs of resources across Youth Ministry, Formation, Education, and the wider Salesian Family.
-        </p>
-      </div>
-      <div class="w-full px-4 md:px-8 xl:px-12">
-        <div v-if="collections.length" class="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-          <CollectionCard v-for="c in collections" :key="c.id" :collection="c" />
-        </div>
-        <EmptyState v-else icon="Archive" title="No collections published yet" />
-      </div>
-    </section>
-
     <!-- MARQUEE FEATURES -->
     <section class="bg-white py-24 border-y border-slate-100 overflow-hidden relative marquee-container">
       <div class="w-full px-4 md:px-8 xl:px-12 mb-16 text-center max-w-3xl mx-auto">
@@ -116,31 +99,6 @@
             </div>
             <p class="text-sm leading-relaxed text-slate-500 font-medium group-hover:text-brand-200 transition-colors">{{ f.desc }}</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- KNOWLEDGE & RESOURCES -->
-    <section class="bg-slate-50 py-24 border-y border-slate-100">
-      <div class="w-full px-4 md:px-8 xl:px-12">
-        <div class="max-w-2xl mb-12">
-          <h2 class="text-sm font-bold tracking-widest text-brand-600 uppercase mb-3">Digital Archives</h2>
-          <h3 class="text-[28px] font-extrabold text-brand-950">Knowledge & Resources</h3>
-          <p class="mt-4 text-slate-600 text-lg">Access a vast collection of curated digital resources, document collections, publications, and historical materials.</p>
-        </div>
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <router-link v-for="item in knowledgeResources" :key="item.title" :to="item.to" class="group flex flex-col h-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-2 hover:border-brand-300 transition-all duration-500">
-            <div class="h-64 w-full overflow-hidden bg-slate-100">
-              <img :src="item.img" :alt="item.title" class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-            </div>
-            <div class="flex flex-1 flex-col p-6 lg:p-8">
-              <h4 class="text-xl font-bold text-brand-950 mb-3 group-hover:text-brand-700 transition-colors">{{ item.title }}</h4>
-              <p class="text-base text-slate-600 leading-relaxed flex-1">{{ item.desc }}</p>
-              <div class="mt-6 flex items-center text-sm font-bold text-brand-600 group-hover:text-brand-700">
-                Explore <span class="ml-1 inline-block transition-transform group-hover:translate-x-1">&rarr;</span>
-              </div>
-            </div>
-          </router-link>
         </div>
       </div>
     </section>
@@ -184,10 +142,7 @@ import PublicHeader from '@/components/public/PublicHeader.vue';
 import PublicFooter from '@/components/public/PublicFooter.vue';
 import WorldReachMap from '@/components/public/WorldReachMap.vue';
 import AnimatedCounter from '@/components/public/AnimatedCounter.vue';
-import CollectionCard from '@/components/public/CollectionCard.vue';
-import EmptyState from '@/components/public/EmptyState.vue';
 import { getCounts, getMapPoints } from '@/api/registry.js';
-import { listAssets, listCollections } from '@/api/repository.js';
 import { INSTITUTION_COVER_IMAGE } from '@/data/repositoryImages.js';
 
 const heroImages = [img1, img2, img3, img4, img5];
@@ -196,33 +151,14 @@ let heroInterval = null;
 
 const counts = ref({ regions: 0, provinces: 0, communities: 0 });
 const mapPoints = ref([]);
-const collections = ref([]);
 
-onMounted(async () => {
+onMounted(() => {
   heroInterval = setInterval(() => { heroIndex.value = (heroIndex.value + 1) % heroImages.length; }, 6000);
 
   getCounts().then((c) => {
     counts.value = { regions: c.Region, provinces: c.Province, communities: c.Community };
   }).catch(() => {});
   getMapPoints().then((points) => { mapPoints.value = points; }).catch(() => {});
-
-  try {
-    const repoCollections = await listCollections();
-    const withCounts = await Promise.all(
-      repoCollections.slice(0, 6).map(async (c) => {
-        const assets = await listAssets({ collection: c.name, limit: 3 }).catch(() => []);
-        return {
-          id: c.name,
-          title: c.collection_name,
-          desc: c.description,
-          totalResources: assets.length,
-        };
-      })
-    );
-    collections.value = withCounts;
-  } catch {
-    collections.value = [];
-  }
 });
 
 onUnmounted(() => { if (heroInterval) clearInterval(heroInterval); });
@@ -240,12 +176,6 @@ const resourceFeatures = [
   { icon: '📚', title: 'Digital Archives', desc: 'Historical assets preserving the Salesian heritage.' },
   { icon: '🗺️', title: 'Pastoral Works Maps', desc: 'Interactive geographic visualization of global missions.' },
   { icon: '🤝', title: 'Salesian Network', desc: 'Connecting the global family across 135 countries.' },
-];
-const knowledgeResources = [
-  { title: 'Document Collections', to: '/repository-search', img: 'https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=400&fit=crop', desc: 'Curated sets of institutional and historical documents.' },
-  { title: 'Salesian Sources', to: '/salesian-sources', img: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=400&fit=crop', desc: 'Historical assets preserving the Salesian heritage.' },
-  { title: 'News & Events', to: '/news-events', img: 'https://images.unsplash.com/photo-1516280440502-a279093b1695?w=400&h=400&fit=crop', desc: 'Photographs, events, and community life globally.' },
-  { title: 'Global Statistics', to: '/global-statistics', img: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=400&fit=crop', desc: 'Academic and pastoral analytics across the network.' },
 ];
 const regions = [
   { code: 'AFM', name: 'Africa–Madagascar', highlight: 'One of the fastest-growing regions in vocations worldwide.', desc: 'Covers Sub-Saharan Africa and Madagascar, with rapidly expanding communities and youth outreach programs.', color: 'from-amber-500 to-orange-600', light: 'bg-amber-50 border-amber-100 text-amber-700' },

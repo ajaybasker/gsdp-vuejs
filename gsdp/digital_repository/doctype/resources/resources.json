@@ -1,7 +1,8 @@
 {
+ "_liked_by": "[\"Administrator\"]",
  "actions": [],
  "allow_rename": 1,
- "creation": "2026-09-07 14:30:00.000000",
+ "creation": "2026-09-07 14:30:00",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
@@ -18,36 +19,43 @@
   {
    "fieldname": "file",
    "fieldtype": "Attach",
+   "in_list_view": 1,
    "label": "File / PDF"
   },
   {
    "fieldname": "description",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Description"
   },
   {
    "fieldname": "index",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Index"
   },
   {
    "fieldname": "reference_period",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Reference Period"
   },
   {
    "fieldname": "bibliographic_reference",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Bibliographic Reference"
   },
   {
    "fieldname": "reference_institution",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Reference Institution"
   },
   {
    "fieldname": "category",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Category",
    "options": "Letter\nArticle\nDocument\nPresentation\nStatistics\nSpeech\nGood Practice\nOther"
   }
@@ -56,7 +64,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-09-07 14:30:00.000000",
+ "modified": "2026-09-08 14:57:07.386021",
  "modified_by": "Administrator",
  "module": "Digital Repository",
  "name": "Resources",

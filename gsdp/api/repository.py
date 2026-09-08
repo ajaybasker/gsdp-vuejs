@@ -36,20 +36,11 @@ def get_asset(name):
 		frappe.throw("Resource is not publicly available", frappe.PermissionError)
 
 	resource_dict = resource.as_dict()
-	resource_dict["files"] = frappe.get_all(
-		"Resource File", filters={"repository_resource": name},
-		fields=["file_name", "file", "media_type", "is_primary", "version"],
-		ignore_permissions=True,
-	)
+	resource_dict["files"] = []
 	resource_dict["tags"] = [
 		row.get("tag") for row in (resource_dict.get("tags") or []) if row.get("tag")
 	]
-	rights = frappe.get_all(
-		"Resource Rights", filters={"repository_resource": name},
-		fields=["rights_status", "license_type", "rights_description", "access_restriction"],
-		limit_page_length=1, ignore_permissions=True,
-	)
-	resource_dict["rights"] = rights[0] if rights else None
+	resource_dict["rights"] = None
 
 	related_filters = {"status": "Published", "category": resource.category, "name": ["!=", name]}
 	resource_dict["related"] = frappe.get_all(

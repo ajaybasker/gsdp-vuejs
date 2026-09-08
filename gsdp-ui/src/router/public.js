@@ -13,6 +13,7 @@ export default [
 	{ path: '/assets/:id', name: 'PublicAssetDetail', component: () => import('../views/public/AssetDetail.vue'), ...publicMeta, props: true },
 	{ path: '/collections/:id', name: 'PublicCollectionDetail', component: () => import('../views/public/CollectionDetail.vue'), ...publicMeta, props: true },
 	{ path: '/news-events', name: 'NewsAndEvents', component: () => import('../views/public/NewsAndEvents.vue'), ...publicMeta },
+	{ path: '/news-events/:id', name: 'EventDetail', component: () => import('../views/public/EventDetail.vue'), ...publicMeta, props: true },
+	{ path: '/events/:id', redirect: (to) => `/news-events/${encodeURIComponent(to.params.id)}` },
 	{ path: '/global-statistics', name: 'GlobalStatistics', component: () => import('../views/public/GlobalStatistics.vue'), ...publicMeta },
-	{ path: '/salesian-sources', name: 'SalesianSources', component: () => import('../views/public/SalesianSources.vue'), ...publicMeta },
 ];

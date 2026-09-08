@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:person",
+ "autoname": "format:LA-{YYYY}-{MM}-{####}",
  "creation": "2026-09-03 18:28:24.987471",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -30,8 +30,7 @@
    "in_list_view": 1,
    "label": "Person",
    "options": "Leadership Profile",
-   "reqd": 1,
-   "unique": 1
+   "reqd": 1
   },
   {
    "description": "Activity or institutional context where the leadership assignment applies",

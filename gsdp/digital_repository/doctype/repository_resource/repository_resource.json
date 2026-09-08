@@ -46,7 +46,9 @@
    "description": "Type of resource",
    "fieldname": "resource_type",
    "fieldtype": "Select",
+   "in_filter": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Resource Type",
    "options": "Audio\nVideo\nImage\nLetter\nArticle\nDocument\nPresentation\nStatistics\nSpeech\nGood Practice",
    "reqd": 1
@@ -55,7 +57,9 @@
    "description": "Main category",
    "fieldname": "category",
    "fieldtype": "Select",
+   "in_filter": 1,
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Category",
    "options": "History & Heritage\nSalesian Family\nFormation\nYouth Ministry",
    "reqd": 1
@@ -90,6 +94,8 @@
    "description": "Publication or creation date",
    "fieldname": "publication_date",
    "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Publication Date"
   },
   {
@@ -157,7 +163,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-07 15:36:15.474687",
+ "modified": "2026-09-08 14:50:55.727995",
  "modified_by": "Administrator",
  "module": "Digital Repository",
  "name": "Repository Resource",

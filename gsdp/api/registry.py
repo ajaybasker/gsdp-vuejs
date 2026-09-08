@@ -177,7 +177,11 @@ def list_events(limit=20, province=None, community=None):
 		filters["community"] = community
 	rows = frappe.get_all(
 		"Events", filters=filters,
-		fields=["name", "event_code", "event_name", "event_type", "event_date", "venue", "community", "province", "description"],
+		fields=[
+			"name", "event_code", "event_name", "event_type", "event_date",
+			"start_time", "end_time", "venue", "community", "province",
+			"description", "number_of_participants", "media_attachment", "cover_image",
+		],
 		order_by="event_date desc", limit_page_length=int(limit or 20), ignore_permissions=True,
 	)
 	for row in rows:
@@ -186,6 +190,88 @@ def list_events(limit=20, province=None, community=None):
 		if row.province:
 			row["province_name"] = frappe.db.get_value("Province", row.province, "canonical_name")
 	return rows
+
+
+@frappe.whitelist(allow_guest=True)
+def get_event(name):
+	event_name = name
+	if not frappe.db.exists("Events", event_name):
+		# Fallback: check if 'name' is an event_code
+		by_code = frappe.db.get_value("Events", {"event_code": name}, "name")
+		if by_code:
+			event_name = by_code
+		else:
+			frappe.throw(f"Event '{name}' not found", frappe.DoesNotExistError)
+
+	doc = frappe.get_doc("Events", event_name).as_dict()
+
+	# Resolve Community details
+	if doc.get("community"):
+		comm = frappe.db.get_value(
+			"Community", doc["community"],
+			["name", "canonical_name", "province", "city", "country", "latitude", "longitude", "official_email", "telephone"],
+			as_dict=True,
+		)
+		if comm:
+			doc["community_doc"] = comm
+			doc["community_name"] = comm.canonical_name
+
+	# Resolve Province details
+	if doc.get("province"):
+		prov = frappe.db.get_value(
+			"Province", doc["province"],
+			["name", "canonical_name", "region", "country", "city", "province_code"],
+			as_dict=True,
+		)
+		if prov:
+			doc["province_doc"] = prov
+			doc["province_name"] = prov.canonical_name
+			if prov.region:
+				doc["region_name"] = frappe.db.get_value("Region", prov.region, "canonical_name")
+
+	# Build breadcrumb trail
+	breadcrumb = [
+		{"name": "Events", "label": "Events", "to": "/news-events"},
+	]
+	if doc.get("province_name"):
+		breadcrumb.append({"name": doc.get("province"), "label": doc["province_name"], "to": f"/provinces/{doc['province']}"})
+	if doc.get("community_name"):
+		breadcrumb.append({"name": doc.get("community"), "label": doc["community_name"], "to": f"/communities/{doc['community']}"})
+	breadcrumb.append({"name": doc.get("name"), "label": doc.get("event_name")})
+
+	# Get other / related events
+	related_filters = {"name": ["!=", event_name]}
+	related = []
+	if doc.get("province"):
+		related = frappe.get_all(
+			"Events",
+			filters={"province": doc["province"], "name": ["!=", event_name]},
+			fields=["name", "event_code", "event_name", "event_type", "event_date", "venue", "community", "province", "media_attachment", "cover_image"],
+			order_by="event_date desc",
+			limit_page_length=3,
+			ignore_permissions=True,
+		)
+
+	if len(related) < 3:
+		needed = 3 - len(related)
+		existing_names = [event_name] + [r["name"] for r in related]
+		more_events = frappe.get_all(
+			"Events",
+			filters={"name": ["not in", existing_names]},
+			fields=["name", "event_code", "event_name", "event_type", "event_date", "venue", "community", "province", "media_attachment", "cover_image"],
+			order_by="event_date desc",
+			limit_page_length=needed,
+			ignore_permissions=True,
+		)
+		related.extend(more_events)
+
+	for r in related:
+		if r.get("community"):
+			r["community_name"] = frappe.db.get_value("Community", r["community"], "canonical_name")
+		if r.get("province"):
+			r["province_name"] = frappe.db.get_value("Province", r["province"], "canonical_name")
+
+	return {"doc": doc, "breadcrumb": breadcrumb, "related": related}
 
 
 @frappe.whitelist(allow_guest=True)

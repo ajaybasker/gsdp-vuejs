@@ -75,7 +75,43 @@
         </nav>
 
         <div class="flex items-center gap-4">
-          <router-link to="/login" class="hidden rounded-xl border border-brand-800 px-5 py-2 text-sm font-semibold text-brand-800 transition hover:bg-brand-50 hover:shadow-sm sm:block">
+          <div v-if="$auth?.isLoggedIn" class="relative hidden sm:block">
+            <button
+              @click="userMenuOpen = !userMenuOpen"
+              class="flex items-center gap-2 rounded-xl border border-brand-200 bg-brand-50/80 px-3.5 py-1.5 text-sm font-semibold text-brand-900 transition hover:bg-brand-100/70"
+            >
+              <div class="flex h-6 w-6 items-center justify-center rounded-full bg-brand-700 text-[11px] font-bold text-white uppercase">
+                {{ userInitial }}
+              </div>
+              <span class="max-w-[120px] truncate">{{ userName }}</span>
+              <Icon name="ChevronDown" :size="13" class="text-brand-600" />
+            </button>
+            <div
+              v-if="userMenuOpen"
+              class="absolute right-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white py-1.5 shadow-xl z-50"
+            >
+              <router-link
+                to="/app/global-dashboard"
+                @click="userMenuOpen = false"
+                class="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-900 font-medium"
+              >
+                <Icon name="BarChart" :size="15" class="text-slate-400" />
+                <span>Portal Dashboard</span>
+              </router-link>
+              <a
+                href="/app"
+                class="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-900 font-medium"
+              >
+                <Icon name="Sliders" :size="15" class="text-slate-400" />
+                <span>Frappe Desk</span>
+              </a>
+            </div>
+          </div>
+          <router-link
+            v-else
+            to="/login"
+            class="hidden rounded-xl border border-brand-800 px-5 py-2 text-sm font-semibold text-brand-800 transition hover:bg-brand-50 hover:shadow-sm sm:block"
+          >
             Sign In
           </router-link>
           <div class="relative hidden lg:block z-[100]">
@@ -112,10 +148,11 @@
           <button @click="open = !open; mobileTopMenuOpen = false" class="rounded-md p-2 text-slate-500 hover:bg-slate-100 lg:hidden" aria-label="Toggle menu">
             <Icon :name="open ? 'X' : 'Menu'" :size="24" />
           </button>
-        </div>
+        </div><!-- end flex items-center gap-4 -->
       </div>
+    </div>
 
-      <!-- Mobile Top Menu -->
+    <!-- Mobile Top Menu -->
       <div v-if="mobileTopMenuOpen" class="border-t border-slate-200 bg-brand-950 px-5 py-5 lg:hidden max-h-[80vh] overflow-y-auto shadow-inner text-white">
         <div class="flex flex-col gap-5">
           <div class="flex flex-col gap-4 font-semibold text-[15px]">
@@ -168,22 +205,38 @@
               <Icon name="Search" :size="16" class="text-slate-400 mr-2" />
               <input v-model="searchQuery" type="text" placeholder="Search" class="w-full bg-transparent outline-none text-base text-slate-800" />
             </form>
-            <router-link to="/login" @click="open = false" class="w-full rounded-xl border border-brand-800 py-2.5 text-center text-sm font-semibold text-brand-800 hover:bg-brand-50 transition">
+            <template v-if="$auth?.isLoggedIn">
+              <router-link to="/app/global-dashboard" @click="open = false" class="w-full rounded-xl bg-brand-800 py-2.5 text-center text-sm font-semibold text-white hover:bg-brand-900 transition">
+                Portal Dashboard
+              </router-link>
+            </template>
+            <router-link v-else to="/login" @click="open = false" class="w-full rounded-xl border border-brand-800 py-2.5 text-center text-sm font-semibold text-brand-800 hover:bg-brand-50 transition">
               Sign In
             </router-link>
           </div>
         </nav>
       </div>
-    </div>
   </header>
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+import { computed, inject, onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Icon from '../icons/Icon.vue';
 import { listOrgUnits } from '@/api/registry.js';
 import { getLoginBranding } from '@/api/config.js';
+
+const $auth = inject('$auth', null);
+const userMenuOpen = ref(false);
+const userName = computed(() => $auth?.user || $auth?.cookie?.user_id || 'User');
+const userInitial = computed(() => userName.value ? userName.value.charAt(0).toUpperCase() : 'U');
+
+async function handleLogout() {
+  userMenuOpen.value = false;
+  if ($auth?.logout) {
+    await $auth.logout();
+  }
+}
 
 const headerLogo = ref('');
 onMounted(async () => {
@@ -222,7 +275,6 @@ const PASTORAL_LINKS = [
 const KNOWLEDGE_LINKS = [
   { href: '/repository-search', label: 'Resource Catalogue' },
   { href: '/news-events', label: 'Events' },
-  { href: '/salesian-sources', label: 'Salesian Sources' },
 ];
 const ABOUT_LINKS = [
   { href: '/about', label: 'Our Mission' },
