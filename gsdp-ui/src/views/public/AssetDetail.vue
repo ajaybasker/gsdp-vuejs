@@ -539,31 +539,6 @@
               </p>
             </div>
 
-            <!-- Card 4: Archival Citation Generator -->
-            <div class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-md">
-              <div class="flex items-center justify-between border-b border-slate-100 pb-3.5">
-                <div class="flex items-center gap-2">
-                  <Icon name="Quote" :size="16" class="text-amber-500" />
-                  <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900">Citation Formats</h3>
-                </div>
-                <button
-                  @click="copyCitation"
-                  class="inline-flex items-center gap-1 text-xs font-bold text-brand-700 hover:text-brand-900 transition"
-                >
-                  <Icon :name="copiedCitation ? 'Check' : 'Copy'" :size="13" />
-                  <span>{{ copiedCitation ? 'Copied' : 'Copy' }}</span>
-                </button>
-              </div>
-
-              <div class="mt-4">
-                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-3.5 font-mono text-[11px] text-slate-700 leading-relaxed select-all break-all">
-                  {{ citationText }}
-                </div>
-                <p class="mt-2 text-[11px] text-slate-400">
-                  Formatted according to Chicago Manual of Style / Salesian Digital Heritage Standards.
-                </p>
-              </div>
-            </div>
           </aside>
         </div>
 
