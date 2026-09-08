@@ -15,5 +15,4 @@ export default [
 	{ path: '/news-events', name: 'NewsAndEvents', component: () => import('../views/public/NewsAndEvents.vue'), ...publicMeta },
 	{ path: '/global-statistics', name: 'GlobalStatistics', component: () => import('../views/public/GlobalStatistics.vue'), ...publicMeta },
 	{ path: '/salesian-sources', name: 'SalesianSources', component: () => import('../views/public/SalesianSources.vue'), ...publicMeta },
-	{ path: '/official-documents', name: 'OfficialDocuments', component: () => import('../views/public/OfficialDocuments.vue'), ...publicMeta },
 ];

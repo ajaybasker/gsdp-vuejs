@@ -1,42 +1,37 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:resource_title",
+ "autoname": "field:title",
  "creation": "2026-09-03 18:28:25.711100",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "section_break_resource_details",
-  "resource_title",
   "resource_code",
   "resource_type",
   "category",
+  "cover_image",
   "column_break_1_1",
   "collection",
   "language",
   "status",
   "publication_date",
   "section_break_description",
-  "description",
-  "section_break_authorship",
+  "title",
   "author",
-  "source"
+  "description",
+  "audio_source",
+  "video_source",
+  "image_resource",
+  "resources",
+  "tags"
  ],
  "fields": [
   {
    "fieldname": "section_break_resource_details",
    "fieldtype": "Section Break",
    "label": "Resource Details"
-  },
-  {
-   "description": "Title of the resource",
-   "fieldname": "resource_title",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Resource Title",
-   "reqd": 1,
-   "unique": 1
   },
   {
    "description": "Internal identifier",
@@ -50,19 +45,19 @@
   {
    "description": "Type of resource",
    "fieldname": "resource_type",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Resource Type",
-   "options": "Resource Type",
+   "options": "Audio\nVideo\nImage\nLetter\nArticle\nDocument\nPresentation\nStatistics\nSpeech\nGood Practice",
    "reqd": 1
   },
   {
    "description": "Main category",
    "fieldname": "category",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Category",
-   "options": "Repository Category",
+   "options": "History & Heritage\nSalesian Family\nFormation\nYouth Ministry",
    "reqd": 1
   },
   {
@@ -100,7 +95,7 @@
   {
    "fieldname": "section_break_description",
    "fieldtype": "Section Break",
-   "label": "Description"
+   "label": "Source Details"
   },
   {
    "description": "Description/summary",
@@ -109,29 +104,61 @@
    "label": "Description"
   },
   {
-   "fieldname": "section_break_authorship",
-   "fieldtype": "Section Break",
-   "label": "Authorship"
-  },
-  {
    "description": "Primary author/creator of the resource",
    "fieldname": "author",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "label": "Author",
    "options": "Authorship",
    "reqd": 1
   },
   {
-   "fieldname": "source",
-   "fieldtype": "Attach",
-   "label": "Source"
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "unique": 1
+  },
+  {
+   "fieldname": "audio_source",
+   "fieldtype": "Table",
+   "label": "Audio Source",
+   "options": "Audio Resource"
+  },
+  {
+   "fieldname": "video_source",
+   "fieldtype": "Table",
+   "label": "Video Resource",
+   "options": "Video Source"
+  },
+  {
+   "fieldname": "image_resource",
+   "fieldtype": "Table",
+   "label": "Image Resource",
+   "options": "Image Source"
+  },
+  {
+   "fieldname": "resources",
+   "fieldtype": "Table",
+   "label": "Resources",
+   "options": "Resources"
+  },
+  {
+   "fieldname": "tags",
+   "fieldtype": "Table MultiSelect",
+   "label": "Tags ",
+   "options": "Resource Tag Item"
+  },
+  {
+   "fieldname": "cover_image",
+   "fieldtype": "Attach Image",
+   "label": "Cover Image ",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-04 12:36:56.339113",
- "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "modified": "2026-09-07 15:36:15.474687",
+ "modified_by": "Administrator",
  "module": "Digital Repository",
  "name": "Repository Resource",
  "naming_rule": "By fieldname",
@@ -155,6 +182,5 @@
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],
- "title_field": "resource_title",
  "track_changes": 1
 }

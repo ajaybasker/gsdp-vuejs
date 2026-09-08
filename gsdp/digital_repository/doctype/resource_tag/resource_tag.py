@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class ResourceType(Document):
+class ResourceTag(Document):
 	pass

@@ -28,11 +28,13 @@
               v-for="(r, idx) in collection.resources" :key="r.name" :to="`/assets/${r.name}`"
               class="group flex flex-col h-full rounded-2xl border border-slate-100 bg-white shadow-sm overflow-hidden hover:shadow-xl hover:border-brand-200 hover:-translate-y-1 transition-all duration-300"
             >
-              <div :class="`h-1 w-full bg-gradient-to-r ${accentFor(idx)}`" />
+              <div class="h-28 overflow-hidden">
+                <PlaceholderImage :title="r.title" :src="r.cover_image" :asset-type="r.resource_type" class-name="h-full w-full rounded-none" />
+              </div>
               <div class="p-5">
                 <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{{ r.resource_type }}</span>
-                <h3 class="mt-1 text-[14px] font-bold text-brand-950 leading-snug group-hover:text-brand-700 transition-colors">{{ r.resource_title }}</h3>
-                <p v-if="r.author_name" class="mt-2 text-[12px] text-slate-400 font-medium">{{ r.author_name }}</p>
+                <h3 class="mt-1 text-[14px] font-bold text-brand-950 leading-snug group-hover:text-brand-700 transition-colors">{{ r.title }}</h3>
+                <p v-if="r.author" class="mt-2 text-[12px] text-slate-400 font-medium">{{ r.author }}</p>
               </div>
             </router-link>
           </div>
@@ -50,6 +52,7 @@ import PublicHeader from '@/components/public/PublicHeader.vue';
 import PublicFooter from '@/components/public/PublicFooter.vue';
 import DetailHero from '@/components/public/DetailHero.vue';
 import SectionCard from '@/components/public/SectionCard.vue';
+import PlaceholderImage from '@/components/public/PlaceholderImage.vue';
 import { accentFor } from '@/components/public/PageHero.js';
 import LoadingState from '@/components/public/LoadingState.vue';
 import EmptyState from '@/components/public/EmptyState.vue';

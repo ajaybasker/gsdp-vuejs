@@ -13,9 +13,9 @@ IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
 
-class IntegrationTestResourceType(IntegrationTestCase):
+class IntegrationTestResourceTag(IntegrationTestCase):
 	"""
-	Integration tests for ResourceType.
+	Integration tests for ResourceTag.
 	Use this class for testing interactions between multiple components.
 	"""
 

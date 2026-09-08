@@ -9,7 +9,7 @@
             <p class="text-xs font-bold tracking-widest uppercase text-brand-400 mb-2">Knowledge &amp; Resources</p>
             <h1 class="text-[28px] font-extrabold mb-2">Salesian Knowledge Hub</h1>
             <p class="text-[15px] text-slate-300 max-w-2xl leading-relaxed">
-              Explore the Congregation's flagship universities, research institutes, publishers, and the centralized digital repository of Salesian heritage and resources.
+              Explore the centralized digital repository of Salesian heritage, formation, and multimedia resources from across the Congregation.
             </p>
           </div>
           <div v-if="!loading" class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full lg:w-auto">
@@ -30,73 +30,8 @@
       </div>
     </div>
 
-    <main class="w-full px-4 md:px-8 xl:px-12 py-16 space-y-16">
-      <Reveal>
-        <div class="rounded-2xl border border-slate-100 bg-white shadow-sm overflow-hidden">
-          <div class="h-1.5 w-full bg-gradient-to-r from-brand-600 to-brand-800" />
-          <div class="p-8">
-            <div class="flex items-center gap-3 mb-5">
-              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 text-white shadow-md text-lg">🎓</div>
-              <h2 class="text-xl font-extrabold text-brand-950">Higher Education</h2>
-            </div>
-            <p class="text-[15px] leading-relaxed text-slate-600 mb-4">
-              <strong class="text-brand-950">Università Pontificia Salesiana (UPS)</strong> — the Pontifical Salesian University, Rome. Founded as the <em>Pontificium Athenaeum Salesianum</em> in 1940 and raised to full pontifical university status in 1973.
-            </p>
-            <p class="text-[15px] leading-relaxed text-slate-600 mb-4">
-              Faculties include <strong class="text-brand-900">Education Sciences, Theology, Philosophy, Canon Law, Communication Sciences, and Psychology</strong>. It is the Congregation's flagship institution for training Salesian educators, formators, and scholars worldwide.
-            </p>
-            <div class="rounded-xl bg-slate-50 p-4 border border-slate-100 text-[13px] text-slate-600">
-              <strong class="text-slate-800">Global Network:</strong> Regional Salesian universities and institutes exist across provinces, e.g., Universidad Don Bosco (El Salvador), Don Bosco Tech Society institutes (India), and various affiliated colleges globally offering degree programs.
-            </div>
-          </div>
-        </div>
-      </Reveal>
-
-      <div class="grid gap-6 lg:grid-cols-2">
-        <Reveal>
-          <div class="h-full rounded-2xl border border-amber-100 bg-gradient-to-br from-amber-50 to-white p-8 shadow-sm hover:shadow-md transition-shadow">
-            <h3 class="text-lg font-extrabold text-brand-950 mb-5 flex items-center gap-2"><span class="text-2xl">🏛️</span> Historical Research</h3>
-            <ul class="space-y-4 mb-4 text-[14px] leading-relaxed text-slate-600">
-              <li><strong class="text-brand-900">Istituto Storico Salesiano (ISS)</strong> — Rome. The Congregation's official historical research institute, founded to study and preserve the history of Don Bosco, the Salesian Family, and Salesian pedagogy.</li>
-              <li><strong class="text-brand-900">ACSSA (Association of Salesian History Scholars)</strong> — an international association supporting historical research on the Salesian charism across provinces.</li>
-              <li><strong class="text-brand-900">Archivio Storico Generale Salesiano (ASC)</strong> — the Congregation's central archive in Rome, preserving Don Bosco's original manuscripts, letters, and founding-era documents.</li>
-            </ul>
-          </div>
-        </Reveal>
-        <Reveal :delay="100">
-          <div class="h-full rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-8 shadow-sm hover:shadow-md transition-shadow">
-            <h3 class="text-lg font-extrabold text-brand-950 mb-5 flex items-center gap-2"><span class="text-2xl">📚</span> Publishing Houses</h3>
-            <ul class="space-y-4 mb-4 text-[14px] leading-relaxed text-slate-600">
-              <li><strong class="text-brand-900">LAS (Libreria Ateneo Salesiano)</strong> — the academic publishing house of the Pontifical Salesian University in Rome.</li>
-              <li><strong class="text-brand-900">Elledici (Editrice Elledici)</strong> — major Italian Salesian publishing house based in Leumann/Turin, producing catechetical, pastoral, and educational materials.</li>
-              <li><strong class="text-brand-900">Don Bosco Publications</strong> — regional English-language publishing arms (e.g. Mumbai/Matunga, India) producing Salesian formation and devotional literature.</li>
-            </ul>
-          </div>
-        </Reveal>
-      </div>
-
-      <Reveal>
-        <div class="rounded-2xl bg-gradient-to-br from-brand-950 to-slate-900 p-6 sm:p-8 md:p-12 text-white shadow-xl relative overflow-hidden">
-          <div class="relative grid gap-8 lg:grid-cols-2">
-            <div>
-              <h3 class="text-lg font-extrabold mb-4 flex items-center gap-2"><span class="text-2xl">📰</span> Periodicals &amp; Journals</h3>
-              <ul class="space-y-3 text-[14px] leading-relaxed text-slate-300">
-                <li><strong class="text-white">Bollettino Salesiano (Salesian Bulletin)</strong> — founded by Don Bosco in 1877; published today in over two dozen language/regional editions worldwide.</li>
-                <li><strong class="text-white">Ricerche Storiche Salesiane</strong> — peer-reviewed academic history journal published by the ISS since 1982.</li>
-                <li><strong class="text-white">Journal of Salesian Studies</strong> — English-language academic journal from the Institute of Salesian Studies, Berkeley, California.</li>
-              </ul>
-            </div>
-            <div>
-              <h3 class="text-lg font-extrabold mb-4 flex items-center gap-2"><span class="text-2xl">📡</span> News &amp; Communication</h3>
-              <p class="text-[14px] leading-relaxed text-slate-300">
-                <strong class="text-white">ANS – Agenzia Info Salesiana</strong> (Salesian Information Agency) is the Congregation's official news service, based in Rome, reporting on Salesian activity across all regions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </Reveal>
-
-      <div class="pt-10 border-t border-slate-200">
+    <main class="w-full px-4 md:px-8 xl:px-12 py-16">
+      <div>
         <div class="text-center max-w-3xl mx-auto mb-10">
           <h2 class="text-[28px] font-extrabold text-brand-950">Digital Resource Repository</h2>
           <p class="mt-3 text-[15px] text-slate-500">Search published archives, books, and multimedia from across the Salesian family.</p>
@@ -133,19 +68,23 @@
               <button v-if="hasFilter" @click="clearAll" class="text-[13px] font-semibold text-brand-600 hover:text-brand-800">Clear filters</button>
             </div>
           </Reveal>
-          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6">
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Reveal v-for="(a, idx) in filteredAssets" :key="a.name" :delay="idx * 25">
-              <router-link :to="`/assets/${a.name}`" class="group grid h-full rounded-2xl border border-slate-100 bg-white shadow-sm overflow-hidden hover:shadow-xl hover:border-brand-200 hover:-translate-y-1 transition-all duration-300">
-                <div :class="`h-1 w-full bg-gradient-to-r ${accentFor(idx)}`" />
-                <div class="p-5 flex flex-col flex-1 gap-3 min-w-0">
-                  <div class="flex flex-wrap items-center gap-3">
-                    <div :class="`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${accentFor(idx)} text-white shadow-md`">
-                      <Icon name="BookOpen" :size="18" />
-                    </div>
-                    <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border bg-slate-50 border-slate-100 text-slate-600 max-w-full truncate">{{ resourceTypeLabel(a.resource_type) }}</span>
+              <router-link :to="`/assets/${a.name}`" class="group flex h-full flex-col rounded-2xl border border-slate-100 bg-white shadow-sm overflow-hidden hover:shadow-xl hover:border-brand-200 hover:-translate-y-1 transition-all duration-300">
+                <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                  <img v-if="a.cover_image" :src="a.cover_image" :alt="a.title" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+                  <div v-else :class="`flex h-full w-full items-center justify-center bg-gradient-to-br ${accentFor(idx)}`">
+                    <Icon name="BookOpen" :size="36" class="text-white/90" />
                   </div>
-                  <h3 class="text-[14px] font-bold text-brand-950 leading-snug flex-1 group-hover:text-brand-700 transition-colors break-words">{{ a.resource_title }}</h3>
-                  <p class="text-[12px] text-slate-400 font-medium truncate w-full">{{ a.author_name || 'Unknown origin' }}</p>
+                  <span class="absolute bottom-3 left-3 text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/90 backdrop-blur text-slate-600 max-w-[85%] truncate">{{ resourceTypeLabel(a.resource_type) }}</span>
+                </div>
+                <div class="flex flex-1 flex-col gap-2 p-6 min-w-0">
+                  <h3 class="text-[16px] font-bold text-brand-950 leading-snug group-hover:text-brand-700 transition-colors break-words">{{ a.title }}</h3>
+                  <p class="text-[13px] text-slate-400 font-medium truncate w-full">{{ a.author || 'Unknown origin' }}</p>
+                  <div class="mt-auto flex flex-wrap items-center gap-2 pt-3">
+                    <span v-if="a.category" class="text-[11px] font-semibold text-brand-600 truncate">{{ a.category }}</span>
+                    <span v-if="a.publication_date" class="text-[11px] text-slate-400">· {{ a.publication_date }}</span>
+                  </div>
                 </div>
               </router-link>
             </Reveal>

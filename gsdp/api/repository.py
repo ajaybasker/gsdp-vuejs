@@ -3,8 +3,8 @@
 import frappe
 
 ASSET_LIST_FIELDS = [
-	"name", "resource_title", "resource_code", "resource_type", "category", "collection",
-	"language", "publication_date", "status", "author",
+	"name", "title", "resource_code", "resource_type", "category", "collection",
+	"language", "publication_date", "status", "author", "cover_image",
 ]
 
 
@@ -18,15 +18,12 @@ def list_assets(resource_type=None, category=None, collection=None, search=None,
 	if collection:
 		filters["collection"] = collection
 	if search:
-		filters["resource_title"] = ["like", f"%{search}%"]
+		filters["title"] = ["like", f"%{search}%"]
 	rows = frappe.get_all(
 		"Repository Resource", filters=filters, fields=ASSET_LIST_FIELDS,
 		order_by="publication_date desc", limit_page_length=int(limit or 60),
 		ignore_permissions=True,
 	)
-	for row in rows:
-		if row.author:
-			row["author_name"] = frappe.db.get_value("Authorship", row.author, "creator_author")
 	return rows
 
 
@@ -39,14 +36,14 @@ def get_asset(name):
 		frappe.throw("Resource is not publicly available", frappe.PermissionError)
 
 	resource_dict = resource.as_dict()
-	resource_dict["author_detail"] = (
-		frappe.get_doc("Authorship", resource.author).as_dict() if resource.author else None
-	)
 	resource_dict["files"] = frappe.get_all(
 		"Resource File", filters={"repository_resource": name},
 		fields=["file_name", "file", "media_type", "is_primary", "version"],
 		ignore_permissions=True,
 	)
+	resource_dict["tags"] = [
+		row.get("tag") for row in (resource_dict.get("tags") or []) if row.get("tag")
+	]
 	rights = frappe.get_all(
 		"Resource Rights", filters={"repository_resource": name},
 		fields=["rights_status", "license_type", "rights_description", "access_restriction"],
@@ -83,17 +80,23 @@ def get_collection(name):
 	return collection
 
 
+# Kept in sync with the `resource_type` Select options on Repository Resource.
+RESOURCE_TYPE_OPTIONS = [
+	"Audio", "Video", "Image", "Letter", "Article",
+	"Document", "Presentation", "Statistics", "Speech", "Good Practice",
+]
+
+# Kept in sync with the `category` Select options on Repository Resource.
+CATEGORY_OPTIONS = [
+	"History & Heritage", "Salesian Family", "Formation", "Youth Ministry",
+]
+
+
 @frappe.whitelist(allow_guest=True)
 def list_resource_types():
-	return frappe.get_all(
-		"Resource Type", filters={"is_active": 1},
-		fields=["name", "resource_type_name"], order_by="resource_type_name asc", ignore_permissions=True,
-	)
+	return [{"name": t, "resource_type_name": t} for t in RESOURCE_TYPE_OPTIONS]
 
 
 @frappe.whitelist(allow_guest=True)
 def list_categories():
-	return frappe.get_all(
-		"Repository Category", filters={"is_active": 1},
-		fields=["name", "category_name"], order_by="category_name asc", ignore_permissions=True,
-	)
+	return [{"name": c, "category_name": c} for c in CATEGORY_OPTIONS]

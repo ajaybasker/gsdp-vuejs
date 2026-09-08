@@ -32,12 +32,16 @@ import { coverImageForAssetType } from '@/data/repositoryImages.js';
 const props = defineProps({
   title: { type: String, default: '' },
   assetType: { type: String, default: '' },
+  src: { type: String, default: '' },
   gradient: { type: String, default: 'from-brand-600 to-brand-600' },
   className: { type: String, default: '' },
 });
 
 const failed = ref(false);
-const cover = computed(() => (props.assetType ? coverImageForAssetType(props.assetType) : null));
+const cover = computed(() => {
+  if (props.src) return { url: props.src };
+  return props.assetType ? coverImageForAssetType(props.assetType) : null;
+});
 const initials = computed(() => {
   const words = (props.title || '').split(/\s+/).filter(Boolean).slice(0, 2);
   return words.map((w) => w[0]?.toUpperCase()).join('') || '—';

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class RepositoryCategory(Document):
+class ResourceTagItem(Document):
 	pass

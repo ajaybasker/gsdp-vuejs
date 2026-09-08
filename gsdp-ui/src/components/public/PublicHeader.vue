@@ -24,8 +24,11 @@
     <div class="border-b-[4px] border-sand-500 bg-white">
       <div class="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3 sm:px-6 lg:py-4">
         <router-link to="/" class="flex items-center gap-2 text-brand-950">
-          <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
-          <span class="text-xl font-extrabold uppercase tracking-wider leading-tight">Salesian<br />Online</span>
+          <img v-if="headerLogo" :src="headerLogo" alt="Salesian Online" class="h-10 w-auto max-w-[200px] object-contain" />
+          <template v-else>
+            <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
+            <span class="text-xl font-extrabold uppercase tracking-wider leading-tight">Salesian<br />Online</span>
+          </template>
         </router-link>
 
         <nav class="hidden items-center gap-2 lg:flex">
@@ -176,10 +179,21 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Icon from '../icons/Icon.vue';
 import { listOrgUnits } from '@/api/registry.js';
+import { getLoginBranding } from '@/api/config.js';
+
+const headerLogo = ref('');
+onMounted(async () => {
+  try {
+    const branding = await getLoginBranding();
+    headerLogo.value = branding?.login_page_logo || '';
+  } catch {
+    // keep the fallback SVG + text branding
+  }
+});
 
 const TOP_NAV_LINKS = [
   { href: 'https://www.infoans.org/en/', label: 'ANS News', target: '_blank' },
@@ -209,7 +223,6 @@ const KNOWLEDGE_LINKS = [
   { href: '/repository-search', label: 'Resource Catalogue' },
   { href: '/news-events', label: 'Events' },
   { href: '/salesian-sources', label: 'Salesian Sources' },
-  { href: '/official-documents', label: 'Official Documents' },
 ];
 const ABOUT_LINKS = [
   { href: '/about', label: 'Our Mission' },
