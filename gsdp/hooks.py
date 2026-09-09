@@ -73,6 +73,22 @@ app_include_js = "/assets/gsdp/js/gsdp.js"
 # automatically load and sync documents of this doctype from downstream apps
 # importable_doctypes = [doctype_1]
 
+# Fixtures
+# --------
+# Synced into every site running this app on `bench migrate` / `bench install-app`.
+
+fixtures = [
+	{"dt": "Role", "filters": [["name", "in", ["Province Coordinator", "Community Coordinator"]]]},
+	{
+		"dt": "Role Profile",
+		"filters": [["name", "in", ["Province Coordinator", "Community Coordinator"]]],
+	},
+	{
+		"dt": "Custom DocPerm",
+		"filters": [["role", "in", ["Province Coordinator", "Community Coordinator"]]],
+	},
+]
+
 # Jinja
 # ----------
 
@@ -126,13 +142,16 @@ app_include_js = "/assets/gsdp/js/gsdp.js"
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
-#
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+# Applied globally (wildcard) so ANY doctype in the app - present or future -
+# that carries a Link field to Province and/or Community is automatically
+# scoped for the Province Coordinator / Community Coordinator roles.
+permission_query_conditions = {
+	"*": "gsdp.institutional_registry.permissions.get_scoped_permission_query_conditions",
+}
+
+has_permission = {
+	"*": "gsdp.institutional_registry.permissions.has_scoped_permission",
+}
 
 # Document Events
 # ---------------

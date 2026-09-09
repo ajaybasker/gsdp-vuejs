@@ -55,8 +55,8 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 21:11:11.389905",
- "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "modified": "2026-09-09 15:25:20.256873",
+ "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Activity Category",
  "naming_rule": "By fieldname",
@@ -73,6 +73,24 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Community Coordinator",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Province Coordinator",
+   "share": 1
   }
  ],
  "row_format": "Dynamic",

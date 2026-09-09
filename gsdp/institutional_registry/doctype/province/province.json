@@ -16,6 +16,7 @@
   "region",
   "generalate",
   "province_coordinator_name",
+  "province_coordinator_name_full_name",
   "section_break_address",
   "address_line_1",
   "address_line_2",
@@ -87,10 +88,19 @@
   {
    "description": "Name of the person responsible for coordinating Province-level registry activities",
    "fieldname": "province_coordinator_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Province Coordinator Name",
+   "options": "User",
    "reqd": 1
+  },
+  {
+   "fetch_from": "province_coordinator_name.full_name",
+   "fieldname": "province_coordinator_name_full_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Province Coordinator Name (Full Name)",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_address",
@@ -131,7 +141,7 @@
    "fieldname": "country",
    "fieldtype": "Link",
    "label": "Country",
-   "options": "GSDP Country",
+   "options": "Country",
    "reqd": 1
   },
   {
@@ -149,8 +159,8 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 21:21:10.803574",
- "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "modified": "2026-09-09 14:19:09.394449",
+ "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Province",
  "naming_rule": "By fieldname",
@@ -167,6 +177,18 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "role": "Province Coordinator"
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Community Coordinator"
   }
  ],
  "row_format": "Dynamic",

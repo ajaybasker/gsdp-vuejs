@@ -17,6 +17,7 @@
   "region",
   "province",
   "community_coordinator",
+  "community_coordinator_full_name",
   "section_break_address_and_location",
   "address",
   "country",
@@ -88,6 +89,7 @@
    "fieldname": "community_type",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Community Type",
    "options": "Community Type",
    "reqd": 1
@@ -132,6 +134,7 @@
    "fieldname": "province",
    "fieldtype": "Link",
    "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Province",
    "options": "Province",
    "reqd": 1
@@ -154,7 +157,7 @@
    "fieldname": "country",
    "fieldtype": "Link",
    "label": "Country",
-   "options": "GSDP Country",
+   "options": "Country",
    "reqd": 1
   },
   {
@@ -460,13 +463,21 @@
    "fieldtype": "Link",
    "label": "Community Coordinator",
    "options": "User"
+  },
+  {
+   "fetch_from": "community_coordinator.full_name",
+   "fieldname": "community_coordinator_full_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Community Coordinator (Full Name)",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-04 10:16:48.813473",
- "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "modified": "2026-09-09 15:23:57.243670",
+ "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Community",
  "naming_rule": "By fieldname",
@@ -483,6 +494,18 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "role": "Province Coordinator"
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Community Coordinator"
   }
  ],
  "row_format": "Dynamic",

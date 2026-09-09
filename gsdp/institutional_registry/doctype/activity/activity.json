@@ -69,12 +69,14 @@
    "description": "Community this Activity/Institution belongs to",
    "fieldname": "community",
    "fieldtype": "Link",
+   "in_standard_filter": 1,
    "label": "Community",
    "options": "Community"
   },
   {
    "fieldname": "province",
    "fieldtype": "Link",
+   "in_standard_filter": 1,
    "label": "Province",
    "options": "Province"
   },
@@ -109,8 +111,8 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-04 09:53:42.237998",
- "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "modified": "2026-09-09 15:24:35.366009",
+ "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Activity",
  "naming_rule": "By fieldname",
@@ -127,6 +129,20 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "role": "Province Coordinator"
+  },
+  {
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "report": 1,
+   "role": "Community Coordinator"
   }
  ],
  "row_format": "Dynamic",

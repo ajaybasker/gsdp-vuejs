@@ -128,6 +128,16 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Province Coordinator"
+  },
+  {
+   "read": 1,
+   "report": 1,
+   "role": "Community Coordinator"
   }
  ],
  "row_format": "Dynamic",

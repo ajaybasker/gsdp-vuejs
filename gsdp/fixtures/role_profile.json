@@ -1,0 +1,26 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2026-09-09 14:26:40.754205",
+  "name": "Province Coordinator",
+  "role_profile": "Province Coordinator",
+  "roles": [
+   {
+    "role": "Province Coordinator"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2026-09-09 14:26:40.775724",
+  "name": "Community Coordinator",
+  "role_profile": "Community Coordinator",
+  "roles": [
+   {
+    "role": "Community Coordinator"
+   }
+  ]
+ }
+]
