@@ -9,7 +9,7 @@
     </div>
 
     <main class="w-full px-4 md:px-8 xl:px-12 py-16">
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <Reveal v-for="(continent, idx) in CONTINENTS" :key="continent.label" :delay="idx * 80">
           <router-link
             to="/provinces"

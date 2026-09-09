@@ -19,7 +19,7 @@
 
     <!-- INSTITUTIONAL INFORMATION -->
     <section class="bg-slate-50 relative py-16">
-      <div class="w-full px-4 md:px-8 xl:px-12 grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div class="w-full px-4 md:px-8 xl:px-12 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/10 group">
           <div class="absolute inset-0 bg-blue-900/20 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
           <img :src="INSTITUTION_COVER_IMAGE.url" alt="Global Network" class="h-[500px] w-full object-cover transform transition-transform duration-700 group-hover:scale-105" loading="lazy" />
@@ -111,7 +111,7 @@
           <h3 class="text-[28px] font-extrabold text-brand-950">Salesian Regions of the World</h3>
           <p class="mt-4 text-slate-600 text-lg">The Congregation is organized into 8 geographic regions, spanning 135+ countries across every continent.</p>
         </div>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <div v-for="region in regions" :key="region.code" class="group relative h-full flex flex-col rounded-2xl border border-slate-200 bg-white shadow-md overflow-hidden hover:shadow-2xl hover:shadow-brand-500/10 hover:-translate-y-2 hover:border-brand-300 transition-all duration-500">
             <div :class="`h-2 w-full bg-gradient-to-r ${region.color}`"></div>
             <div class="p-6 lg:p-8 flex flex-col flex-1">

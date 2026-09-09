@@ -14,7 +14,7 @@
       <LoadingState v-if="loading" label="Loading statistics…" />
 
       <template v-else>
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div v-for="(t, idx) in primaryTiles" :key="t.label" :class="`rounded-2xl border ${softFor(accentFor(idx))} p-6 shadow-sm shadow-slate-900/[0.03] sm:col-span-2`">
             <div :class="`flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${accentFor(idx)} text-white shadow-md shadow-slate-900/10`">
               <Icon :name="t.icon" :size="20" />

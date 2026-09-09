@@ -27,7 +27,7 @@
       <main class="mx-auto max-w-5xl px-6 py-12">
         <div class="space-y-6">
           <SectionCard title="Overview" icon="Building" :gradient="accentFor(0)">
-            <dl class="mt-4 grid gap-4 sm:grid-cols-3">
+            <dl class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div><dt class="text-xs text-slate-500">Province</dt><dd class="mt-1 text-sm text-slate-700">{{ provinceLabel }}</dd></div>
               <div><dt class="text-xs text-slate-500">Country</dt><dd class="mt-1 text-sm text-slate-700">{{ countryLabel }}</dd></div>
               <div><dt class="text-xs text-slate-500">Sectors</dt><dd class="mt-1 text-sm text-slate-700">{{ activities.length }}</dd></div>
@@ -36,7 +36,7 @@
 
           <SectionCard :title="`Sectors (${activities.length})`" icon="Building" :gradient="accentFor(2)">
             <EmptyState v-if="activities.length === 0" icon="Building" title="No sectors on record" />
-            <div v-else class="mt-4 grid gap-2.5 sm:grid-cols-2">
+            <div v-else class="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
               <router-link
                 v-for="(a, idx) in activities" :key="a.name" :to="`/sectors/${a.name}`"
                 class="flex items-center justify-between rounded-lg border border-slate-200 px-3.5 py-2.5 text-sm text-slate-700 transition hover:border-brand-300 hover:bg-brand-50/50"

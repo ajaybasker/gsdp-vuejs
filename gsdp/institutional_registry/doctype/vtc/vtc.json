@@ -1,0 +1,664 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:vtc_name",
+ "creation": "2026-09-09 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_1_initial_priority_data",
+  "salesian_region",
+  "province_inspectorate_name",
+  "canonical_community_of_reference",
+  "year",
+  "section_break_2_identity_and_profile_of_the_centre",
+  "is_the_vtc_part_of_a_larger_salesian_presence",
+  "vtc_name",
+  "column_break_2_1",
+  "country_and_city",
+  "geolocation",
+  "type_of_activity",
+  "complete_physical_address",
+  "section_break_3_demographics_statistics_and_social",
+  "total_number_of_beneficiaries",
+  "number_of_male_beneficiaries",
+  "number_of_female_beneficiaries",
+  "number_of_lgbtq_beneficiaries",
+  "number_of_afro_descendant_beneficiaries",
+  "number_of_indigenous_native_people_beneficiaries",
+  "number_of_romani_gypsy_beneficiaries",
+  "number_of_migrant_or_refugee_beneficiaries",
+  "number_of_non_christian_or_non_catholic_beneficiaries",
+  "number_of_beneficiaries_belonging_to_other_religions_or",
+  "column_break_3_1",
+  "number_of_beneficiaries_with_disabilities",
+  "number_of_beneficiaries_in_situations_of_social",
+  "total_number_of_hired_employees_and_volunteers",
+  "number_of_educators_or_technical_instructors",
+  "number_of_psychologists",
+  "number_of_social_workers",
+  "number_of_sociologists",
+  "number_of_salesians_priests_or_lay_brothers",
+  "number_of_missionary_religious_staff",
+  "number_of_training_programmes_or_services_offered",
+  "age_groups_served",
+  "predominant_socioeconomic_level",
+  "most_common_social_issues_associated_with_beneficiaries",
+  "section_break_4_academic_and_educational_data",
+  "name_and_contact_details_of_the_director_or_reference",
+  "does_the_centre_operate_as_a_pre_vocational_training",
+  "estimated_number_of_students_who_dropped_out_of_the",
+  "links_to_official_communication_channels",
+  "quality_management_system_and_standards_being_developed",
+  "training_programmes_offered_for_young_people",
+  "technical_or_technological_vocational_training_programmes",
+  "innovative_programmes_linked_to_the_sepp_or_preventive",
+  "most_recurrent_causes_of_educational_dropout",
+  "section_break_5_leadership_and_management_structure",
+  "salesian_family_group_managing_the_centre",
+  "leadership_model_of_the_centre",
+  "column_break_5_1",
+  "does_the_centre_conduct_satisfaction_surveys_on_the",
+  "perception_of_the_salesian_educational_service",
+  "section_break_6_financial_model_and_networks",
+  "does_the_centre_receive_a_state_or_government_financial",
+  "associated_civil_society_organisations_and_ngos",
+  "labour_linkage_job_placement_and_family_programmes",
+  "funding_models_of_the_vtc",
+  "affiliation_with_state_or_government_associations",
+  "affiliation_with_ecclesiastical_or_religious_associations",
+  "agreements_or_linkages_with_businesses",
+  "affiliation_with_public_or_private_universities",
+  "social_advocacy_and_public_policy_actions",
+  "affiliation_with_regional_associations",
+  "affiliation_with_continental_associations",
+  "affiliation_with_global_or_international_associations",
+  "projects_funded_by_salesian_mission_offices",
+  "private_companies_funding_vtc_projects",
+  "companies_funding_or_sponsoring_students",
+  "section_break_7_safeguarding_and_protection",
+  "is_there_a_written_safeguarding_policy",
+  "date_of_the_last_safeguarding_policy_update",
+  "percentage_of_staff_formally_trained_in_protection",
+  "number_of_protection_incidents_reported_in_the_last_year",
+  "is_there_a_confidential_and_secure_reporting_channel",
+  "column_break_7_1",
+  "is_there_a_specific_protection_protocol",
+  "is_there_a_code_of_ethics_or_code_of_conduct",
+  "is_there_a_procedure_for_caring_for_victims_of_abuse",
+  "is_there_a_local_safeguarding_committee",
+  "was_an_institutional_risk_assessment_conducted_in_the",
+  "section_break_8_final_data",
+  "additional_related_information_or_data",
+  "additional_resources_linked_to_the_vtc",
+  "main_events_organised_during_the_year",
+  "additional_comments_on_leadership_and_personnel"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_1_initial_priority_data",
+   "fieldtype": "Section Break",
+   "label": "Initial Priority Data"
+  },
+  {
+   "fieldname": "salesian_region",
+   "fieldtype": "Link",
+   "label": "Salesian Region",
+   "options": "Region",
+   "description": "Higher-level organizational data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "province_inspectorate_name",
+   "fieldtype": "Link",
+   "label": "Province / Inspectorate Name",
+   "options": "Province",
+   "description": "Higher-level organizational data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "canonical_community_of_reference",
+   "fieldtype": "Link",
+   "label": "Canonical Community of Reference",
+   "options": "Community",
+   "description": "Higher-level organizational data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "label": "Year",
+   "description": "Enter a valid 4-digit year (e.g., 2024)",
+   "reqd": 1,
+   "non_negative": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_break_2_identity_and_profile_of_the_centre",
+   "fieldtype": "Section Break",
+   "label": "Identity and Profile of the Centre"
+  },
+  {
+   "fieldname": "is_the_vtc_part_of_a_larger_salesian_presence",
+   "fieldtype": "Select",
+   "label": "Is the VTC part of a larger Salesian presence?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "vtc_name",
+   "fieldtype": "Data",
+   "label": "Name of the Vocational Training Centre",
+   "description": "Centre identity",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "country_and_city",
+   "fieldtype": "Data",
+   "label": "Country and City",
+   "description": "Centre location",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "geolocation",
+   "fieldtype": "Data",
+   "label": "Geolocation",
+   "description": "Google Maps link or GPS coordinates"
+  },
+  {
+   "fieldname": "type_of_activity",
+   "fieldtype": "Small Text",
+   "label": "Type of Activity",
+   "description": "Public; Private; Rural Multiple values may be entered, separated by commas."
+  },
+  {
+   "fieldname": "complete_physical_address",
+   "fieldtype": "Small Text",
+   "label": "Complete Physical Address",
+   "description": "Physical location"
+  },
+  {
+   "fieldname": "section_break_3_demographics_statistics_and_social",
+   "fieldtype": "Section Break",
+   "label": "Demographics, Statistics and Social Issues (annual data)"
+  },
+  {
+   "fieldname": "total_number_of_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Total Number of Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_male_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Number of Male Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_female_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Number of Female Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_lgbtq_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Number of LGBTQ+ Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_afro_descendant_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Number of Afro-descendant Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_indigenous_native_people_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Number of Indigenous / Native-People Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_romani_gypsy_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Number of Romani / Gypsy Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_migrant_or_refugee_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Number of Migrant or Refugee Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_non_christian_or_non_catholic_beneficiaries",
+   "fieldtype": "Int",
+   "label": "Number of Non-Christian or Non-Catholic Beneficiaries",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_beneficiaries_belonging_to_other_religions_or",
+   "fieldtype": "Int",
+   "label": "Number of Beneficiaries Belonging to Other Religions or Religious Movements",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "column_break_3_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_beneficiaries_with_disabilities",
+   "fieldtype": "Int",
+   "label": "Number of Beneficiaries with Disabilities",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_beneficiaries_in_situations_of_social",
+   "fieldtype": "Int",
+   "label": "Number of Beneficiaries in Situations of Social Vulnerability",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "total_number_of_hired_employees_and_volunteers",
+   "fieldtype": "Int",
+   "label": "Total Number of Hired Employees and Volunteers",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_educators_or_technical_instructors",
+   "fieldtype": "Int",
+   "label": "Number of Educators or Technical Instructors",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_psychologists",
+   "fieldtype": "Int",
+   "label": "Number of Psychologists",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_social_workers",
+   "fieldtype": "Int",
+   "label": "Number of Social Workers",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_sociologists",
+   "fieldtype": "Int",
+   "label": "Number of Sociologists",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_salesians_priests_or_lay_brothers",
+   "fieldtype": "Int",
+   "label": "Number of Salesians \u2014 Priests or Lay Brothers",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_missionary_religious_staff",
+   "fieldtype": "Int",
+   "label": "Number of Missionary Religious Staff",
+   "description": "Source explicitly identifies Section 3 as annual data"
+  },
+  {
+   "fieldname": "number_of_training_programmes_or_services_offered",
+   "fieldtype": "Int",
+   "label": "Number of Training Programmes or Services Offered",
+   "description": "Section 3 is annual data"
+  },
+  {
+   "fieldname": "age_groups_served",
+   "fieldtype": "Small Text",
+   "label": "Age Groups Served",
+   "description": "Section 3 is annual data Multiple values may be entered, separated by commas."
+  },
+  {
+   "fieldname": "predominant_socioeconomic_level",
+   "fieldtype": "Small Text",
+   "label": "Predominant Socioeconomic Level",
+   "description": "Section 3 is annual data Multiple values may be entered, separated by commas."
+  },
+  {
+   "fieldname": "most_common_social_issues_associated_with_beneficiaries",
+   "fieldtype": "Small Text",
+   "label": "Most Common Social Issues Associated with Beneficiaries",
+   "description": "Section 3 is annual data Multiple values may be entered, separated by commas."
+  },
+  {
+   "fieldname": "section_break_4_academic_and_educational_data",
+   "fieldtype": "Section Break",
+   "label": "Academic and Educational Data"
+  },
+  {
+   "fieldname": "name_and_contact_details_of_the_director_or_reference",
+   "fieldtype": "Data",
+   "label": "Name and Contact Details of the Director or Reference Person",
+   "description": "Reference person"
+  },
+  {
+   "fieldname": "does_the_centre_operate_as_a_pre_vocational_training",
+   "fieldtype": "Select",
+   "label": "Does the Centre Operate as a Pre-vocational Training Centre?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "estimated_number_of_students_who_dropped_out_of_the",
+   "fieldtype": "Int",
+   "label": "Estimated Number of Students Who Dropped Out of the Salesian School Education System",
+   "description": "Dropout statistic"
+  },
+  {
+   "fieldname": "links_to_official_communication_channels",
+   "fieldtype": "Small Text",
+   "label": "Links to Official Communication Channels",
+   "description": "Website; Facebook; Instagram; TikTok; X"
+  },
+  {
+   "fieldname": "quality_management_system_and_standards_being_developed",
+   "fieldtype": "Small Text",
+   "label": "Quality Management System and Standards Being Developed",
+   "description": "Quality profile"
+  },
+  {
+   "fieldname": "training_programmes_offered_for_young_people",
+   "fieldtype": "Small Text",
+   "label": "Training Programmes Offered for Young People",
+   "description": "Programme offering can change"
+  },
+  {
+   "fieldname": "technical_or_technological_vocational_training_programmes",
+   "fieldtype": "Small Text",
+   "label": "Technical or Technological Vocational Training Programmes",
+   "description": "Programme offering can change"
+  },
+  {
+   "fieldname": "innovative_programmes_linked_to_the_sepp_or_preventive",
+   "fieldtype": "Small Text",
+   "label": "Innovative Programmes Linked to the SEPP or Preventive System",
+   "description": "Institutional programme profile"
+  },
+  {
+   "fieldname": "most_recurrent_causes_of_educational_dropout",
+   "fieldtype": "Small Text",
+   "label": "Most Recurrent Causes of Educational Dropout",
+   "description": "Annual dropout context"
+  },
+  {
+   "fieldname": "section_break_5_leadership_and_management_structure",
+   "fieldtype": "Section Break",
+   "label": "Leadership and Management Structure"
+  },
+  {
+   "fieldname": "salesian_family_group_managing_the_centre",
+   "fieldtype": "Data",
+   "label": "Salesian Family Group Managing the Centre",
+   "description": "Management identity"
+  },
+  {
+   "fieldname": "leadership_model_of_the_centre",
+   "fieldtype": "Select",
+   "label": "Leadership Model of the Centre",
+   "options": "Religious\nLay\nMixed",
+   "description": "Religious; Lay; Mixed"
+  },
+  {
+   "fieldname": "column_break_5_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "does_the_centre_conduct_satisfaction_surveys_on_the",
+   "fieldtype": "Select",
+   "label": "Does the Centre Conduct Satisfaction Surveys on the Salesian Educational Service?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "perception_of_the_salesian_educational_service",
+   "fieldtype": "Data",
+   "label": "Perception of the Salesian Educational Service",
+   "description": "Conditional on 55A = Yes"
+  },
+  {
+   "fieldname": "section_break_6_financial_model_and_networks",
+   "fieldtype": "Section Break",
+   "label": "Financial Model and Networks"
+  },
+  {
+   "fieldname": "does_the_centre_receive_a_state_or_government_financial",
+   "fieldtype": "Select",
+   "label": "Does the Centre Receive a State or Government Financial Subsidy?",
+   "options": "Yes\nNo\nPartially",
+   "description": "Financial profile"
+  },
+  {
+   "fieldname": "associated_civil_society_organisations_and_ngos",
+   "fieldtype": "Small Text",
+   "label": "Associated Civil-Society Organisations and NGOs",
+   "description": "Network affiliation"
+  },
+  {
+   "fieldname": "labour_linkage_job_placement_and_family_programmes",
+   "fieldtype": "Small Text",
+   "label": "Labour Linkage, Job Placement and Family Programmes",
+   "description": "Programmes can change over time"
+  },
+  {
+   "fieldname": "funding_models_of_the_vtc",
+   "fieldtype": "Small Text",
+   "label": "Funding Models of the VTC",
+   "description": "Financial profile"
+  },
+  {
+   "fieldname": "affiliation_with_state_or_government_associations",
+   "fieldtype": "Small Text",
+   "label": "Affiliation with State or Government Associations",
+   "description": "Network affiliation"
+  },
+  {
+   "fieldname": "affiliation_with_ecclesiastical_or_religious_associations",
+   "fieldtype": "Small Text",
+   "label": "Affiliation with Ecclesiastical or Religious Associations",
+   "description": "Network affiliation"
+  },
+  {
+   "fieldname": "agreements_or_linkages_with_businesses",
+   "fieldtype": "Small Text",
+   "label": "Agreements or Linkages with Businesses",
+   "description": "Private-sector linkage"
+  },
+  {
+   "fieldname": "affiliation_with_public_or_private_universities",
+   "fieldtype": "Small Text",
+   "label": "Affiliation with Public or Private Universities",
+   "description": "Network affiliation"
+  },
+  {
+   "fieldname": "social_advocacy_and_public_policy_actions",
+   "fieldtype": "Small Text",
+   "label": "Social Advocacy and Public-Policy Actions",
+   "description": "Actions can change"
+  },
+  {
+   "fieldname": "affiliation_with_regional_associations",
+   "fieldtype": "Small Text",
+   "label": "Affiliation with Regional Associations",
+   "description": "Network affiliation"
+  },
+  {
+   "fieldname": "affiliation_with_continental_associations",
+   "fieldtype": "Small Text",
+   "label": "Affiliation with Continental Associations",
+   "description": "Network affiliation"
+  },
+  {
+   "fieldname": "affiliation_with_global_or_international_associations",
+   "fieldtype": "Small Text",
+   "label": "Affiliation with Global or International Associations",
+   "description": "Network affiliation"
+  },
+  {
+   "fieldname": "projects_funded_by_salesian_mission_offices",
+   "fieldtype": "Small Text",
+   "label": "Projects Funded by Salesian Mission Offices",
+   "description": "Capture Yes/No, Mission Office name, project name"
+  },
+  {
+   "fieldname": "private_companies_funding_vtc_projects",
+   "fieldtype": "Small Text",
+   "label": "Private Companies Funding VTC Projects",
+   "description": "Capture Yes/No, company name, project funded"
+  },
+  {
+   "fieldname": "companies_funding_or_sponsoring_students",
+   "fieldtype": "Small Text",
+   "label": "Companies Funding or Sponsoring Students",
+   "description": "Capture Yes/No, company name, number of students sponsored"
+  },
+  {
+   "fieldname": "section_break_7_safeguarding_and_protection",
+   "fieldtype": "Section Break",
+   "label": "Safeguarding and Protection"
+  },
+  {
+   "fieldname": "is_there_a_written_safeguarding_policy",
+   "fieldtype": "Select",
+   "label": "Is There a Written Safeguarding Policy?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "date_of_the_last_safeguarding_policy_update",
+   "fieldtype": "Date",
+   "label": "Date of the Last Safeguarding-Policy Update",
+   "description": "Policy history marker"
+  },
+  {
+   "fieldname": "percentage_of_staff_formally_trained_in_protection",
+   "fieldtype": "Percent",
+   "label": "Percentage of Staff Formally Trained in Protection",
+   "description": "Training coverage"
+  },
+  {
+   "fieldname": "number_of_protection_incidents_reported_in_the_last_year",
+   "fieldtype": "Int",
+   "label": "Number of Protection Incidents Reported in the Last Year",
+   "description": "Explicitly refers to last year"
+  },
+  {
+   "fieldname": "is_there_a_confidential_and_secure_reporting_channel",
+   "fieldtype": "Select",
+   "label": "Is There a Confidential and Secure Reporting Channel?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "column_break_7_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "is_there_a_specific_protection_protocol",
+   "fieldtype": "Select",
+   "label": "Is There a Specific Protection Protocol?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "is_there_a_code_of_ethics_or_code_of_conduct",
+   "fieldtype": "Select",
+   "label": "Is There a Code of Ethics or Code of Conduct?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "is_there_a_procedure_for_caring_for_victims_of_abuse",
+   "fieldtype": "Select",
+   "label": "Is There a Procedure for Caring for Victims of Abuse?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "is_there_a_local_safeguarding_committee",
+   "fieldtype": "Select",
+   "label": "Is There a Local Safeguarding Committee?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "was_an_institutional_risk_assessment_conducted_in_the",
+   "fieldtype": "Select",
+   "label": "Was an Institutional Risk Assessment Conducted in the Last Two Years?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "section_break_8_final_data",
+   "fieldtype": "Section Break",
+   "label": "Final Data"
+  },
+  {
+   "fieldname": "additional_related_information_or_data",
+   "fieldtype": "Small Text",
+   "label": "Additional Related Information or Data",
+   "description": "Additional information"
+  },
+  {
+   "fieldname": "additional_resources_linked_to_the_vtc",
+   "fieldtype": "Small Text",
+   "label": "Additional Resources Linked to the VTC",
+   "description": "Additional resources"
+  },
+  {
+   "fieldname": "main_events_organised_during_the_year",
+   "fieldtype": "Small Text",
+   "label": "Main Events Organised During the Year",
+   "description": "Explicitly year-related"
+  },
+  {
+   "fieldname": "additional_comments_on_leadership_and_personnel",
+   "fieldtype": "Small Text",
+   "label": "Additional Comments on Leadership and Personnel",
+   "description": "Additional comments"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-09 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Institutional Registry",
+ "name": "VTC",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "vtc_name",
+ "track_changes": 1
+}

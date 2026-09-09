@@ -41,7 +41,7 @@
         <p class="text-[15px] leading-relaxed text-slate-600 mb-8 max-w-4xl">
           Salesian works are traditionally grouped into these core categories, all aimed at serving young people, especially the poor and at risk.
         </p>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <button
             v-for="cat in PASTORAL_CATEGORIES" :key="cat.title"
             @click="updateFilters('', cat.subtype)"
@@ -88,7 +88,7 @@
             </span>
             <button @click="updateFilters('', '')" class="text-[13px] font-semibold text-brand-600 hover:text-brand-800 transition">Clear filter</button>
           </div>
-          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <Reveal v-for="(inst, idx) in results" :key="inst.name" :delay="idx * 30">
               <router-link :to="`/sectors/${inst.name}`" class="group flex flex-col h-full rounded-2xl border border-slate-100 bg-white shadow-sm overflow-hidden hover:shadow-xl hover:border-brand-200 hover:-translate-y-1 transition-all duration-300">
                 <div :class="`h-1 w-full bg-gradient-to-r ${accentFor(idx)}`" />

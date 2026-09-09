@@ -61,7 +61,7 @@
             <span class="text-[13px] font-bold text-slate-700">{{ filteredEvents.length }} match{{ filteredEvents.length === 1 ? '' : 'es' }}</span>
           </div>
         </Reveal>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <Reveal v-for="(e, idx) in filteredEvents" :key="e.name" :delay="idx * 40">
             <router-link
               :to="'/news-events/' + encodeURIComponent(e.name)"

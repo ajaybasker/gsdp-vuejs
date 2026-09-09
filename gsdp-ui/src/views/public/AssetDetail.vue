@@ -221,7 +221,7 @@
 
       <!-- Main Layout: 2 Columns (Content 2/3, Authority Sidebar 1/3) -->
       <main class="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-        <div class="grid gap-8 lg:grid-cols-12 lg:items-start">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start">
           <!-- Left Column (8 cols): Primary Content & Media Deck -->
           <article class="space-y-8 lg:col-span-8">
             <!-- 1. Featured Media Showcase -->
@@ -326,7 +326,7 @@
                   </div>
                   <h3 class="text-lg font-bold text-slate-900">Archival Photographs & Illustrations</h3>
                 </div>
-                <div class="mt-6 grid gap-6 sm:grid-cols-2">
+                <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <figure
                     v-for="(img, idx) in asset.image_resource"
                     :key="'img-' + idx"
@@ -564,7 +564,7 @@
             No related archival entries recorded under this specific category.
           </div>
 
-          <div v-else class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div v-else class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <router-link
               v-for="r in asset.related"
               :key="r.name"

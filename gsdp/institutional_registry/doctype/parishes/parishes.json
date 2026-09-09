@@ -1,0 +1,629 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:parish_name",
+ "creation": "2026-09-09 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_1_initial_priority_data",
+  "salesian_region",
+  "province_inspectorate_name",
+  "canonical_community_of_reference",
+  "year",
+  "section_break_2_identity_and_profile_of_the_parish",
+  "parish_name",
+  "is_the_parish_part_of_a_larger_salesian_presence",
+  "column_break_2_1",
+  "country_and_city",
+  "geolocation",
+  "complete_physical_address",
+  "section_break_3_demographics_and_statistics",
+  "number_of_apostolic_or_pastoral_groups_in_the_parish",
+  "number_of_men_in_the_apostolic_groups",
+  "number_of_women_in_the_apostolic_groups",
+  "number_of_lgbtq_individuals_in_the_apostolic_groups",
+  "number_of_afro_descendants_in_the_apostolic_groups",
+  "number_of_indigenous_individuals_in_the_apostolic_groups",
+  "number_of_romani_gypsy_individuals_in_the_apostolic_groups",
+  "number_of_migrants_or_refugees_in_the_apostolic_groups",
+  "column_break_3_1",
+  "number_of_individuals_with_disabilities_in_the_apostolic",
+  "number_of_individuals_in_social_vulnerability_in_the",
+  "number_of_hired_employees_and_volunteers_general_total",
+  "number_of_catechists",
+  "number_of_salesians_priests_or_lay_brothers",
+  "number_of_missionary_religious_staff",
+  "is_the_parish_considered_ad_gentes_missionary_parish",
+  "age_groups_served_in_the_parish",
+  "predominant_socioeconomic_level_of_parishioners",
+  "does_the_parish_have_social_programs_for_the_community",
+  "does_the_parish_have_health_programs_for_the_community",
+  "most_common_social_issues_in_the_territory_where_the",
+  "salesian_pastoral_actions_to_address_these_issues",
+  "section_break_4_general_data_and_services",
+  "name_and_contact_details_of_the_parish_priest_or",
+  "links_to_official_communication_channels",
+  "quality_management_system_in_the_center",
+  "does_the_parish_have_pre_vocational_training_programs",
+  "does_the_parish_have_a_transitional_home_or_shelter",
+  "does_the_parish_have_a_festive_oratory",
+  "does_the_parish_have_a_youth_center",
+  "does_the_parish_have_an_affiliated_school",
+  "section_break_5_pastoral_and_salesian_identity",
+  "do_the_daughters_of_mary_help_of_christians_fma",
+  "number_of_fma_sisters_participating",
+  "youth_ministry_model_of_the_sepp_applied_in_the_parish",
+  "how_is_the_cultural_dimension_applied_in_the_parish",
+  "how_is_the_evangelizing_dimension_applied_in_the_parish",
+  "how_is_the_social_dimension_applied_in_the_parish",
+  "how_is_the_vocational_dimension_applied_in_the_parish",
+  "does_the_parish_develop_a_human_rights_culture_in_its",
+  "training_model_for_catechists",
+  "section_break_6_leadership_and_management_structure",
+  "structure_and_functioning_of_the_parish_council",
+  "section_break_7_financial_model_and_networks",
+  "does_the_parish_participate_in_a_network_of_parishes_in",
+  "funding_models_of_the_parish",
+  "affiliation_with_additional_ecclesiastical_or_religious",
+  "linkage_or_agreements_with_businesses_private_sector",
+  "social_advocacy_actions",
+  "does_the_parish_have_projects_funded_by_salesian_mission",
+  "are_there_private_companies_that_fund_parish_projects",
+  "section_break_8_safeguarding_and_protection",
+  "is_there_a_written_safeguarding_policy",
+  "date_of_the_last_update_of_the_safeguarding_policy",
+  "number_of_people_trained_in_protection_staff_and",
+  "number_of_protection_incidents_reported_in_the_last_year",
+  "is_there_a_confidential_and_secure_channel_for_reporting",
+  "is_there_a_specific_protection_protocol",
+  "column_break_8_1",
+  "do_you_have_a_code_of_ethics_or_code_of_conduct",
+  "do_you_have_an_established_procedure_for_the_care_of",
+  "do_you_have_a_specific_procedure_for_volunteering",
+  "is_there_a_local_safeguarding_committee_in_the_parish",
+  "has_an_institutional_risk_assessment_been_conducted_in",
+  "section_break_9_final_data",
+  "additional_related_information_or_data",
+  "additional_resources_linked_to_the_parish",
+  "main_events_organized_during_the_year",
+  "additional_comments_on_leadership_and_personnel_including"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_1_initial_priority_data",
+   "fieldtype": "Section Break",
+   "label": "Initial Priority Data"
+  },
+  {
+   "fieldname": "salesian_region",
+   "fieldtype": "Link",
+   "label": "Salesian Region",
+   "options": "Region",
+   "description": "Higher-level organizational data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "province_inspectorate_name",
+   "fieldtype": "Link",
+   "label": "Province / Inspectorate Name",
+   "options": "Province",
+   "description": "Higher-level organizational data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "canonical_community_of_reference",
+   "fieldtype": "Link",
+   "label": "Canonical Community of Reference",
+   "options": "Community",
+   "description": "Higher-level organizational data",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "label": "Year",
+   "description": "Enter a valid 4-digit year (e.g., 2024)",
+   "reqd": 1,
+   "non_negative": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "section_break_2_identity_and_profile_of_the_parish",
+   "fieldtype": "Section Break",
+   "label": "Identity and Profile of the Parish"
+  },
+  {
+   "fieldname": "parish_name",
+   "fieldtype": "Data",
+   "label": "Name of the Parish",
+   "description": "Parish identity",
+   "reqd": 1,
+   "unique": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "is_the_parish_part_of_a_larger_salesian_presence",
+   "fieldtype": "Select",
+   "label": "Is the Parish Part of a Larger Salesian Presence?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "column_break_2_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "country_and_city",
+   "fieldtype": "Data",
+   "label": "Country and City",
+   "description": "Parish location",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "geolocation",
+   "fieldtype": "Data",
+   "label": "Geolocation",
+   "description": "Google Maps link or GPS coordinates"
+  },
+  {
+   "fieldname": "complete_physical_address",
+   "fieldtype": "Small Text",
+   "label": "Complete Physical Address",
+   "description": "Physical location"
+  },
+  {
+   "fieldname": "section_break_3_demographics_and_statistics",
+   "fieldtype": "Section Break",
+   "label": "Demographics and Statistics"
+  },
+  {
+   "fieldname": "number_of_apostolic_or_pastoral_groups_in_the_parish",
+   "fieldtype": "Int",
+   "label": "Number of Apostolic or Pastoral Groups in the Parish",
+   "description": "Annual parish statistic"
+  },
+  {
+   "fieldname": "number_of_men_in_the_apostolic_groups",
+   "fieldtype": "Int",
+   "label": "Number of Men in the Apostolic Groups",
+   "description": "Annual demographic statistic"
+  },
+  {
+   "fieldname": "number_of_women_in_the_apostolic_groups",
+   "fieldtype": "Int",
+   "label": "Number of Women in the Apostolic Groups",
+   "description": "Annual demographic statistic"
+  },
+  {
+   "fieldname": "number_of_lgbtq_individuals_in_the_apostolic_groups",
+   "fieldtype": "Int",
+   "label": "Number of LGBTQ+ Individuals in the Apostolic Groups",
+   "description": "Annual demographic statistic"
+  },
+  {
+   "fieldname": "number_of_afro_descendants_in_the_apostolic_groups",
+   "fieldtype": "Int",
+   "label": "Number of Afro-descendants in the Apostolic Groups",
+   "description": "Annual demographic statistic"
+  },
+  {
+   "fieldname": "number_of_indigenous_individuals_in_the_apostolic_groups",
+   "fieldtype": "Int",
+   "label": "Number of Indigenous Individuals in the Apostolic Groups",
+   "description": "Annual demographic statistic"
+  },
+  {
+   "fieldname": "number_of_romani_gypsy_individuals_in_the_apostolic_groups",
+   "fieldtype": "Int",
+   "label": "Number of Romani / Gypsy Individuals in the Apostolic Groups",
+   "description": "Annual demographic statistic"
+  },
+  {
+   "fieldname": "number_of_migrants_or_refugees_in_the_apostolic_groups",
+   "fieldtype": "Int",
+   "label": "Number of Migrants or Refugees in the Apostolic Groups",
+   "description": "Annual demographic statistic"
+  },
+  {
+   "fieldname": "column_break_3_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_individuals_with_disabilities_in_the_apostolic",
+   "fieldtype": "Int",
+   "label": "Number of Individuals with Disabilities in the Apostolic Groups",
+   "description": "Physical, sensory, intellectual, mental, or multiple"
+  },
+  {
+   "fieldname": "number_of_individuals_in_social_vulnerability_in_the",
+   "fieldtype": "Int",
+   "label": "Number of Individuals in Social Vulnerability in the Apostolic Groups",
+   "description": "Economic, educational, gender, ethnic"
+  },
+  {
+   "fieldname": "number_of_hired_employees_and_volunteers_general_total",
+   "fieldtype": "Int",
+   "label": "Number of Hired Employees and Volunteers (General Total)",
+   "description": "Annual personnel statistic"
+  },
+  {
+   "fieldname": "number_of_catechists",
+   "fieldtype": "Int",
+   "label": "Number of Catechists",
+   "description": "Annual personnel statistic"
+  },
+  {
+   "fieldname": "number_of_salesians_priests_or_lay_brothers",
+   "fieldtype": "Int",
+   "label": "Number of Salesians (Priests or Lay Brothers)",
+   "description": "Annual personnel statistic"
+  },
+  {
+   "fieldname": "number_of_missionary_religious_staff",
+   "fieldtype": "Int",
+   "label": "Number of Missionary Religious Staff",
+   "description": "Annual personnel statistic"
+  },
+  {
+   "fieldname": "is_the_parish_considered_ad_gentes_missionary_parish",
+   "fieldtype": "Select",
+   "label": "Is the Parish Considered 'Ad Gentes' (Missionary Parish)?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "age_groups_served_in_the_parish",
+   "fieldtype": "Small Text",
+   "label": "Age Groups Served in the Parish",
+   "description": "Groups served can change Multiple values may be entered, separated by commas."
+  },
+  {
+   "fieldname": "predominant_socioeconomic_level_of_parishioners",
+   "fieldtype": "Small Text",
+   "label": "Predominant Socioeconomic Level of Parishioners",
+   "description": "Socioeconomic context can change Multiple values may be entered, separated by commas."
+  },
+  {
+   "fieldname": "does_the_parish_have_social_programs_for_the_community",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Have Social Programs for the Community?",
+   "description": "If Yes, mention programs"
+  },
+  {
+   "fieldname": "does_the_parish_have_health_programs_for_the_community",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Have Health Programs for the Community?",
+   "description": "If Yes, mention programs"
+  },
+  {
+   "fieldname": "most_common_social_issues_in_the_territory_where_the",
+   "fieldtype": "Small Text",
+   "label": "Most Common Social Issues in the Territory Where the Parish Is Located",
+   "description": "Territorial social context can change"
+  },
+  {
+   "fieldname": "salesian_pastoral_actions_to_address_these_issues",
+   "fieldtype": "Small Text",
+   "label": "Salesian Pastoral Actions to Address These Issues",
+   "description": "Actions may change with needs"
+  },
+  {
+   "fieldname": "section_break_4_general_data_and_services",
+   "fieldtype": "Section Break",
+   "label": "General Data and Services"
+  },
+  {
+   "fieldname": "name_and_contact_details_of_the_parish_priest_or",
+   "fieldtype": "Data",
+   "label": "Name and Contact Details of the Parish Priest or Parochial Vicar (Reference Person)",
+   "description": "Reference person"
+  },
+  {
+   "fieldname": "links_to_official_communication_channels",
+   "fieldtype": "Small Text",
+   "label": "Links to Official Communication Channels",
+   "description": "Website; Facebook; Instagram; TikTok; X"
+  },
+  {
+   "fieldname": "quality_management_system_in_the_center",
+   "fieldtype": "Small Text",
+   "label": "Quality Management System in the Center",
+   "description": "If Yes, mention standards in development"
+  },
+  {
+   "fieldname": "does_the_parish_have_pre_vocational_training_programs",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Have Pre-vocational Training Programs?",
+   "description": "If Yes, mention programs"
+  },
+  {
+   "fieldname": "does_the_parish_have_a_transitional_home_or_shelter",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Have a Transitional Home or Shelter?",
+   "description": "If Yes, mention which ones"
+  },
+  {
+   "fieldname": "does_the_parish_have_a_festive_oratory",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Have a Festive Oratory?",
+   "description": "If Yes, mention which ones"
+  },
+  {
+   "fieldname": "does_the_parish_have_a_youth_center",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Have a Youth Center?",
+   "description": "If Yes, mention which one"
+  },
+  {
+   "fieldname": "does_the_parish_have_an_affiliated_school",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Have an Affiliated School?",
+   "description": "If Yes, mention which one"
+  },
+  {
+   "fieldname": "section_break_5_pastoral_and_salesian_identity",
+   "fieldtype": "Section Break",
+   "label": "Pastoral and Salesian Identity"
+  },
+  {
+   "fieldname": "do_the_daughters_of_mary_help_of_christians_fma",
+   "fieldtype": "Select",
+   "label": "Do the Daughters of Mary Help of Christians (FMA) Participate in the Evangelization Process in the Parish?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "number_of_fma_sisters_participating",
+   "fieldtype": "Int",
+   "label": "Number of FMA Sisters Participating",
+   "description": "If No, write 0"
+  },
+  {
+   "fieldname": "youth_ministry_model_of_the_sepp_applied_in_the_parish",
+   "fieldtype": "Small Text",
+   "label": "Youth Ministry Model of the SEPP Applied in the Parish",
+   "description": "Pastoral model"
+  },
+  {
+   "fieldname": "how_is_the_cultural_dimension_applied_in_the_parish",
+   "fieldtype": "Small Text",
+   "label": "How Is the Cultural Dimension Applied in the Parish?",
+   "description": "Institutional practice"
+  },
+  {
+   "fieldname": "how_is_the_evangelizing_dimension_applied_in_the_parish",
+   "fieldtype": "Small Text",
+   "label": "How Is the Evangelizing Dimension Applied in the Parish?",
+   "description": "Institutional practice"
+  },
+  {
+   "fieldname": "how_is_the_social_dimension_applied_in_the_parish",
+   "fieldtype": "Small Text",
+   "label": "How Is the Social Dimension Applied in the Parish?",
+   "description": "Institutional practice"
+  },
+  {
+   "fieldname": "how_is_the_vocational_dimension_applied_in_the_parish",
+   "fieldtype": "Small Text",
+   "label": "How Is the Vocational Dimension Applied in the Parish?",
+   "description": "Institutional practice"
+  },
+  {
+   "fieldname": "does_the_parish_develop_a_human_rights_culture_in_its",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Develop a Human Rights Culture in Its Evangelization?",
+   "description": "Briefly describe"
+  },
+  {
+   "fieldname": "training_model_for_catechists",
+   "fieldtype": "Small Text",
+   "label": "Training Model for Catechists",
+   "description": "Training model"
+  },
+  {
+   "fieldname": "section_break_6_leadership_and_management_structure",
+   "fieldtype": "Section Break",
+   "label": "Leadership and Management Structure"
+  },
+  {
+   "fieldname": "structure_and_functioning_of_the_parish_council",
+   "fieldtype": "Small Text",
+   "label": "Structure and Functioning of the Parish Council",
+   "description": "Leadership structure"
+  },
+  {
+   "fieldname": "section_break_7_financial_model_and_networks",
+   "fieldtype": "Section Break",
+   "label": "Financial Model and Networks"
+  },
+  {
+   "fieldname": "does_the_parish_participate_in_a_network_of_parishes_in",
+   "fieldtype": "Select",
+   "label": "Does the Parish Participate in a Network of Parishes in Its City?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "funding_models_of_the_parish",
+   "fieldtype": "Small Text",
+   "label": "Funding Models of the Parish",
+   "description": "Financial profile"
+  },
+  {
+   "fieldname": "affiliation_with_additional_ecclesiastical_or_religious",
+   "fieldtype": "Small Text",
+   "label": "Affiliation with Additional Ecclesiastical or Religious Associations",
+   "description": "Network affiliation"
+  },
+  {
+   "fieldname": "linkage_or_agreements_with_businesses_private_sector",
+   "fieldtype": "Small Text",
+   "label": "Linkage or Agreements with Businesses (Private Sector)",
+   "description": "Private-sector linkage"
+  },
+  {
+   "fieldname": "social_advocacy_actions",
+   "fieldtype": "Small Text",
+   "label": "Social Advocacy Actions",
+   "description": "Actions may change over time"
+  },
+  {
+   "fieldname": "does_the_parish_have_projects_funded_by_salesian_mission",
+   "fieldtype": "Small Text",
+   "label": "Does the Parish Have Projects Funded by Salesian Mission Offices (Procuras)?",
+   "description": "If Yes, mention Mission Offices and project name"
+  },
+  {
+   "fieldname": "are_there_private_companies_that_fund_parish_projects",
+   "fieldtype": "Small Text",
+   "label": "Are There Private Companies That Fund Parish Projects?",
+   "description": "If Yes, mention companies"
+  },
+  {
+   "fieldname": "section_break_8_safeguarding_and_protection",
+   "fieldtype": "Section Break",
+   "label": "Safeguarding and Protection"
+  },
+  {
+   "fieldname": "is_there_a_written_safeguarding_policy",
+   "fieldtype": "Data",
+   "label": "Is There a Written Safeguarding Policy?",
+   "description": "Protection of minors and vulnerable adults; Yes / No"
+  },
+  {
+   "fieldname": "date_of_the_last_update_of_the_safeguarding_policy",
+   "fieldtype": "Date",
+   "label": "Date of the Last Update of the Safeguarding Policy",
+   "description": "Policy history marker"
+  },
+  {
+   "fieldname": "number_of_people_trained_in_protection_staff_and",
+   "fieldtype": "Int",
+   "label": "Number of People Trained in Protection (Staff and Volunteers)",
+   "description": "Training coverage statistic"
+  },
+  {
+   "fieldname": "number_of_protection_incidents_reported_in_the_last_year",
+   "fieldtype": "Int",
+   "label": "Number of Protection Incidents Reported in the Last Year",
+   "description": "Explicitly refers to last year"
+  },
+  {
+   "fieldname": "is_there_a_confidential_and_secure_channel_for_reporting",
+   "fieldtype": "Select",
+   "label": "Is There a Confidential and Secure Channel for Reporting?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "is_there_a_specific_protection_protocol",
+   "fieldtype": "Select",
+   "label": "Is There a Specific Protection Protocol?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "column_break_8_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "do_you_have_a_code_of_ethics_or_code_of_conduct",
+   "fieldtype": "Select",
+   "label": "Do You Have a Code of Ethics or Code of Conduct?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "do_you_have_an_established_procedure_for_the_care_of",
+   "fieldtype": "Select",
+   "label": "Do You Have an Established Procedure for the Care of Abuse Victims?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "do_you_have_a_specific_procedure_for_volunteering",
+   "fieldtype": "Select",
+   "label": "Do You Have a Specific Procedure for Volunteering?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "is_there_a_local_safeguarding_committee_in_the_parish",
+   "fieldtype": "Select",
+   "label": "Is There a Local Safeguarding Committee in the Parish?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "has_an_institutional_risk_assessment_been_conducted_in",
+   "fieldtype": "Select",
+   "label": "Has an Institutional Risk Assessment Been Conducted in the Last 2 Years?",
+   "options": "Yes\nNo",
+   "description": "Yes / No"
+  },
+  {
+   "fieldname": "section_break_9_final_data",
+   "fieldtype": "Section Break",
+   "label": "Final Data"
+  },
+  {
+   "fieldname": "additional_related_information_or_data",
+   "fieldtype": "Small Text",
+   "label": "Additional Related Information or Data",
+   "description": "Additional information"
+  },
+  {
+   "fieldname": "additional_resources_linked_to_the_parish",
+   "fieldtype": "Small Text",
+   "label": "Additional Resources Linked to the Parish",
+   "description": "Additional resources"
+  },
+  {
+   "fieldname": "main_events_organized_during_the_year",
+   "fieldtype": "Small Text",
+   "label": "Main Events Organized During the Year",
+   "description": "Explicitly year-related"
+  },
+  {
+   "fieldname": "additional_comments_on_leadership_and_personnel_including",
+   "fieldtype": "Small Text",
+   "label": "Additional Comments on Leadership and Personnel (Including Volunteers)",
+   "description": "Additional comments"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-09 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Institutional Registry",
+ "name": "Parishes",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "parish_name",
+ "track_changes": 1
+}

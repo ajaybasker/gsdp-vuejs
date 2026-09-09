@@ -27,7 +27,7 @@
       <main class="mx-auto max-w-5xl px-6 py-12">
         <div class="space-y-6">
           <SectionCard title="Profile" icon="Building" :gradient="accentFor(0)">
-            <dl class="mt-4 grid gap-4 sm:grid-cols-3">
+            <dl class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div><dt class="text-xs text-slate-500">Province Code</dt><dd class="mt-1 text-sm text-slate-700">{{ province.province_code }}</dd></div>
               <div><dt class="text-xs text-slate-500">Region</dt><dd class="mt-1 text-sm text-slate-700">{{ regionName || '—' }}</dd></div>
               <div><dt class="text-xs text-slate-500">Communities</dt><dd class="mt-1 text-sm text-slate-700">{{ communities.length }}</dd></div>
@@ -36,7 +36,7 @@
 
           <SectionCard :title="`Communities (${communities.length})`" icon="Users" :gradient="accentFor(2)">
             <EmptyState v-if="communities.length === 0" icon="Users" title="No communities on record" />
-            <div v-else class="mt-4 grid gap-2.5 sm:grid-cols-2">
+            <div v-else class="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
               <router-link
                 v-for="c in communities" :key="c.name" :to="`/communities/${c.name}`"
                 class="flex items-center justify-between rounded-lg border border-slate-200 px-3.5 py-2.5 text-sm text-slate-700 transition hover:border-brand-300 hover:bg-brand-50/50"

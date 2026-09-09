@@ -23,7 +23,7 @@
       <main class="mx-auto max-w-6xl px-6 py-12">
         <SectionCard title="Resources in this Collection" icon="Archive" :gradient="accentFor(1)">
           <EmptyState v-if="collection.resources.length === 0" icon="Archive" title="No published resources in this collection yet" />
-          <div v-else class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div v-else class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <router-link
               v-for="(r, idx) in collection.resources" :key="r.name" :to="`/assets/${r.name}`"
               class="group flex flex-col h-full rounded-2xl border border-slate-100 bg-white shadow-sm overflow-hidden hover:shadow-xl hover:border-brand-200 hover:-translate-y-1 transition-all duration-300"

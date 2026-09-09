@@ -42,7 +42,7 @@
         <div class="mb-3 text-xs font-medium text-slate-500">
           {{ filtered.length }} of {{ communities.length }} communities{{ filtered.length > visible ? ` — showing first ${visible}` : '' }}
         </div>
-        <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           <EntityCard v-for="(c, idx) in filtered.slice(0, visible)" :key="c.name" :to="`/communities/${c.name}`" icon="Users" :gradient="accentFor(idx)" :title="c.canonical_name" dense>
             <template #meta>
               <span class="flex items-center gap-1"><Icon name="MapPin" :size="12" /> {{ c.city || '—' }}</span>

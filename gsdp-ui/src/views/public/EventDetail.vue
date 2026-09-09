@@ -84,7 +84,7 @@
 
       <!-- Main Body -->
       <main class="w-full px-4 py-10 md:px-8 xl:px-12">
-        <div class="grid gap-8 lg:grid-cols-3 lg:items-start">
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:items-start">
           <!-- Left Column: Main Narrative & Details -->
           <article class="space-y-8 lg:col-span-2">
             <!-- Event Cover Image & Header Info -->
@@ -319,7 +319,7 @@
         <!-- Related Events Section -->
         <div v-if="relatedEvents && relatedEvents.length" class="mt-16">
           <SectionCard title="Other Congregational Events" icon="Calendar" :gradient="accentFor(3)">
-            <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <router-link
                 v-for="(r, idx) in relatedEvents"
                 :key="r.name"

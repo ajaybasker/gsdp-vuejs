@@ -29,7 +29,7 @@
       <EmptyState v-else-if="filtered.length === 0" icon="Building" title="No provinces match your filters" message="Try clearing the search or filters above." />
       <template v-else>
         <div class="mb-4 text-xs font-medium text-slate-500">{{ filtered.length }} of {{ provinces.length }} provinces</div>
-        <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           <EntityCard
             v-for="(p, idx) in filtered"
             :key="p.name"

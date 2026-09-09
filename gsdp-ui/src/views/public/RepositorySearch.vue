@@ -79,7 +79,7 @@
               <button v-if="hasFilter" @click="clearAll" class="text-[13px] font-semibold text-brand-600 hover:text-brand-800">Clear filters</button>
             </div>
           </Reveal>
-          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Reveal v-for="(a, idx) in filteredAssets" :key="a.name" :delay="idx * 25">
               <router-link :to="`/assets/${a.name}`" class="group flex h-full flex-col rounded-2xl border border-slate-100 bg-white shadow-sm overflow-hidden hover:shadow-xl hover:border-brand-200 hover:-translate-y-1 transition-all duration-300">
                 <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">

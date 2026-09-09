@@ -33,7 +33,7 @@
 
       <Reveal>
         <div class="bg-brand-950 text-white rounded-3xl shadow-2xl overflow-hidden">
-          <div class="p-8 sm:p-12 lg:p-16 grid lg:grid-cols-12 gap-12 items-center relative">
+          <div class="p-8 sm:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative">
             <div aria-hidden class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/4 blur-3xl" />
             <div class="space-y-6 relative z-10 lg:col-span-7 xl:col-span-8">
               <h2 class="font-serif text-[28px] font-black text-brand-400 tracking-tight">History</h2>
