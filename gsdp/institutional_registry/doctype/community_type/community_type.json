@@ -62,7 +62,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-09 14:52:02.506255",
+ "modified": "2026-09-09 17:01:47.177681",
  "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Community Type",
@@ -82,12 +82,24 @@
    "write": 1
   },
   {
+   "create": 1,
+   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Province Coordinator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Community Coordinator",
    "share": 1
   }
  ],

@@ -24,6 +24,16 @@ app.provide("$socket", socket);
 
 // Configure route gaurds
 router.beforeEach(async (to, from, next) => {
+	if (to.meta.isDeskGate) {
+		// /desk: logged-in users go straight to the real Frappe Desk,
+		// guests are sent to the login page.
+		if (auth.isLoggedIn) {
+			window.location.href = "/app";
+		} else {
+			next({ name: 'Login', query: { route: to.path } });
+		}
+		return;
+	}
 	if (to.matched.some((record) => record.meta.isPublic)) {
 		// It's a public page, let anyone in
 		next();

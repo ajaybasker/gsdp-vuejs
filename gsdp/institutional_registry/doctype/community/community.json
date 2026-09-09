@@ -317,40 +317,35 @@
    "description": "Total Community members",
    "fieldname": "total_members",
    "fieldtype": "Int",
-   "label": "Total Members",
-   "read_only": 1
+   "label": "Total Members"
   },
   {
    "default": "0",
    "description": "Number of priests",
    "fieldname": "priests",
    "fieldtype": "Int",
-   "label": "Priests",
-   "read_only": 1
+   "label": "Priests"
   },
   {
    "default": "0",
    "description": "Number of brothers",
    "fieldname": "brothers",
    "fieldtype": "Int",
-   "label": "Brothers",
-   "read_only": 1
+   "label": "Brothers"
   },
   {
    "default": "0",
    "description": "Number of clerics",
    "fieldname": "clerics",
    "fieldtype": "Int",
-   "label": "Clerics",
-   "read_only": 1
+   "label": "Clerics"
   },
   {
    "default": "0",
    "description": "Number of novices",
    "fieldname": "novices",
    "fieldtype": "Int",
-   "label": "Novices",
-   "read_only": 1
+   "label": "Novices"
   },
   {
    "fieldname": "column_break_6_1",
@@ -361,24 +356,21 @@
    "description": "Number of aspirants",
    "fieldname": "aspirants",
    "fieldtype": "Int",
-   "label": "Aspirants",
-   "read_only": 1
+   "label": "Aspirants"
   },
   {
    "default": "0",
    "description": "Number of lay staff",
    "fieldname": "lay_staff",
    "fieldtype": "Int",
-   "label": "Lay Staff",
-   "read_only": 1
+   "label": "Lay Staff"
   },
   {
    "default": "0",
    "description": "Number of volunteers",
    "fieldname": "volunteers",
    "fieldtype": "Int",
-   "label": "Volunteers",
-   "read_only": 1
+   "label": "Volunteers"
   },
   {
    "fieldname": "section_break_activity_statistics",
@@ -390,40 +382,35 @@
    "description": "Total linked institutions",
    "fieldname": "total_activities",
    "fieldtype": "Int",
-   "label": "Total Activities",
-   "read_only": 1
+   "label": "Total Activities"
   },
   {
    "default": "0",
    "description": "Number of schools",
    "fieldname": "schools",
    "fieldtype": "Int",
-   "label": "Schools",
-   "read_only": 1
+   "label": "Schools"
   },
   {
    "default": "0",
    "description": "Number of colleges",
    "fieldname": "colleges",
    "fieldtype": "Int",
-   "label": "Colleges",
-   "read_only": 1
+   "label": "Colleges"
   },
   {
    "default": "0",
    "description": "Number of parishes",
    "fieldname": "parishes",
    "fieldtype": "Int",
-   "label": "Parishes",
-   "read_only": 1
+   "label": "Parishes"
   },
   {
    "default": "0",
    "description": "Number of youth centres",
    "fieldname": "youth_centres",
    "fieldtype": "Int",
-   "label": "Youth Centres",
-   "read_only": 1
+   "label": "Youth Centres"
   },
   {
    "fieldname": "column_break_7_1",
@@ -447,16 +434,14 @@
    "description": "Number of social centres",
    "fieldname": "social_works",
    "fieldtype": "Int",
-   "label": "Social Works",
-   "read_only": 1
+   "label": "Social Works"
   },
   {
    "default": "0",
    "description": "Number of formation houses",
    "fieldname": "training_centre",
    "fieldtype": "Int",
-   "label": "Training Centres",
-   "read_only": 1
+   "label": "Training Centres"
   },
   {
    "fieldname": "community_coordinator",
@@ -469,14 +454,13 @@
    "fieldname": "community_coordinator_full_name",
    "fieldtype": "Data",
    "hidden": 1,
-   "label": "Community Coordinator (Full Name)",
-   "read_only": 1
+   "label": "Community Coordinator (Full Name)"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-09 15:23:57.243670",
+ "modified": "2026-09-09 17:12:49.679736",
  "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Community",
@@ -496,11 +480,11 @@
    "write": 1
   },
   {
-   "read": 1,
-   "write": 1,
    "create": 1,
+   "read": 1,
    "report": 1,
-   "role": "Province Coordinator"
+   "role": "Province Coordinator",
+   "write": 1
   },
   {
    "read": 1,

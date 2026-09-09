@@ -30,6 +30,16 @@ const routes = [
       }
     ]
   },
+  {
+    // Logged-in users are sent straight into the real Frappe Desk;
+    // guests are sent to the login page. See the isDeskGate check in main.ts.
+    path: "/desk",
+    name: "DeskGate",
+    component: Home,
+    meta: {
+      isDeskGate: true
+    }
+  },
   ...authRoutes,
 ];
 

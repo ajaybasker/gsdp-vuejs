@@ -5,9 +5,12 @@ their own Province, every Community under that Province, and any record of
 ANY doctype in the app that carries a Link field to Province (directly) or
 to Community (resolved through the Province's communities).
 
-Community Coordinator: set via Community.community_coordinator. Can view
-only their own Community, and any record of ANY doctype in the app that
-carries a Link field to Community, scoped to their own Community.
+Community Coordinator: set via Community.community_coordinator. On the
+Province/Community master doctypes themselves, restricted to just their own
+Community (and its parent Province). On every OTHER doctype in the app (e.g.
+Events, Activities), scoped province-wide - i.e. every record anywhere in
+the parent Province of the Community(ies) they coordinate, same breadth as
+a Province Coordinator.
 
 Wired as a wildcard ("*") entry in hooks.py so it automatically covers every
 doctype in the project - existing ones and any created in the future -
@@ -124,8 +127,23 @@ def _has_community_permission(doc, user, roles):
 
 
 # ---------------------------------------------------------------------------
-# Every other doctype: auto-detected via its Province / Community Link fields
+# Every other doctype: auto-detected via its Province / Community Link fields.
+#
+# Both coordinator roles see every record anywhere in their own Province(s)
+# here - a Community Coordinator's Province is the parent Province of the
+# Community(ies) they coordinate. Only the Province/Community master
+# doctypes themselves (above) keep the Community Coordinator restricted to
+# just their own Community.
 # ---------------------------------------------------------------------------
+
+
+def _own_provinces(user, roles):
+	provinces = set()
+	if "Community Coordinator" in roles:
+		provinces |= set(_provinces_of_coordinated_communities(user))
+	if "Province Coordinator" in roles:
+		provinces |= set(_coordinated_provinces(user))
+	return provinces
 
 
 def _generic_query_conditions(doctype, user, roles):
@@ -134,38 +152,22 @@ def _generic_query_conditions(doctype, user, roles):
 		return []
 
 	table = f"`tab{doctype}`"
-	conditions = []
+	provinces = _own_provinces(user, roles)
 
-	if "Community Coordinator" in roles:
-		if "community" in fields:
-			communities = _coordinated_communities(user)
-			if communities:
-				escaped = ", ".join(frappe.db.escape(c) for c in communities)
-				conditions.append(f"{table}.`{fields['community']}` in ({escaped})")
-			else:
-				conditions.append("1=0")
-		else:
-			conditions.append("1=0")
+	if "province" in fields:
+		if provinces:
+			escaped = ", ".join(frappe.db.escape(p) for p in provinces)
+			return [f"{table}.`{fields['province']}` in ({escaped})"]
+		return ["1=0"]
 
-	if "Province Coordinator" in roles:
-		provinces = _coordinated_provinces(user)
-		if "province" in fields:
-			if provinces:
-				escaped = ", ".join(frappe.db.escape(p) for p in provinces)
-				conditions.append(f"{table}.`{fields['province']}` in ({escaped})")
-			else:
-				conditions.append("1=0")
-		elif "community" in fields:
-			communities = _communities_under_provinces(provinces)
-			if communities:
-				escaped = ", ".join(frappe.db.escape(c) for c in communities)
-				conditions.append(f"{table}.`{fields['community']}` in ({escaped})")
-			else:
-				conditions.append("1=0")
-		else:
-			conditions.append("1=0")
+	if "community" in fields:
+		communities = _communities_under_provinces(list(provinces))
+		if communities:
+			escaped = ", ".join(frappe.db.escape(c) for c in communities)
+			return [f"{table}.`{fields['community']}` in ({escaped})"]
+		return ["1=0"]
 
-	return conditions
+	return []
 
 
 def _has_generic_permission(doc, user, roles):
@@ -173,21 +175,15 @@ def _has_generic_permission(doc, user, roles):
 	if not fields:
 		return True
 
-	allowed = False
-	if "Community Coordinator" in roles:
-		if "community" in fields and doc.get(fields["community"]) in _coordinated_communities(user):
-			allowed = True
+	provinces = _own_provinces(user, roles)
+	if not provinces:
+		return False
 
-	if "Province Coordinator" in roles:
-		provinces = _coordinated_provinces(user)
-		if "province" in fields:
-			if doc.get(fields["province"]) in provinces:
-				allowed = True
-		elif "community" in fields:
-			if doc.get(fields["community"]) in _communities_under_provinces(provinces):
-				allowed = True
-
-	return allowed
+	if "province" in fields:
+		return doc.get(fields["province"]) in provinces
+	if "community" in fields:
+		return doc.get(fields["community"]) in _communities_under_provinces(list(provinces))
+	return False
 
 
 # ---------------------------------------------------------------------------

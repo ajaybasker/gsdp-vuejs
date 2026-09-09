@@ -55,8 +55,8 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-03 21:21:50.210968",
- "modified_by": "ajaybasker@dbcyelagiri.edu.in",
+ "modified": "2026-09-09 16:57:48.779237",
+ "modified_by": "Administrator",
  "module": "Institutional Registry",
  "name": "Leadership Role",
  "naming_rule": "By fieldname",
@@ -71,6 +71,30 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Province Coordinator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Community Coordinator",
    "share": 1,
    "write": 1
   }

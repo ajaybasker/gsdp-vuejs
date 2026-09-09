@@ -103,7 +103,7 @@
                 class="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-900 font-medium"
               >
                 <Icon name="Sliders" :size="15" class="text-slate-400" />
-                <span>Frappe Desk</span>
+                <span>Desk</span>
               </a>
             </div>
           </div>
