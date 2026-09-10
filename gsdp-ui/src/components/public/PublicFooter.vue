@@ -9,13 +9,22 @@
       <div class="grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div class="lg:col-span-4">
           <div class="flex items-center gap-3 mb-6">
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-white p-1.5 text-brand-950">
-              <svg class="w-full h-full" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/></svg>
-            </div>
-            <div>
-              <div class="text-white font-extrabold text-lg leading-tight">Salesian Online</div>
-              <div class="text-brand-400 text-[11px] font-bold uppercase tracking-wider">Global Salesian Digital Platform</div>
-            </div>
+            <template v-if="footerLogo">
+              <img :src="footerLogo" alt="Salesian Online" class="h-10 w-auto max-w-[200px] object-contain" style="filter: brightness(0) invert(1);" />
+            </template>
+            <template v-else>
+              <div class="flex items-center gap-2">
+                <div class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white/10 ring-1 ring-white/15 text-white">
+                  <svg class="h-7 w-7" viewBox="0 0 80 80" fill="currentColor" aria-hidden="true">
+                    <path d="M39.9 7.2c-3.6 0-7.1 1.5-9.5 4.2l-1.7 1.8c1.4.4 2.7 1.2 3.8 2.3l1.8-1.9c1.4-1.5 3.4-2.3 5.6-2.3 2.1 0 4.2.8 5.6 2.3l1.9 2.1c1.1-1.1 2.4-1.8 3.8-2.2l-1.8-1.9c-2.3-2.7-5.9-4.3-9.5-4.3zm-11.1 12.8c-3.5 0-6.4 2.8-6.4 6.4v9.8c0 2.3 1.2 4.4 3.2 5.6l-1.7 9.8h11.4l.8-4.7h12.2l.8 4.7h11.8l-1.7-9.8c2-1.2 3.2-3.3 3.2-5.6v-9.8c0-3.5-2.9-6.4-6.4-6.4h-1.8v-.2c0-2.8-2.3-5.1-5.1-5.1c-1.3 0-2.5.5-3.5 1.4l-1.7 1.7-1.8-1.7c-1-1-2.2-1.5-3.5-1.5-2.8 0-5.1 2.3-5.1 5.1v.2h-1.8zm18.5 6.2h-15.1v7.3h15.1v-7.3zm-14.8 9.8h14.4v3.8H32.5v-3.8zm-2.2 6.2h18.8v3.7H30.3v-3.7zm25.4-15.9h2.1c2.3 0 4.2 1.9 4.2 4.2v9.8c0 1.2-.6 2.2-1.6 2.8l-4.7 2.8V23.6zm-37.1 0h2.3v18.2l-4.7-2.8c-1-.6-1.6-1.6-1.6-2.8V23.6c0-2.3 1.9-4.2 4.2-4.2zm10.8 8.1c.9 0 1.6.7 1.6 1.6s-.7 1.6-1.6 1.6-1.6-.7-1.6-1.6.7-1.6 1.6-1.6zm9.9 0c.9 0 1.6.7 1.6 1.6s-.7 1.6-1.6 1.6-1.6-.7-1.6-1.6.7-1.6 1.6-1.6z" />
+                  </svg>
+                </div>
+                <div class="leading-tight">
+                  <div class="text-xl font-extrabold uppercase tracking-wider text-white">Salesian</div>
+                  <div class="text-xl font-extrabold uppercase tracking-wider text-white -mt-1">Online</div>
+                </div>
+              </div>
+            </template>
           </div>
           <p class="text-sm leading-relaxed text-slate-300 mb-4 pr-4">
             A unified digital platform for discovering and connecting Salesian Provinces, Communities, Institutions, Works, Sectors, and pastoral initiatives across the world.
@@ -82,3 +91,26 @@
     </div>
   </footer>
 </template>
+
+<script>
+import { getLoginBranding } from '@/api/config.js';
+
+export default {
+  data() {
+    return {
+      footerLogo: '',
+      footerIcon: '',
+    };
+  },
+  async mounted() {
+    try {
+      const branding = await getLoginBranding();
+      this.footerLogo = branding?.login_page_logo || '';
+      this.footerIcon = branding?.login_page_icon || '';
+    } catch {
+      this.footerLogo = '';
+      this.footerIcon = '';
+    }
+  },
+};
+</script>

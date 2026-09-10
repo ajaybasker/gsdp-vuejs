@@ -1,27 +1,108 @@
 {
- "_liked_by": "[\"Administrator\"]",
  "actions": [],
  "allow_rename": 1,
- "creation": "2026-09-07 14:30:00",
+ "creation": "2026-09-10 17:01:55.461191",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "cover_image",
+  "resource_type",
+  "audio_file",
+  "video",
+  "video_link",
+  "image",
   "file",
+  "column_break_resource_type",
+  "date",
+  "year_of_creation",
+  "location",
+  "technique",
+  "section_break_common",
   "description",
   "index",
   "reference_period",
-  "bibliographic_reference",
   "reference_institution",
-  "category"
+  "bibliographic_reference",
+  "cover_image"
  ],
  "fields": [
   {
+   "fieldname": "resource_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Resource Type",
+   "options": "Audio\nVideo\nImage\nLetter\nArticle\nDocument\nPresentation\nStatistics\nSpeech\nGood Practice",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.resource_type==\"Audio\"",
+   "fieldname": "audio_file",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Audio File"
+  },
+  {
+   "depends_on": "eval:doc.resource_type==\"Video\"",
+   "fieldname": "video",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Video"
+  },
+  {
+   "depends_on": "eval:doc.resource_type==\"Video\"",
+   "fieldname": "video_link",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Video Link"
+  },
+  {
+   "depends_on": "eval:doc.resource_type==\"Image\"",
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "depends_on": "eval:![\"Audio\",\"Video\",\"Image\"].includes(doc.resource_type)",
    "fieldname": "file",
    "fieldtype": "Attach",
    "in_list_view": 1,
    "label": "File / PDF"
+  },
+  {
+   "fieldname": "column_break_resource_type",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.resource_type==\"Video\"",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date"
+  },
+  {
+   "depends_on": "eval:doc.resource_type==\"Image\"",
+   "fieldname": "year_of_creation",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Year of Creation"
+  },
+  {
+   "depends_on": "eval:doc.resource_type==\"Image\"",
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Location"
+  },
+  {
+   "depends_on": "eval:doc.resource_type==\"Image\"",
+   "fieldname": "technique",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Technique"
+  },
+  {
+   "fieldname": "section_break_common",
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "description",
@@ -30,37 +111,35 @@
    "label": "Description"
   },
   {
+   "depends_on": "eval:![\"Audio\",\"Video\",\"Image\"].includes(doc.resource_type)",
    "fieldname": "index",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Index"
   },
   {
+   "depends_on": "eval:doc.resource_type!=\"Audio\"",
    "fieldname": "reference_period",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Reference Period"
   },
   {
-   "fieldname": "bibliographic_reference",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Bibliographic Reference"
-  },
-  {
+   "depends_on": "eval:doc.resource_type!=\"Audio\"",
    "fieldname": "reference_institution",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Reference Institution"
   },
   {
-   "fieldname": "category",
-   "fieldtype": "Select",
+   "depends_on": "eval:![\"Audio\",\"Video\",\"Image\"].includes(doc.resource_type)",
+   "fieldname": "bibliographic_reference",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Category",
-   "options": "Letter\nArticle\nDocument\nPresentation\nStatistics\nSpeech\nGood Practice\nOther"
+   "label": "Bibliographic Reference"
   },
   {
+   "depends_on": "eval:![\"Audio\",\"Video\",\"Image\"].includes(doc.resource_type)",
    "fieldname": "cover_image",
    "fieldtype": "Attach Image",
    "label": "Cover Image"
@@ -70,7 +149,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-09-08 16:35:38.213816",
+ "modified": "2026-09-10 17:11:24.755879",
  "modified_by": "Administrator",
  "module": "Digital Repository",
  "name": "Resources",

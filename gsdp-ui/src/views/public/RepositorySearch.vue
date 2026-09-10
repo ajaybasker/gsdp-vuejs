@@ -4,28 +4,12 @@
 
     <div class="w-full bg-brand-950 text-white">
       <div class="w-full px-4 md:px-8 xl:px-12 py-10">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-          <div class="w-full lg:flex-1">
-            <p class="text-xs font-bold tracking-widest uppercase text-brand-400 mb-2">Knowledge &amp; Resources</p>
-            <h1 class="text-[28px] font-extrabold mb-2">Salesian Knowledge Hub</h1>
-            <p class="text-[15px] text-slate-300 max-w-2xl leading-relaxed">
-              Explore the centralized digital repository of Salesian heritage, formation, and multimedia resources from across the Congregation.
-            </p>
-          </div>
-          <div v-if="!loading" class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full lg:w-auto">
-            <div class="rounded-xl border border-white/10 bg-white/10 px-5 py-4 text-center">
-              <div class="text-2xl font-extrabold">{{ filteredAssets.length }}</div>
-              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-300 mt-1">Published resources</div>
-            </div>
-            <div class="rounded-xl border border-white/10 bg-white/10 px-5 py-4 text-center">
-              <div class="text-2xl font-extrabold">{{ resourceTypes.length }}</div>
-              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-300 mt-1">Resource types</div>
-            </div>
-            <div class="rounded-xl border border-white/10 bg-white/10 px-5 py-4 text-center">
-              <div class="text-2xl font-extrabold">{{ categories.length }}</div>
-              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-300 mt-1">Categories</div>
-            </div>
-          </div>
+        <div class="w-full">
+          <p class="text-xs font-bold tracking-widest uppercase text-brand-400 mb-2">Knowledge &amp; Resources</p>
+          <h1 class="text-[28px] font-extrabold mb-2">Salesian Knowledge Hub</h1>
+          <p class="text-[15px] text-slate-300 max-w-2xl leading-relaxed">
+            Explore the centralized digital repository of Salesian heritage, formation, and multimedia resources from across the Congregation.
+          </p>
         </div>
       </div>
     </div>
@@ -59,6 +43,17 @@
           </div>
         </Reveal>
 
+        <div v-if="tagFilter || authorFilter" class="mb-6 flex flex-wrap items-center gap-2">
+          <span v-if="tagFilter" class="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-1 text-xs font-semibold text-brand-800 border border-brand-200">
+            Tag: #{{ tagFilter }}
+            <button @click="tagFilter = ''" class="text-brand-500 hover:text-brand-800 leading-none" aria-label="Remove tag filter">✕</button>
+          </span>
+          <span v-if="authorFilter" class="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-1 text-xs font-semibold text-brand-800 border border-brand-200">
+            Author: {{ authorFilter }}
+            <button @click="authorFilter = ''" class="text-brand-500 hover:text-brand-800 leading-none" aria-label="Remove author filter">✕</button>
+          </span>
+        </div>
+
         <LoadingState v-if="loading" label="Searching the repository…" />
         <EmptyState
           v-else-if="filteredAssets.length === 0"
@@ -91,7 +86,18 @@
                 </div>
                 <div class="flex flex-1 flex-col gap-2 p-6 min-w-0">
                   <h3 class="text-[16px] font-bold text-brand-950 leading-snug group-hover:text-brand-700 transition-colors break-words">{{ a.title }}</h3>
-                  <p class="text-[13px] text-slate-400 font-medium truncate w-full">{{ a.author || 'Unknown origin' }}</p>
+                  <p class="text-[13px] text-slate-400 font-medium truncate w-full">
+                    <template v-if="a.author?.length">
+                      <span
+                        v-for="(name, i) in a.author"
+                        :key="name"
+                        @click.stop.prevent="filterByAuthor(name)"
+                        class="hover:text-brand-700 hover:underline"
+                        >{{ name }}<span v-if="i < a.author.length - 1">, </span></span
+                      >
+                    </template>
+                    <template v-else>Unknown origin</template>
+                  </p>
                   <div class="mt-auto flex flex-wrap items-center gap-2 pt-3">
                     <span v-if="a.category" class="text-[11px] font-semibold text-brand-600 truncate">{{ a.category }}</span>
                     <span v-if="a.publication_date" class="text-[11px] text-slate-400">· {{ a.publication_date }}</span>
@@ -118,6 +124,7 @@ import EmptyState from '@/components/public/EmptyState.vue';
 import Icon from '@/components/icons/Icon.vue';
 import { accentFor } from '@/components/public/PageHero.js';
 import { listAssets, listCategories, listResourceTypes } from '@/api/repository.js';
+import { formatResourceTypeBadge } from '@/utils/resourceType.js';
 
 const route = useRoute();
 const loading = ref(true);
@@ -128,6 +135,8 @@ const categories = ref([]);
 const search = ref(route.query.q || route.query.search || '');
 const resourceTypeFilter = ref('');
 const categoryFilter = ref('');
+const tagFilter = ref(route.query.tag || '');
+const authorFilter = ref(route.query.author || '');
 
 async function search_() {
   loading.value = true;
@@ -136,6 +145,8 @@ async function search_() {
       search: search.value || undefined,
       resource_type: resourceTypeFilter.value || undefined,
       category: categoryFilter.value || undefined,
+      tag: tagFilter.value || undefined,
+      author: authorFilter.value || undefined,
       limit: 60,
     });
     // Backward compatible with a plain-array response in case of an older cached bundle.
@@ -158,18 +169,27 @@ watch(search, () => {
   clearTimeout(debounce);
   debounce = setTimeout(search_, 250);
 });
-watch([resourceTypeFilter, categoryFilter], search_);
+watch([resourceTypeFilter, categoryFilter, tagFilter, authorFilter], search_);
 
 const filteredAssets = computed(() => assets.value);
-const hasFilter = computed(() => Boolean(search.value || resourceTypeFilter.value || categoryFilter.value));
+const hasFilter = computed(() => Boolean(search.value || resourceTypeFilter.value || categoryFilter.value || tagFilter.value || authorFilter.value));
 
 function clearAll() {
   search.value = '';
   resourceTypeFilter.value = '';
   categoryFilter.value = '';
+  tagFilter.value = '';
+  authorFilter.value = '';
 }
 
-function resourceTypeLabel(name) {
-  return resourceTypes.value.find((t) => t.name === name)?.resource_type_name || name;
+function filterByAuthor(name) {
+  authorFilter.value = name;
+}
+
+function resourceTypeLabel(resourceType) {
+  const badge = formatResourceTypeBadge(resourceType);
+  const [primary, suffix] = badge.split(' +');
+  const label = resourceTypes.value.find((t) => t.name === primary)?.resource_type_name || primary;
+  return suffix ? `${label} +${suffix}` : label;
 }
 </script>

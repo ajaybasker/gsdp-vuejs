@@ -90,15 +90,6 @@
           <div class="mt-6 max-w-4xl">
             <!-- Badges Row -->
             <div class="flex flex-wrap items-center gap-2.5">
-              <!-- Media Type Pill -->
-              <span
-                class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold shadow-sm"
-                :class="mediaBadgeStyle"
-              >
-                <Icon :name="mediaBadgeIcon" :size="13" />
-                <span>{{ mediaBadgeLabel }}</span>
-              </span>
-
               <!-- Collection Link -->
               <router-link
                 v-if="asset.collection"
@@ -108,12 +99,6 @@
                 <Icon name="Folder" :size="13" class="text-amber-400" />
                 <span>{{ asset.collection }}</span>
               </router-link>
-
-              <!-- Access Clearance Badge -->
-              <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-semibold text-emerald-300 border border-emerald-400/25">
-                <Icon name="CheckCircle" :size="12" />
-                <span>Public Domain Archive</span>
-              </span>
             </div>
 
             <!-- Imposing Archive Title -->
@@ -123,17 +108,22 @@
 
             <!-- Author / Provenance Meta Line -->
             <div class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-300">
-              <div v-if="asset.author" class="flex items-center gap-1.5 font-medium">
+              <div v-if="asset.author?.length" class="flex items-center gap-1.5 font-medium flex-wrap">
                 <Icon name="Users" :size="15" class="text-amber-400" />
-                <span class="text-white">{{ asset.author }}</span>
+                <template v-for="(name, i) in asset.author" :key="name">
+                  <router-link
+                    :to="{ path: '/repository-search', query: { author: name } }"
+                    class="text-white hover:text-amber-300 underline decoration-white/30 hover:decoration-amber-300 transition"
+                  >{{ name }}</router-link><span v-if="i < asset.author.length - 1" class="text-slate-400">,</span>
+                </template>
               </div>
               <div v-if="asset.publication_date" class="flex items-center gap-1.5 text-slate-300">
                 <Icon name="Calendar" :size="15" class="text-slate-400" />
                 <span>Published {{ formatDate(asset.publication_date) }}</span>
               </div>
-              <div v-if="asset.language" class="flex items-center gap-1.5 text-slate-300">
+              <div v-if="languageLabel" class="flex items-center gap-1.5 text-slate-300">
                 <Icon name="Globe" :size="15" class="text-slate-400" />
-                <span>{{ asset.language }}</span>
+                <span>{{ languageLabel }}</span>
               </div>
             </div>
 
@@ -145,7 +135,7 @@
                 class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 px-5 py-2.5 text-sm font-bold text-slate-950 shadow-lg shadow-amber-500/20 hover:brightness-110 active:scale-95 transition"
               >
                 <Icon :name="hasAudio ? 'Play' : 'Video'" :size="16" class="fill-current" />
-                <span>{{ hasAudio ? 'Play Recording' : 'Watch Video' }}</span>
+                <span>{{ hasAudio && hasVideo ? 'Play & Watch' : hasAudio ? 'Play Recording' : 'Watch Video' }}</span>
               </button>
 
               <a
@@ -157,22 +147,6 @@
                 <Icon name="Download" :size="15" />
                 <span>Download ({{ downloadableFiles.length }})</span>
               </a>
-
-              <button
-                @click="copyCitation"
-                class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/15 hover:text-white transition"
-              >
-                <Icon name="Quote" :size="15" />
-                <span>Cite Item</span>
-              </button>
-
-              <button
-                @click="shareAsset"
-                class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-300 hover:bg-white/15 hover:text-white transition"
-              >
-                <Icon name="Share2" :size="15" />
-                <span>Share</span>
-              </button>
             </div>
           </div>
         </div>
@@ -204,7 +178,7 @@
               <Icon name="Globe" :size="13" class="text-teal-600" /> Canonical Language
             </span>
             <div class="mt-1.5 truncate text-sm sm:text-base font-bold text-slate-900">
-              {{ asset.language || 'Multilingual' }}
+              {{ languageLabel || 'Multilingual' }}
             </div>
           </div>
 
@@ -229,17 +203,17 @@
               <!-- Bespoke Audio Suite -->
               <div v-if="hasAudio" class="space-y-4">
                 <AudioPlayer
-                  :tracks="asset.audio_source"
+                  :tracks="audioItems"
                   :cover-image="cover.url"
                   :title="asset.title"
-                  :author="asset.author"
+                  :author="authorLabel"
                 />
               </div>
 
               <!-- Video Resource Player / Embed -->
-              <div v-if="asset.video_source?.length" class="space-y-4">
+              <div v-if="videoItems.length" class="space-y-4">
                 <div
-                  v-for="(v, i) in asset.video_source"
+                  v-for="(v, i) in videoItems"
                   :key="'video-' + i"
                   class="overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-md"
                 >
@@ -319,7 +293,7 @@
               </figure>
 
               <!-- Image Gallery / Photographic Records -->
-              <div v-if="asset.image_resource?.length" class="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-md">
+              <div v-if="imageItems.length" class="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-md">
                 <div class="flex items-center gap-2.5 border-b border-slate-100 pb-4">
                   <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                     <Icon name="Image" :size="18" />
@@ -328,7 +302,7 @@
                 </div>
                 <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <figure
-                    v-for="(img, idx) in asset.image_resource"
+                    v-for="(img, idx) in imageItems"
                     :key="'img-' + idx"
                     class="group overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 transition hover:shadow-lg"
                   >
@@ -351,7 +325,7 @@
               </div>
 
               <!-- Archival Documents & Manuscripts -->
-              <div v-if="asset.resources?.length" class="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-md">
+              <div v-if="documentItems.length" class="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-md">
                 <div class="flex items-center gap-2.5 border-b border-slate-100 pb-4">
                   <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
                     <Icon name="FileText" :size="18" />
@@ -360,7 +334,7 @@
                 </div>
                 <div class="mt-6 divide-y divide-slate-100">
                   <div
-                    v-for="(doc, idx) in asset.resources"
+                    v-for="(doc, idx) in documentItems"
                     :key="'doc-' + idx"
                     class="flex flex-wrap items-start gap-4 py-4 first:pt-0 last:pb-0"
                   >
@@ -408,9 +382,10 @@
               <!-- Formatted Description -->
               <div class="mt-6 prose prose-slate max-w-none text-slate-700 leading-relaxed text-base sm:text-lg">
                 <div v-if="asset.description" class="space-y-4">
-                  <div class="border-l-4 border-amber-400 pl-4 py-1 text-slate-800 font-medium italic bg-amber-50/40 rounded-r-xl">
-                    {{ stripHtml(asset.description) }}
-                  </div>
+                  <div
+                    class="border-l-4 border-amber-400 pl-4 py-1 text-slate-800 font-medium italic bg-amber-50/40 rounded-r-xl [&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-lg [&_img]:not-italic [&_img]:my-3 [&_p]:my-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_a]:text-brand-700 [&_a]:underline"
+                    v-html="asset.description"
+                  ></div>
                 </div>
                 <p v-else class="text-slate-400 italic text-sm">
                   No textual abstract provided for this archival record.
@@ -426,7 +401,7 @@
                   <router-link
                     v-for="tag in asset.tags"
                     :key="tag"
-                    :to="{ path: '/repository-search', query: { search: tag } }"
+                    :to="{ path: '/repository-search', query: { tag } }"
                     class="rounded-full bg-slate-100 px-3.5 py-1 text-xs font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-800 border border-slate-200 hover:border-brand-200 transition"
                   >
                     #{{ tag }}
@@ -452,7 +427,7 @@
                 </div>
                 <div class="flex justify-between py-2.5">
                   <dt class="text-slate-400">Media Category</dt>
-                  <dd class="font-semibold text-slate-800">{{ asset.resource_type || 'Archive' }}</dd>
+                  <dd class="font-semibold text-slate-800">{{ resourceTypeLabel || 'Archive' }}</dd>
                 </div>
                 <div class="flex justify-between py-2.5">
                   <dt class="text-slate-400">Subject Class</dt>
@@ -473,7 +448,7 @@
                 </div>
                 <div class="flex justify-between py-2.5">
                   <dt class="text-slate-400">Language(s)</dt>
-                  <dd class="font-semibold text-slate-800">{{ asset.language || '—' }}</dd>
+                  <dd class="font-semibold text-slate-800">{{ languageLabel || '—' }}</dd>
                 </div>
                 <div class="flex justify-between py-2.5">
                   <dt class="text-slate-400">Governance Level</dt>
@@ -575,12 +550,12 @@
                 <PlaceholderImage
                   :title="r.title"
                   :src="r.cover_image"
-                  :asset-type="r.resource_type"
+                  :asset-type="getPrimaryResourceType(r.resource_type)"
                   class-name="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div class="absolute top-3 left-3">
                   <span class="rounded-full bg-slate-900/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-sm">
-                    {{ r.resource_type }}
+                    {{ formatResourceTypeBadge(r.resource_type) }}
                   </span>
                 </div>
               </div>
@@ -592,8 +567,8 @@
                 <h3 class="mt-1.5 line-clamp-2 text-base font-bold text-slate-900 group-hover:text-brand-800 transition">
                   {{ r.title }}
                 </h3>
-                <p v-if="r.author" class="mt-1 line-clamp-1 text-xs text-slate-500">
-                  {{ r.author }}
+                <p v-if="r.author?.length" class="mt-1 line-clamp-1 text-xs text-slate-500">
+                  {{ joinMultiSelect(r.author) }}
                 </p>
 
                 <div class="mt-auto pt-4 flex items-center justify-between text-xs text-slate-400 border-t border-slate-100">
@@ -608,24 +583,6 @@
         </section>
       </main>
     </template>
-
-    <!-- Floating Feedback Toast -->
-    <transition
-      enter-active-class="transform ease-out duration-300 transition"
-      enter-from-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
-      enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"
-      leave-active-class="transition ease-in duration-100"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-    >
-      <div
-        v-if="toastMessage"
-        class="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-3 text-xs font-semibold text-white shadow-2xl border border-slate-800"
-      >
-        <Icon name="CheckCircle" :size="16" class="text-emerald-400" />
-        <span>{{ toastMessage }}</span>
-      </div>
-    </transition>
 
     <PublicFooter />
   </div>
@@ -642,14 +599,12 @@ import LoadingState from '@/components/public/LoadingState.vue';
 import Icon from '@/components/icons/Icon.vue';
 import { getAsset } from '@/api/repository.js';
 import { coverImageForAssetType } from '@/data/repositoryImages.js';
+import { getPrimaryResourceType, formatResourceTypeBadge } from '@/utils/resourceType.js';
 
 const route = useRoute();
 const loading = ref(true);
 const notFound = ref(false);
 const asset = ref(null);
-const copiedCitation = ref(false);
-const toastMessage = ref('');
-let toastTimer = null;
 
 async function load(id) {
   loading.value = true;
@@ -666,19 +621,35 @@ async function load(id) {
 onMounted(() => load(route.params.id));
 watch(() => route.params.id, (id) => id && load(id));
 
-const resourceTypeLabel = computed(() => asset.value?.resource_type || '');
+const RESOURCE_MEDIA_TYPES = ['Audio', 'Video', 'Image'];
 
-const hasAudio = computed(() => {
-  const a = asset.value;
-  if (!a) return false;
-  if (a.audio_source?.length) return true;
-  if (a.resource_type === 'Audio') return true;
-  return false;
+const audioItems = computed(() => (asset.value?.resources || []).filter((r) => r.resource_type === 'Audio'));
+const videoItems = computed(() => (asset.value?.resources || []).filter((r) => r.resource_type === 'Video'));
+const imageItems = computed(() => (asset.value?.resources || []).filter((r) => r.resource_type === 'Image'));
+const documentItems = computed(() =>
+  (asset.value?.resources || []).filter((r) => !RESOURCE_MEDIA_TYPES.includes(r.resource_type))
+);
+
+// The distinct resource types actually present on this record, for display (a record can carry
+// more than one now that all sub-resources live in a single unified child table).
+const resourceTypeLabel = computed(() => {
+  const types = [...new Set((asset.value?.resources || []).map((r) => r.resource_type).filter(Boolean))];
+  return types.join(', ');
 });
 
-const hasVideo = computed(() => {
-  return (asset.value?.video_source?.length || 0) > 0 || asset.value?.resource_type === 'Video';
-});
+// The first row's type, used only to pick a sensible fallback cover image.
+const primaryResourceType = computed(() => asset.value?.resources?.[0]?.resource_type || '');
+
+function joinMultiSelect(value) {
+  if (Array.isArray(value)) return value.filter(Boolean).join(', ');
+  return value || '';
+}
+
+const authorLabel = computed(() => joinMultiSelect(asset.value?.author));
+const languageLabel = computed(() => joinMultiSelect(asset.value?.language));
+
+const hasAudio = computed(() => audioItems.value.length > 0);
+const hasVideo = computed(() => videoItems.value.length > 0);
 
 const showCoverFigure = computed(() => {
   // If this is an audio record and we have the bespoke AudioPlayer, don't awkwardly repeat the photo
@@ -690,33 +661,7 @@ const showCoverFigure = computed(() => {
 
 const cover = computed(() => {
   if (asset.value?.cover_image) return { url: asset.value.cover_image };
-  return coverImageForAssetType(resourceTypeLabel.value);
-});
-
-const mediaBadgeLabel = computed(() => {
-  const t = resourceTypeLabel.value;
-  if (t === 'Audio') return 'Audio Recording';
-  if (t === 'Video') return 'Video Archive';
-  if (t === 'Image') return 'Visual Heritage';
-  if (t === 'Document' || t === 'Book') return 'Archival Document';
-  if (t === 'Article') return 'Scholarly Article';
-  return t || 'Digital Archive';
-});
-
-const mediaBadgeIcon = computed(() => {
-  const t = resourceTypeLabel.value;
-  if (t === 'Audio') return 'Headphones';
-  if (t === 'Video') return 'Video';
-  if (t === 'Image') return 'Image';
-  return 'FileText';
-});
-
-const mediaBadgeStyle = computed(() => {
-  const t = resourceTypeLabel.value;
-  if (t === 'Audio') return 'bg-amber-400/20 text-amber-300 border border-amber-400/30';
-  if (t === 'Video') return 'bg-rose-400/20 text-rose-300 border border-rose-400/30';
-  if (t === 'Image') return 'bg-emerald-400/20 text-emerald-300 border border-emerald-400/30';
-  return 'bg-brand-500/20 text-brand-300 border border-brand-400/30';
+  return coverImageForAssetType(primaryResourceType.value);
 });
 
 const downloadableFiles = computed(() => {
@@ -724,38 +669,26 @@ const downloadableFiles = computed(() => {
   if (!a) return [];
   const files = [];
 
-  for (const row of a.audio_source || []) {
-    if (row.audio_file) {
+  for (const row of a.resources || []) {
+    if (row.resource_type === 'Audio' && row.audio_file) {
       files.push({
         label: row.categories ? `Audio — ${row.categories}` : 'Audio recording',
         url: row.audio_file,
       });
-    }
-  }
-
-  for (const row of a.video_source || []) {
-    if (row.video) {
+    } else if (row.resource_type === 'Video' && row.video) {
       files.push({
         label: row.categories ? `Video — ${row.categories}` : 'Video recording',
         url: row.video,
       });
-    }
-  }
-
-  for (const row of a.resources || []) {
-    if (row.file) {
-      files.push({
-        label: row.description || row.category || 'Attached manuscript file',
-        url: row.file,
-      });
-    }
-  }
-
-  for (const row of a.image_resource || []) {
-    if (row.image) {
+    } else if (row.resource_type === 'Image' && row.image) {
       files.push({
         label: row.description || 'Archival image photograph',
         url: row.image,
+      });
+    } else if (row.file) {
+      files.push({
+        label: row.description || row.category || 'Attached manuscript file',
+        url: row.file,
       });
     }
   }
@@ -770,17 +703,6 @@ const downloadableFiles = computed(() => {
   }
 
   return files;
-});
-
-const citationText = computed(() => {
-  const a = asset.value;
-  if (!a) return '';
-  const author = a.author || 'Salesian Congregation';
-  const year = a.publication_date ? new Date(a.publication_date).getFullYear() : 'n.d.';
-  const title = a.title || 'Untitled Resource';
-  const collection = a.collection ? ` In ${a.collection}.` : '';
-  const url = window.location.href;
-  return `${author} (${year}). "${title}."${collection} Salesian Online Digital Archive. ${url}`;
 });
 
 function formatDate(val) {
@@ -820,32 +742,6 @@ function scrollToMedia() {
   }
 }
 
-function showToast(msg) {
-  clearTimeout(toastTimer);
-  toastMessage.value = msg;
-  toastTimer = setTimeout(() => {
-    toastMessage.value = '';
-  }, 3000);
-}
-
-function copyCitation() {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(citationText.value);
-    copiedCitation.value = true;
-    showToast('Citation copied to clipboard!');
-    setTimeout(() => {
-      copiedCitation.value = false;
-    }, 2000);
-  }
-}
-
-function shareAsset() {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(window.location.href);
-    showToast('Link copied to clipboard!');
-  }
-}
-
 function isEmbeddable(url) {
   if (!url) return false;
   return url.includes('youtube.com') || url.includes('youtu.be') || url.includes('vimeo.com');
@@ -862,11 +758,4 @@ function getEmbedUrl(url) {
   return url;
 }
 
-function stripHtml(html) {
-  if (!html) return '';
-  const textarea = document.createElement('textarea');
-  textarea.innerHTML = html;
-  const decoded = textarea.value;
-  return decoded.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-}
 </script>

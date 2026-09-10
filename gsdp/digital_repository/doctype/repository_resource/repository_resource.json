@@ -2,15 +2,13 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "field:title",
- "creation": "2026-09-03 18:28:25.711100",
+ "creation": "2026-09-10 17:02:07.705880",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "section_break_resource_details",
   "resource_code",
-  "resource_type",
-  "category",
   "cover_image",
   "column_break_1_1",
   "collection",
@@ -21,11 +19,9 @@
   "title",
   "author",
   "description",
-  "audio_source",
-  "video_source",
-  "image_resource",
   "resources",
-  "tags"
+  "tags",
+  "category"
  ],
  "fields": [
   {
@@ -43,25 +39,11 @@
    "unique": 1
   },
   {
-   "description": "Type of resource",
-   "fieldname": "resource_type",
-   "fieldtype": "Select",
-   "in_filter": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Resource Type",
-   "options": "Audio\nVideo\nImage\nLetter\nArticle\nDocument\nPresentation\nStatistics\nSpeech\nGood Practice",
-   "reqd": 1
-  },
-  {
    "description": "Main category",
    "fieldname": "category",
-   "fieldtype": "Select",
-   "in_filter": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
+   "fieldtype": "Table",
    "label": "Category",
-   "options": "History & Heritage\nSalesian Family\nFormation\nYouth Ministry",
+   "options": "Resource Category Items",
    "reqd": 1
   },
   {
@@ -78,8 +60,9 @@
   {
    "description": "Main language",
    "fieldname": "language",
-   "fieldtype": "Data",
-   "label": "Language"
+   "fieldtype": "Table MultiSelect",
+   "label": "Language",
+   "options": "GSDP Language Items"
   },
   {
    "default": "Draft",
@@ -112,9 +95,9 @@
   {
    "description": "Primary author/creator of the resource",
    "fieldname": "author",
-   "fieldtype": "Data",
+   "fieldtype": "Table MultiSelect",
    "label": "Author",
-   "options": "Authorship",
+   "options": "Author Items",
    "reqd": 1
   },
   {
@@ -122,24 +105,6 @@
    "fieldtype": "Data",
    "label": "Title",
    "unique": 1
-  },
-  {
-   "fieldname": "audio_source",
-   "fieldtype": "Table",
-   "label": "Audio Source",
-   "options": "Audio Resource"
-  },
-  {
-   "fieldname": "video_source",
-   "fieldtype": "Table",
-   "label": "Video Resource",
-   "options": "Video Source"
-  },
-  {
-   "fieldname": "image_resource",
-   "fieldtype": "Table",
-   "label": "Image Resource",
-   "options": "Image Source"
   },
   {
    "fieldname": "resources",
@@ -163,7 +128,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-08 14:50:55.727995",
+ "modified": "2026-09-10 17:09:29.627738",
  "modified_by": "Administrator",
  "module": "Digital Repository",
  "name": "Repository Resource",

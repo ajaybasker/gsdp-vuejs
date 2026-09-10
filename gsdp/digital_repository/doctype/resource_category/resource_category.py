@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class AudioResource(Document):
+class ResourceCategory(Document):
 	pass

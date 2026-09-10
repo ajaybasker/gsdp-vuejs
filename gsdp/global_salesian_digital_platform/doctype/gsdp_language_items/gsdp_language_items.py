@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class ImageSource(Document):
+class GSDPLanguageItems(Document):
 	pass
