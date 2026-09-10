@@ -72,10 +72,10 @@
                 <span>Resource Catalogue</span>
               </router-link>
               <span>/</span>
-              <router-link v-if="asset.category" :to="{ path: '/repository-search', query: { category: asset.category } }" class="text-slate-400 hover:text-amber-300 transition">
-                {{ asset.category }}
+              <router-link v-if="primaryCategory" :to="{ path: '/repository-search', query: { category: primaryCategory } }" class="text-slate-400 hover:text-amber-300 transition">
+                {{ categoryLabel }}
               </router-link>
-              <span v-if="asset.category">/</span>
+              <span v-if="primaryCategory">/</span>
               <span class="text-slate-300 truncate max-w-[200px] sm:max-w-xs">{{ asset.title }}</span>
             </nav>
 
@@ -160,7 +160,7 @@
               <Icon name="Archive" :size="13" class="text-brand-600" /> Category
             </span>
             <div class="mt-1.5 truncate text-sm sm:text-base font-bold text-slate-900">
-              {{ asset.category || 'General Heritage' }}
+              {{ categoryLabel || 'General Heritage' }}
             </div>
           </div>
 
@@ -392,6 +392,37 @@
                 </p>
               </div>
 
+              <!-- Subject Categories (two-level: top-level category, with its child categories) -->
+              <div v-if="categoryGroups.length" class="mt-8 border-t border-slate-100 pt-6">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                  <Icon name="Layers" :size="13" /> Subject Categories
+                </h4>
+                <ul class="mt-3 space-y-2.5 text-sm">
+                  <li v-for="group in categoryGroups" :key="group.category">
+                    <div class="flex items-center gap-2">
+                      <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400"></span>
+                      <router-link
+                        :to="{ path: '/repository-search', query: { category: group.category } }"
+                        class="font-semibold text-slate-800 hover:text-brand-700 hover:underline"
+                      >
+                        {{ group.category }}
+                      </router-link>
+                    </div>
+                    <ul v-if="group.children.length" class="mt-1.5 ml-1 space-y-1.5 border-l border-slate-200 pl-4">
+                      <li v-for="child in group.children" :key="child" class="flex items-center gap-2">
+                        <span class="h-1 w-1 shrink-0 rounded-full border border-brand-400"></span>
+                        <router-link
+                          :to="{ path: '/repository-search', query: { category: child } }"
+                          class="text-brand-700 hover:text-brand-900 hover:underline"
+                        >
+                          {{ child }}
+                        </router-link>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
               <!-- Controlled Subject Headings & Tags -->
               <div v-if="asset.tags?.length" class="mt-8 border-t border-slate-100 pt-6">
                 <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
@@ -431,7 +462,7 @@
                 </div>
                 <div class="flex justify-between py-2.5">
                   <dt class="text-slate-400">Subject Class</dt>
-                  <dd class="font-semibold text-slate-800">{{ asset.category || '—' }}</dd>
+                  <dd class="font-semibold text-slate-800">{{ categoryLabel || '—' }}</dd>
                 </div>
                 <div class="flex justify-between py-2.5">
                   <dt class="text-slate-400">Curated Collection</dt>
@@ -639,6 +670,15 @@ const resourceTypeLabel = computed(() => {
 
 // The first row's type, used only to pick a sensible fallback cover image.
 const primaryResourceType = computed(() => asset.value?.resources?.[0]?.resource_type || '');
+
+// `category` is a two-level tree — [{ category, children: [...] }] — built server-side from the
+// admin's ordered Resource Category rows (an unchecked row starts a new top-level category,
+// checked rows under it are its children). categoryGroups renders that nested list; categoryLabel
+// is a flat, comma-joined summary of just the top-level categories for compact spots (breadcrumb,
+// metadata cards) that only have room for a single line.
+const categoryGroups = computed(() => asset.value?.category || []);
+const categoryLabel = computed(() => categoryGroups.value.map((g) => g.category).join(', '));
+const primaryCategory = computed(() => categoryGroups.value[0]?.category || '');
 
 function joinMultiSelect(value) {
   if (Array.isArray(value)) return value.filter(Boolean).join(', ');

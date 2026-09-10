@@ -10,11 +10,11 @@
   "section_break_resource_details",
   "resource_code",
   "cover_image",
-  "column_break_1_1",
   "collection",
+  "publication_date",
+  "column_break_1_1",
   "language",
   "status",
-  "publication_date",
   "section_break_description",
   "title",
   "author",
@@ -61,6 +61,7 @@
    "description": "Main language",
    "fieldname": "language",
    "fieldtype": "Table MultiSelect",
+   "in_standard_filter": 1,
    "label": "Language",
    "options": "GSDP Language Items"
   },
@@ -69,6 +70,7 @@
    "description": "Repository workflow status",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_standard_filter": 1,
    "label": "Status",
    "options": "Draft\nSubmitted\nUnder Review\nValidated\nPublished",
    "reqd": 1
@@ -96,6 +98,7 @@
    "description": "Primary author/creator of the resource",
    "fieldname": "author",
    "fieldtype": "Table MultiSelect",
+   "in_standard_filter": 1,
    "label": "Author",
    "options": "Author Items",
    "reqd": 1
@@ -115,6 +118,7 @@
   {
    "fieldname": "tags",
    "fieldtype": "Table MultiSelect",
+   "in_standard_filter": 1,
    "label": "Tags ",
    "options": "Resource Tag Item"
   },
@@ -128,7 +132,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-10 17:09:29.627738",
+ "modified": "2026-09-10 18:13:11.984363",
  "modified_by": "Administrator",
  "module": "Digital Repository",
  "name": "Repository Resource",

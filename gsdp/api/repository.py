@@ -5,19 +5,22 @@ import difflib
 import frappe
 
 ASSET_LIST_FIELDS = [
-	"name", "title", "resource_code", "category", "collection",
+	"name", "title", "resource_code", "collection",
 	"publication_date", "status", "cover_image",
 ]
 
 # Fields searched for a direct (substring) match, and used as the fuzzy-match haystack
 # when no direct match is found (e.g. the user made a typo).
-SEARCHABLE_FIELDS = ["title", "description", "category", "resource_code"]
+SEARCHABLE_FIELDS = ["title", "description", "resource_code"]
 # Note: `author`/`language` are Table MultiSelect fields (no column on this table), so they
 # aren't searchable via a simple `like` filter here — see _attach_authors_and_languages below
 # for how their values are resolved from the child tables for display.
 # `resource_type` similarly no longer lives on the parent — every sub-resource (audio/video/
 # image/document/...) is a row in the unified `resources` child table instead, each carrying
 # its own resource_type — see _attach_resource_types below.
+# `category` is likewise a child table now (`Resource Category Items`, each row a Link to the
+# `Resource Category` master list, with an `is_child_category` flag forming a two-level
+# parent/child taxonomy) — see _attach_categories and _build_category_groups below.
 
 FUZZY_SCORE_THRESHOLD = 0.55
 
@@ -86,6 +89,48 @@ def _attach_resource_types(rows):
 	return rows
 
 
+def _build_category_groups(category_rows):
+	"""Turn ordered `Resource Category Items` rows into a two-level tree: a row not marked
+	`is_child_category` starts a new top-level category, and every marked row right after it
+	belongs to that category — until the next unmarked row starts a new one."""
+	groups = []
+	current = None
+	for row in category_rows:
+		name = row.get("resource_category")
+		if not name:
+			continue
+		if not row.get("is_child_category") or current is None:
+			current = {"category": name, "children": []}
+			groups.append(current)
+		else:
+			current["children"].append(name)
+	return groups
+
+
+def _attach_categories(rows):
+	"""Enrich list rows with `category`, a flat display label made of the top-level category
+	names on each resource — the full parent/child tree is only built for a single asset's
+	detail view (see _build_category_groups), not needed for compact list cards."""
+	names = [row["name"] for row in rows if row.get("name")]
+	labels_map = {}
+	if names:
+		child_rows = frappe.get_all(
+			"Resource Category Items",
+			filters={"parent": ["in", names], "parenttype": "Repository Resource", "parentfield": "category"},
+			fields=["parent", "resource_category", "is_child_category"], order_by="idx asc",
+			ignore_permissions=True,
+		)
+		grouped = {}
+		for entry in child_rows:
+			grouped.setdefault(entry["parent"], []).append(entry)
+		for parent, entries in grouped.items():
+			top_level = [e["resource_category"] for e in entries if not e["is_child_category"]]
+			labels_map[parent] = ", ".join(dict.fromkeys(top_level))
+	for row in rows:
+		row["category"] = labels_map.get(row["name"], "")
+	return rows
+
+
 def _restrict_by_child_table(allowed_names, child_doctype, field, value, parentfield):
 	"""Intersect `allowed_names` (None = unrestricted) with parents of child rows matching value."""
 	matching_names = frappe.get_all(
@@ -102,8 +147,6 @@ def _restrict_by_child_table(allowed_names, child_doctype, field, value, parentf
 @frappe.whitelist(allow_guest=True)
 def list_assets(resource_type=None, category=None, collection=None, search=None, tag=None, author=None, limit=60):
 	filters = {"status": "Published"}
-	if category:
-		filters["category"] = category
 	if collection:
 		filters["collection"] = collection
 
@@ -112,6 +155,10 @@ def list_assets(resource_type=None, category=None, collection=None, search=None,
 	resource_type = (resource_type or "").strip()
 	if resource_type:
 		allowed_names = _restrict_by_child_table(allowed_names, "Resources", "resource_type", resource_type, "resources")
+
+	category = (category or "").strip()
+	if category:
+		allowed_names = _restrict_by_child_table(allowed_names, "Resource Category Items", "resource_category", category, "category")
 
 	tag = (tag or "").strip()
 	if tag:
@@ -135,7 +182,7 @@ def list_assets(resource_type=None, category=None, collection=None, search=None,
 			order_by="publication_date desc", limit_page_length=limit,
 			ignore_permissions=True,
 		)
-		return {"results": _attach_resource_types(_attach_authors_and_languages(rows)), "fuzzy": False, "query": ""}
+		return {"results": _attach_categories(_attach_resource_types(_attach_authors_and_languages(rows))), "fuzzy": False, "query": ""}
 
 	term = f"%{search}%"
 	or_filters = [[field, "like", term] for field in SEARCHABLE_FIELDS]
@@ -145,7 +192,7 @@ def list_assets(resource_type=None, category=None, collection=None, search=None,
 		ignore_permissions=True,
 	)
 	if rows:
-		return {"results": _attach_resource_types(_attach_authors_and_languages(rows)), "fuzzy": False, "query": search}
+		return {"results": _attach_categories(_attach_resource_types(_attach_authors_and_languages(rows))), "fuzzy": False, "query": search}
 
 	# Nothing matched directly — likely a typo or unfamiliar wording. Fall back to a
 	# similarity-ranked search across all published resources so the user still sees
@@ -157,7 +204,7 @@ def list_assets(resource_type=None, category=None, collection=None, search=None,
 	rows = _fuzzy_rank(search, candidates, limit)
 	for row in rows:
 		row.pop("description", None)
-	return {"results": _attach_resource_types(_attach_authors_and_languages(rows)), "fuzzy": True, "query": search}
+	return {"results": _attach_categories(_attach_resource_types(_attach_authors_and_languages(rows))), "fuzzy": True, "query": search}
 
 
 def _fuzzy_rank(search, candidates, limit):
@@ -199,12 +246,25 @@ def get_asset(name):
 	resource_dict["language"] = [language_names.get(code, code) for code in language_codes]
 	resource_dict["rights"] = None
 
-	related_filters = {"status": "Published", "category": resource.category, "name": ["!=", name]}
-	related = frappe.get_all(
-		"Repository Resource", filters=related_filters, fields=ASSET_LIST_FIELDS,
-		limit_page_length=4, ignore_permissions=True,
-	)
-	resource_dict["related"] = _attach_resource_types(_attach_authors_and_languages(related))
+	category_names = [row.get("resource_category") for row in (resource_dict.get("category") or []) if row.get("resource_category")]
+	resource_dict["category"] = _build_category_groups(resource_dict.get("category") or [])
+
+	related = []
+	if category_names:
+		related_names = set(frappe.get_all(
+			"Resource Category Items",
+			filters={
+				"resource_category": ["in", category_names],
+				"parenttype": "Repository Resource", "parentfield": "category",
+			},
+			pluck="parent", ignore_permissions=True,
+		)) - {name}
+		if related_names:
+			related = frappe.get_all(
+				"Repository Resource", filters={"status": "Published", "name": ["in", list(related_names)]},
+				fields=ASSET_LIST_FIELDS, limit_page_length=4, ignore_permissions=True,
+			)
+	resource_dict["related"] = _attach_categories(_attach_resource_types(_attach_authors_and_languages(related)))
 	return resource_dict
 
 
@@ -226,7 +286,7 @@ def get_collection(name):
 		"Repository Resource", filters={"collection": name, "status": "Published"},
 		fields=ASSET_LIST_FIELDS, order_by="publication_date desc", ignore_permissions=True,
 	)
-	collection["resources"] = _attach_resource_types(_attach_authors_and_languages(resources))
+	collection["resources"] = _attach_categories(_attach_resource_types(_attach_authors_and_languages(resources)))
 	return collection
 
 
@@ -234,11 +294,6 @@ def get_collection(name):
 RESOURCE_TYPE_OPTIONS = [
 	"Audio", "Video", "Image", "Letter", "Article",
 	"Document", "Presentation", "Statistics", "Speech", "Good Practice",
-]
-
-# Kept in sync with the `category` Select options on Repository Resource.
-CATEGORY_OPTIONS = [
-	"History & Heritage", "Salesian Family", "Formation", "Youth Ministry",
 ]
 
 
@@ -249,4 +304,8 @@ def list_resource_types():
 
 @frappe.whitelist(allow_guest=True)
 def list_categories():
-	return [{"name": c, "category_name": c} for c in CATEGORY_OPTIONS]
+	categories = frappe.get_all(
+		"Resource Category", fields=["name", "resource_category_name"],
+		order_by="resource_category_name asc", ignore_permissions=True,
+	)
+	return [{"name": c["name"], "category_name": c["resource_category_name"]} for c in categories]

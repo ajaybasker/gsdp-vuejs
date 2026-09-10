@@ -133,8 +133,8 @@ const isFuzzy = ref(false);
 const resourceTypes = ref([]);
 const categories = ref([]);
 const search = ref(route.query.q || route.query.search || '');
-const resourceTypeFilter = ref('');
-const categoryFilter = ref('');
+const resourceTypeFilter = ref(route.query.resource_type || '');
+const categoryFilter = ref(route.query.category || '');
 const tagFilter = ref(route.query.tag || '');
 const authorFilter = ref(route.query.author || '');
 
