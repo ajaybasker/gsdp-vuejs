@@ -2,18 +2,6 @@
   <div class="min-h-screen bg-slate-50 font-sans">
     <PublicHeader />
 
-    <div class="w-full bg-brand-950 text-white">
-      <div class="w-full px-4 md:px-8 xl:px-12 py-10">
-        <div class="w-full">
-          <p class="text-xs font-bold tracking-widest uppercase text-brand-400 mb-2">Knowledge &amp; Resources</p>
-          <h1 class="text-[28px] font-extrabold mb-2">Salesian Knowledge Hub</h1>
-          <p class="text-[15px] text-slate-300 max-w-2xl leading-relaxed">
-            Explore the centralized digital repository of Salesian heritage, formation, and multimedia resources from across the Congregation.
-          </p>
-        </div>
-      </div>
-    </div>
-
     <main class="w-full px-4 md:px-8 xl:px-12 py-16">
       <div>
         <div class="text-center max-w-3xl mx-auto mb-10">
